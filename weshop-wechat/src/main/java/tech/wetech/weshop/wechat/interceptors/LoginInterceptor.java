@@ -21,6 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (StringUtils.isBlank(token)) {
             throw new WeshopWechatException(WeshopWechatResultStatus.WECHAT_LOGIN_ERROR);
         }
+//        token = "testKoned";
         Claims claims = JwtHelper.parseJWT(token);
         JwtHelper.setCurrentClaims(claims);
         return true;
