@@ -45,7 +45,6 @@
   width: 750rpx;
   height: auto;
   overflow: hidden;
-  background: #fff;
   color: #333;
   margin-top: 20rpx;
 }
@@ -125,18 +124,18 @@
 }
 
 .a-new .b {
-  width: 750rpx;
+   
   height: auto;
   overflow: hidden;
-  padding: 0 31rpx 45rpx 31rpx;
+   
 }
 
 .a-new .b .item {
   float: left;
-  width: 302rpx;
-  margin-top: 10rpx;
-  margin-left: 21rpx;
-  margin-right: 21rpx;
+  width: 50%;
+  margin-top: 3rpx;
+  box-sizing: border-box;
+  padding: 10px 0 0 0;
 }
 
 .a-new .b .item-b {
@@ -144,19 +143,73 @@
 }
 
 .a-new .b .img {
-  width: 302rpx;
-  height: 302rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.logo {  
+  width: 50px;  
+  height: 50px;  
+}  
+.search-bar {  
+  display: flex;  
+  align-items: center;  
+  background-color: #f0f0f0;  
+  border-radius: 20px;  
+  padding: 5px;  
+}  
+  
+.search-bar input {  
+  flex: 12;  
+  height: 30px;  
+  border: none;  
+  padding: 0 10px;  
+}  
+.post-title {  
+  font-size: 16px;  
+  font-weight: bold;  
+}  
+.post-header {  
+  display: flex;  
+  align-items: center;  
+  margin-bottom: 10px;  
+}  
+.avatar-container {  
+  margin-left: 20px;  
+} 
+.nickname {  
+  font-size: 11px;  
+  font-weight: bold;  
+}  
+  
+.like-count {  
+  font-size: 11px;  
+  color: #666;  
+  margin-top: 4px;  
+}  
+   
+  
+.avatar {  
+  width: 25px;  
+  height: 25px;  
+  border-radius: 50%;  
+}  
+  
+.post-author {  
+  color: #666;  
 }
 
 .a-new .b .name {
-  text-align: center;
+  text-align: left;
   display: block;
   width: 302rpx;
-  height: 35rpx;
+  height: auto;
   margin-bottom: 14rpx;
   overflow: hidden;
-  font-size: 30rpx;
+  font-size: 25rpx;
   color: #333;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .a-new .b .price {
@@ -167,6 +220,39 @@
   color: #b4282d;
 }
 
+.search {
+  height: 88rpx;
+  width: 100%;
+  padding: 0 30rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.search .input {
+  width: 690rpx;
+  height: 56rpx;
+  background: #ededed;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search .icon {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png) center no-repeat;
+  background-size: 100%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.search .txt {
+  height: 42rpx;
+  line-height: 42rpx;
+  color: #666;
+  padding-left: 10rpx;
+  font-size: 30rpx;
+}
 .a-popular {
   width: 750rpx;
   height: auto;

@@ -20,6 +20,10 @@ public class WechatHomeController extends BaseController {
     private WechatHomeService wechatHomeService;
 
 
+    /**
+     * 首页数据
+     * @return
+     */
     @GetMapping("/index")
     public Result<HomeIndexVO> index() {
         return Result.success(wechatHomeService.index());

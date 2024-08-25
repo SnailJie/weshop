@@ -12,12 +12,13 @@ Page({
         brandList: [],
         floorGoods: [],
         bannerList: [],
-        channelList: []
+        channelList: [],
+        postsList: []
     },
     onShareAppMessage: function () {
         return {
-            title: 'weshop',
-            desc: '严选微信小程序商城',
+            title: '放学去哪儿',
+            desc: '同学们,放学去哪儿',
             path: '/pages/index/index'
         }
     },
@@ -33,7 +34,8 @@ Page({
                     brandList: res.data.brandList,
                     floorGoods: res.data.categoryList,
                     bannerList: res.data.bannerList,
-                    channelList: res.data.channelList
+                    channelList: res.data.channelList,
+                    postsList: res.data.postsList
                 });
             }
         });

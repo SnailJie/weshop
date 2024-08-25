@@ -37,7 +37,7 @@
 	"window": {
 		"backgroundTextStyle": "dark",
 		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "严选商城",
+		"navigationBarTitleText": "放学去哪儿",
 		"navigationBarTextStyle": "black",
 		"enablePullDownRefresh": true
 	},
@@ -51,31 +51,26 @@
 				"pagePath": "pages/index/index",
 				"iconPath": "static/images/ic_menu_choice_nor.png",
 				"selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-				"text": "首页"
+				"text": "家长说～"
 			},
 			{
 				"pagePath": "pages/topic/topic",
 				"iconPath": "static/images/ic_menu_topic_nor.png",
 				"selectedIconPath": "static/images/ic_menu_topic_pressed.png",
-				"text": "专题"
+				"text": "严选"
 			},
 			{
 				"pagePath": "pages/catalog/catalog",
 				"iconPath": "static/images/ic_menu_sort_nor.png",
 				"selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-				"text": "分类"
-			},
-			{
-				"pagePath": "pages/cart/cart",
-				"iconPath": "static/images/ic_menu_shoping_nor.png",
-				"selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-				"text": "购物车"
-			},
+				"text": "小知识 "
+      }
+      ,
 			{
 				"pagePath": "pages/ucenter/index/index",
 				"iconPath": "static/images/ic_menu_me_nor.png",
 				"selectedIconPath": "static/images/ic_menu_me_pressed.png",
-				"text": "我的"
+				"text": "自留地"
 			}
 		]
 	},
@@ -84,5 +79,11 @@
 		"downloadFile": 10000
 	},
 	"debug": true,
-	"sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom":"/colorui/components/cu-custom"
+  }
 }

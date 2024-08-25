@@ -3,6 +3,8 @@ package tech.wetech.weshop.wechat.vo;
 import tech.wetech.weshop.goods.po.Brand;
 import tech.wetech.weshop.goods.po.Channel;
 import tech.wetech.weshop.goods.po.Goods;
+import tech.wetech.weshop.goods.po.post.PostIndexModel;
+import tech.wetech.weshop.goods.po.post.Posts;
 import tech.wetech.weshop.user.po.Ad;
 import tech.wetech.weshop.user.po.Topic;
 
@@ -27,6 +29,8 @@ public class HomeIndexVO implements Serializable {
     private List<Goods> newGoodsList;
 
     private List<Topic> topicList;
+
+    private List<PostIndexModel> postsList;
 
     public List<Ad> getBannerList() {
         return bannerList;
@@ -89,5 +93,15 @@ public class HomeIndexVO implements Serializable {
     public HomeIndexVO setTopicList(List<Topic> topicList) {
         this.topicList = topicList;
         return this;
+    }
+
+    public List<PostIndexModel> getPostsList() {
+        return postsList;
+    }
+
+    public HomeIndexVO setPostsList(List<PostIndexModel> postsList) {
+        this.postsList = postsList;
+        return this;
+
     }
 }

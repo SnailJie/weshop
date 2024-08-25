@@ -3,14 +3,14 @@ package tech.wetech.weshop.wechat.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.wetech.weshop.common.utils.Criteria;
-import tech.wetech.weshop.goods.api.BrandApi;
-import tech.wetech.weshop.goods.api.CategoryApi;
-import tech.wetech.weshop.goods.api.ChannelApi;
-import tech.wetech.weshop.goods.api.GoodsApi;
+import tech.wetech.weshop.goods.api.*;
+import tech.wetech.weshop.goods.convert.Convert;
 import tech.wetech.weshop.goods.po.Brand;
 import tech.wetech.weshop.goods.po.Category;
 import tech.wetech.weshop.goods.po.Channel;
 import tech.wetech.weshop.goods.po.Goods;
+import tech.wetech.weshop.goods.po.post.PostIndexModel;
+import tech.wetech.weshop.goods.po.post.Posts;
 import tech.wetech.weshop.user.api.AdApi;
 import tech.wetech.weshop.user.api.TopicApi;
 import tech.wetech.weshop.user.po.Ad;
@@ -43,6 +43,10 @@ public class WechatHomeServiceImpl implements WechatHomeService {
     @Autowired
     private CategoryApi categoryApi;
 
+    @Autowired
+    private PostsApi postsApi;
+
+
     @Override
 //    @Cacheable("index")
     public HomeIndexVO index() {
@@ -59,26 +63,34 @@ public class WechatHomeServiceImpl implements WechatHomeService {
 
         List<Topic> topicList = topicApi.queryByCriteria(Criteria.of(Topic.class).fields(Topic::getId, Topic::getScenePicUrl, Topic::getTitle, Topic::getPriceInfo, Topic::getSubtitle).page(1, 10)).getData();
 
+        /**
+         * 帖子列表
+         */
+        List<Posts> postsList = postsApi.queryByCriteria(Criteria.of(Posts.class).fields(Posts::getId,Posts::getGmtCreate,Posts::getGmtModify,Posts::getCode, Posts::getTitle, Posts::getCreatorId, Posts::getPicList, Posts::getSupplierId, Posts::getContent, Posts::getLikeCnt, Posts::getCollectCnt, Posts::getIsDelete).page(1, 10)).getData();
+        List<PostIndexModel> postIndexModels = postsList.stream().map(Convert::convert).collect(Collectors.toList());
+
         List<HomeCategoryVO> categoryList = new LinkedList<>();
 
         categoryApi.queryByCriteria(
-                Criteria.of(Category.class).fields(Category::getId, Category::getName).andEqualTo(Category::getParentId, 0)
+            Criteria.of(Category.class).fields(Category::getId, Category::getName).andEqualTo(Category::getParentId, 0)
         ).getData().forEach(c -> {
 
             List<Integer> categoryIdList = categoryApi.queryByCriteria(Criteria.of(Category.class).fields(Category::getId).andEqualTo(Category::getParentId, c.getId())).getData().stream()
-                    .map(Category::getId)
-                    .collect(Collectors.toList());
+                .map(Category::getId)
+                .collect(Collectors.toList());
 
             List<Goods> goodsList = goodsApi.queryByCriteria(Criteria.of(Goods.class).fields(Goods::getId, Goods::getListPicUrl, Goods::getName, Goods::getRetailPrice).andIn(Goods::getCategoryId, categoryIdList).page(1, 3)).getData();
             categoryList.add(new HomeCategoryVO(c.getId(), c.getName(), goodsList));
         });
-
-        return new HomeIndexVO().setBannerList(bannerList)
-                .setChannelList(channelList)
-                .setNewGoodsList(newGoodsList)
-                .setHotGoodsList(hotGoodsList)
-                .setBrandList(brandList)
-                .setTopicList(topicList)
-                .setCategoryList(categoryList);
+        HomeIndexVO result = new HomeIndexVO();
+        result.setBannerList(bannerList)
+            .setChannelList(channelList)
+            .setNewGoodsList(newGoodsList)
+            .setHotGoodsList(hotGoodsList)
+            .setBrandList(brandList)
+            .setTopicList(topicList)
+            .setPostsList(postIndexModels)
+            .setCategoryList(categoryList);
+        return result;
     }
 }

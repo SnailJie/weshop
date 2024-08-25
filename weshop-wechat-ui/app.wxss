@@ -1,9 +1,19 @@
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss"; 
 /**app.wxss**/
 .container {
   box-sizing: border-box;
-  background-color: #f4f4f4;
+  background-color: #da5c5c;
   font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  display: flex;
+  flex-wrap: wrap;
 } 
+page {  
+  background-color: #e7e4e4; /* 浅灰色，你可以根据需要调整颜色值 */  
+  /* 或者使用更深的灰色 */  
+  /* background-color: #cccccc; */  
+}
+
 
 view,image,text,navigator{
   box-sizing: border-box;
