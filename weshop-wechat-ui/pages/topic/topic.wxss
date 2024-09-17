@@ -13,7 +13,7 @@ page ,.container{
 
 .topic-list .item{
     width: 100%;
-    height: 625rpx;
+    height: 565rpx;
     overflow: hidden;
     background: #fff;
     margin-bottom: 20rpx;

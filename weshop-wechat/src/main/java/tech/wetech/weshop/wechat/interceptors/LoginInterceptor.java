@@ -7,21 +7,23 @@ import tech.wetech.weshop.wechat.constants.WechatConstants;
 import tech.wetech.weshop.wechat.enums.WeshopWechatResultStatus;
 import tech.wetech.weshop.wechat.exception.WeshopWechatException;
 import tech.wetech.weshop.wechat.utils.JwtHelper;
+import tech.wetech.weshop.wechat.utils.MockData;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 登陆状态拦截器
  * @author cjbi
  */
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader(WechatConstants.JWT_KEY_NAME);
+        token = MockData.getMockToken();
         if (StringUtils.isBlank(token)) {
             throw new WeshopWechatException(WeshopWechatResultStatus.WECHAT_LOGIN_ERROR);
         }
-//        token = "testKoned";
         Claims claims = JwtHelper.parseJWT(token);
         JwtHelper.setCurrentClaims(claims);
         return true;

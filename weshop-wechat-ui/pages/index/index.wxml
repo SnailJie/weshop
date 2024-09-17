@@ -14,7 +14,7 @@
     <view class="a-section a-new" wx:if="{{newGoodsList.length > 0}}">
       <view class="b">
         <view class="item" wx:for="{{postsList}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.code}}">
-          <navigator url="../goods/goods?id={{item.code}}">
+          <navigator url="../posts/posts?id={{item.code}}">
             <image class="img" src="{{item.indexPicURL}}" background-size="cover"></image>
             <text class="name">{{item.title}}</text>
            

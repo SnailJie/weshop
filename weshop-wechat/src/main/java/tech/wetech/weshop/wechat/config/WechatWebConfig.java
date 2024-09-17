@@ -19,8 +19,9 @@ public class WechatWebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginInterceptor())
-//                .addPathPatterns("/**")//拦截所有的路径
-//                .excludePathPatterns(weshopWechatProperties.getLoginInterceptorExcludePath().toArray(new String[]{}));
+        // 拦截所有请求，通过判断数据库中是否配置该URL权限
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/**")//拦截所有的路径
+                .excludePathPatterns(weshopWechatProperties.getLoginInterceptorExcludePath().toArray(new String[]{}));
     }
 }

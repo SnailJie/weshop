@@ -15,7 +15,7 @@ CREATE TABLE `quaner_post` (
   `creator_id` varchar(16) NOT NULL,
   `pic_list` text NOT NULL,
   `supplier_id` text NOT NULL,
-  `collect_cnt` int(32) NOT NULL DEFAULT '',
+  `collect_cnt` int(32) NOT NULL DEFAULT 0,
   `like_cnt` int(32) NULL DEFAULT NULL,
   `is_delete` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),

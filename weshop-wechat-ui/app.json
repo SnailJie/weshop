@@ -26,12 +26,14 @@
 		"pages/brand/brand",
 		"pages/brandDetail/brandDetail",
 		"pages/search/search",
-		"pages/category/category",
+    "pages/category/category",
+    "pages/activity/activity",
 		"pages/cart/cart",
 		"pages/shopping/checkout/checkout",
 		"pages/shopping/address/address",
 		"pages/shopping/addressAdd/addressAdd",
-		"pages/goods/goods",
+    "pages/goods/goods",
+    "pages/posts/posts",
 		"pages/topicDetail/topicDetail"
 	],
 	"window": {
@@ -51,7 +53,7 @@
 				"pagePath": "pages/index/index",
 				"iconPath": "static/images/ic_menu_choice_nor.png",
 				"selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-				"text": "家长说～"
+				"text": "经验"
 			},
 			{
 				"pagePath": "pages/topic/topic",
@@ -60,17 +62,17 @@
 				"text": "严选"
 			},
 			{
-				"pagePath": "pages/catalog/catalog",
+				"pagePath": "pages/activity/activity",
 				"iconPath": "static/images/ic_menu_sort_nor.png",
 				"selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-				"text": "小知识 "
+				"text": "活动"
       }
       ,
 			{
 				"pagePath": "pages/ucenter/index/index",
 				"iconPath": "static/images/ic_menu_me_nor.png",
 				"selectedIconPath": "static/images/ic_menu_me_pressed.png",
-				"text": "自留地"
+				"text": "我的"
 			}
 		]
 	},

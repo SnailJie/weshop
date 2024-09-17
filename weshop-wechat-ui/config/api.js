@@ -14,7 +14,11 @@ module.exports = {
 	GoodsDetail: BaseUrl + 'goods/detail',  //获得商品的详情
 	GoodsNew: BaseUrl + 'goods/new',  //新品
 	GoodsHot: BaseUrl + 'goods/hot',  //热门
-	GoodsRelated: BaseUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
+  GoodsRelated: BaseUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
+  
+
+  PostsDetail: BaseUrl + 'posts/detail',  //获得商品的详情
+  PostsComments: BaseUrl + 'posts/comments',  //商品详情页的关联商品（大家都在看）
 
 	BrandList: BaseUrl + 'brand/list',  //品牌列表
 	BrandDetail: BaseUrl + 'brand',  //品牌详情
