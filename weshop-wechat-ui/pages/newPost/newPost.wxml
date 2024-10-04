@@ -1,19 +1,25 @@
-<view class="container">  
-  <view class="header">  
-    <text>发布帖子</text>  
-  </view>  
-    
-  <view class="input-group">  
-    <label for="title">标题</label>  
-    <input type="text" id="title" placeholder="请输入标题" bindinput="onTitleInput" />  
-  </view>  
-    
-  <view class="image-upload">  
-    <button bindtap="chooseImage">上传图片</button>  
-    <block wx:for="{{images}}" wx:key="index">  
-      <image src="{{item}}" mode="aspectFill" class="uploaded-image" />  
-    </block>  
-  </view>  
-    
-  <button bindtap="submitPost" class="submit-button">发布</button>  
+<view class="container">
+  <view class="header">
+    <text class="title">发布帖子</text>
+  </view>
+  <form bindsubmit="formSubmit" bindreset="formReset" class="post-form">
+    <view class="page-section">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="title" placeholder="输入标题" />
+            <input class="weui-input" name="content" placeholder="添加正文" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="image-upload">
+      <button bindtap="chooseImage">上传图片</button>
+      <block wx:for="{{images}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
+      </block>
+    </view>
+    <button formType="submit" class="submit-button">提交</button>
+    <button formType="reset" class="reset-button">重置</button>
+  </form>
 </view>

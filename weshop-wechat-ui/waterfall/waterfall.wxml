@@ -1,0 +1,21 @@
+<template name="waterfall">
+  <view class="fall-item">
+    <view class="fall-li">
+      <image class="fall-pic" src="{{item.imgUrl}}" mode="widthFix"></image>
+      <view class="fall-title-wrap">
+        <navigator url="url" class="fall-title">{{item.title}}</navigator>
+      </view>
+      <view class="fall-bottom">
+        <view class="fall-toux-name">
+          <image class="fall-toux" src="{{item.headUrl}}"></image>
+          <text class="fall-name">{{item.userName}}</text>
+        </view>
+        <view class="fall-love-num">
+          <text wx:if="{{item.isLike == 1}}" class="cuIcon-likefill lg text-red"></text>
+          <text wx:if="{{item.isLike == 0}}" class="cuIcon-like lg text-gray"></text>
+          <text class="fall-num">{{item.likeNum}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

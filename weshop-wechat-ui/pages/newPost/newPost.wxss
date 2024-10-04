@@ -1,51 +1,35 @@
-.container {  
-  padding: 20px;  
-}  
-  
-.header {  
-  text-align: center;  
-  margin-bottom: 20px;  
-  font-size: 20px;  
-  font-weight: bold;  
-}  
-  
-.input-group {  
-  margin-bottom: 20px;  
-}  
-  
-.input-group label {  
-  display: block;  
-  margin-bottom: 5px;  
-  font-size: 16px;  
-}  
-  
-.input-group input {  
-  width: 100%;  
-  padding: 10px;  
-  border: 1px solid #ccc;  
-  border-radius: 5px;  
-  box-sizing: border-box;  
-}  
-  
-.image-upload {  
-  margin-bottom: 20px;  
-}  
-  
-.uploaded-image {  
-  width: 100px;  
-  height: 100px;  
-  margin-right: 10px;  
-  margin-bottom: 10px;  
-  border: 1px solid #ddd;  
-  border-radius: 5px;  
-}  
-  
-.submit-button {  
-  width: 100%;  
-  padding: 10px 0;  
-  background-color: #ff5733;  
-  color: white;  
-  border: none;  
-  border-radius: 5px;  
-  font-size: 16px;  
+.container {
+  padding: 20rpx;
+}
+
+.header {
+  margin-top: 60rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.page-section {
+  margin-top: 80rpx;
+  width: fit-content;
+}
+
+.weui-cell__bd {
+  margin: 30rpx 0;
+}
+
+.image-upload {
+  margin-top: 20rpx;
+}
+
+.uploaded-image {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 20rpx;
+}
+
+.submit-button, .reset-button {
+  margin-top: 20rpx;
 }

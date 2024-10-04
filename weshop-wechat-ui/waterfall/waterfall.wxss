@@ -1,0 +1,68 @@
+page{
+  width: 100%;
+  margin: 0;
+  background: #F2F2F2;
+}
+.fall-content{
+  display: flex;
+  flex-direction: row;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  overflow: hidden;
+}
+
+.fall-left{
+  width: 345rpx;
+}
+
+.fall-right{
+  width: 345rpx;
+  margin-left: 20rpx;
+}
+.fall-li{
+  margin-top: 20rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+}
+.fall-pic{
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+  width: 345rpx;
+}
+
+.fall-bottom{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  align-items: center;
+}
+.fall-title-wrap{
+  padding: 5rpx 20rpx 0rpx 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+.fall-toux{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+}
+.fall-name{
+  font-size: 25rpx;
+  color: #333;
+  font-weight: 300;
+  margin-left: 20rpx;
+}
+.fall-toux-name{
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0rpx;
+}
+.fall-love-num{
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+.fall-num{
+  font-size: 25rpx;
+  margin-left: 5rpx;
+}
