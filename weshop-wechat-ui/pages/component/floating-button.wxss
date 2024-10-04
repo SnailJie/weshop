@@ -4,8 +4,6 @@
   right: 20px;  /* 调整到你想要的位置 */  
   width: 60px;  
   height: 60px;  
-  
- 
   justify-content: center;  
 }  
   

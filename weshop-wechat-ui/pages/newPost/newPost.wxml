@@ -1,0 +1,19 @@
+<view class="container">  
+  <view class="header">  
+    <text>发布帖子</text>  
+  </view>  
+    
+  <view class="input-group">  
+    <label for="title">标题</label>  
+    <input type="text" id="title" placeholder="请输入标题" bindinput="onTitleInput" />  
+  </view>  
+    
+  <view class="image-upload">  
+    <button bindtap="chooseImage">上传图片</button>  
+    <block wx:for="{{images}}" wx:key="index">  
+      <image src="{{item}}" mode="aspectFill" class="uploaded-image" />  
+    </block>  
+  </view>  
+    
+  <button bindtap="submitPost" class="submit-button">发布</button>  
+</view>

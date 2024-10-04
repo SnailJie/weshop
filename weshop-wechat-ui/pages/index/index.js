@@ -56,8 +56,9 @@ Page({
         // 页面关闭
     },
     navigateToPostPage() {  
+      console.log('------xxxxxx')
       wx.navigateTo({  
-        url: '/pages/newPost'  
+        url: '/pages/newPost/newPost'  
       });  
     }  
 })
