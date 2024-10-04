@@ -1,0 +1,4 @@
+tech/wetech/weshop/example/controller/TestController.class
+tech/wetech/weshop/example/amqp/Receiver.class
+tech/wetech/weshop/example/amqp/Sender.class
+tech/wetech/weshop/example/WeshopExampleConsumerApplication.class

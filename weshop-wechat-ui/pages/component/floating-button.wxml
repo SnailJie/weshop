@@ -1,0 +1,3 @@
+<view class="floating-button" bindtap="onButtonClick">  
+  <button class="button-inner">发帖</button>  
+</view>

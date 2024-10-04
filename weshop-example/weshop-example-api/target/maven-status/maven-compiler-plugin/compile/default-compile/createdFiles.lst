@@ -1,0 +1,4 @@
+tech/wetech/weshop/example/api/TestApi.class
+tech/wetech/weshop/example/fallback/TestApiFallback.class
+tech/wetech/weshop/example/api/Test2Api.class
+tech/wetech/weshop/example/fallback/Test2ApiFallback.class

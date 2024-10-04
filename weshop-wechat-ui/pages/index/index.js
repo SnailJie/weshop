@@ -55,4 +55,9 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
+    navigateToPostPage() {  
+      wx.navigateTo({  
+        url: '/pages/newPost'  
+      });  
+    }  
 })

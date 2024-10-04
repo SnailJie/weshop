@@ -2,6 +2,7 @@
 <cu-custom  bgImage="../../static/images/index.jpg">
 </cu-custom>
 <cui_page >
+  <floating-button bind:click="navigateToPostPage"></floating-button> 
   <view class="flex flex-wrap">
     <!-- 顶部搜索栏 -->
     <view class="search">
@@ -9,6 +10,7 @@
       <image class="icon"></image>
       <text class="txt">搜踩坑、种草、黑料</text>
     </navigator>
+   
   </view>
      <!-- 笔记列表 -->
     <view class="a-section a-new" wx:if="{{newGoodsList.length > 0}}">

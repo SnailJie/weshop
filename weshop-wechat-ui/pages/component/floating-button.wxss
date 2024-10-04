@@ -1,0 +1,23 @@
+.floating-button {  
+  position: fixed;  
+  bottom: 50px; /* 调整到你想要的位置 */  
+  right: 20px;  /* 调整到你想要的位置 */  
+  width: 60px;  
+  height: 60px;  
+  
+ 
+  justify-content: center;  
+}  
+  
+.button-inner {  
+  color: rgb(27, 24, 24);  
+  align-items: center;  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  font-size: 16px;  
+  background-color: #1aad19; /* 自定义背景颜色 */  
+  bottom: 50px; /* 调整到你想要的位置 */  
+  right: 20px;  /* 调整到你想要的位置 */  
+  width: 60px;  
+  height: 60px;  
+  border-radius: 50%;  
+}

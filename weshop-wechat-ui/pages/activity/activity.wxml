@@ -7,12 +7,12 @@
       </navigator>
     </swiper-item>
   </swiper>
-  <view class="m-menu">
+  <!-- <view class="m-menu">
     <navigator class="item" url="{{item.url}}" wx:for="{{channelList}}" wx:key="{{item.id}}">
       <image src="{{item.iconUrl}}" background-size="cover"></image>
       <text>{{item.name}}</text>
     </navigator>
-  </view>
+  </view> -->
   <view class="a-section a-brand">
     <view class="h">
       <navigator url="../brand/brand">
@@ -52,24 +52,7 @@
       </view>
     </view>
   </view>
-  <view class="a-section a-new" wx:if="{{newGoodsList.length > 0}}">
-    <view class="h">
-      <view>
-        <navigator url="../newGoods/newGoods">
-          <text class="txt">最 新 活 动</text>
-        </navigator>
-      </view>
-    </view>
-    <view class="b">
-      <view class="item" wx:for="{{newGoodsList}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}">
-        <navigator url="../goods/goods?id={{item.id}}">
-          <image class="img" src="{{item.listPicUrl}}" background-size="cover"></image>
-          <text class="name">{{item.name}}</text>
-          <text class="price">￥{{item.retailPrice}}</text>
-        </navigator>
-      </view>
-    </view>
-  </view>
+   
   <!-- <view class="a-section a-popular" wx:if="{{hotGoods.length > 0}}">
     <view class="h">
       <view>
