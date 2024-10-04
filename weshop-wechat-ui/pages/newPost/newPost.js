@@ -60,7 +60,7 @@ Page({
         });  
         // 或者导航到其他页面（可选）  
         // wx.navigateTo({ url: '/pages/someOtherPage/someOtherPage' });  
-      }.bind(this) // 注意：需要绑定this，以便在回调中访问页面的setData方法  
+      }
     });  
   }  
 });

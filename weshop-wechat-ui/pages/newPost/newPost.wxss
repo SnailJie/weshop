@@ -1,4 +1,10 @@
-ottom: 20px;  
+.container {  
+  padding: 20px;  
+}  
+  
+.header {  
+  text-align: center;  
+  margin-bottom: 20px;  
   font-size: 20px;  
   font-weight: bold;  
 }  
