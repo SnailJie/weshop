@@ -8,11 +8,15 @@
 }  
   
 .button-inner {  
-  color: rgb(27, 24, 24);  
-  align-items: center;  
+  justify-content: center; /* 水平居中 */  
+  align-items: center; /* 垂直居中 */  
+  color: rgb(241 230 230);  
+  font: outline; 
+  padding: 0 2px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   font-size: 16px;  
-  background-color: #1aad19; /* 自定义背景颜色 */  
+  font-weight: bolder;
+  background-color: rgb(235 92 92); /* 自定义背景颜色 */  
   bottom: 50px; /* 调整到你想要的位置 */  
   right: 20px;  /* 调整到你想要的位置 */  
   width: 60px;  

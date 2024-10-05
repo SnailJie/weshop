@@ -1,24 +1,32 @@
-<view class="container">
-  <view class="header">
-    <text class="title">发布帖子</text>
-  </view>
+<!-- 标题栏 -->
+<cu-custom bgColor="bg-white">
+  <view slot="content">放学去哪儿</view>
+</cu-custom>
+<view>
+
+
   <form bindsubmit="formSubmit" bindreset="formReset" class="post-form">
-    <view class="page-section">
+    <view class="image-section">
+      <block wx:for="{{images}}" wx:key="index">
+        <image class="image-item" src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage"></image>
+        <button class="delete-btn" style="position: relative;  " bindtap="deleteImage" data-index="{{index}}">删除</button>
+        <!-- <button bindtap="removeImage" data-index="{{index}}">✖</button>  -->
+      </block>
+      <button class="add-image-btn" bindtap="chooseImage" style="align-items: center;  width: 100px; height: 100px; font-size: 50px">+</button>
+    </view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__bd">
-            <input class="weui-input" name="title" placeholder="输入标题" />
-            <input class="weui-input" name="content" placeholder="添加正文" />
+          <view class="weui-cell__bd" style="display: flex;  justify-content: center;align-items: center; flex-direction: column;">
+            <input class="weui-input" name="title"  style="width: 90%;" placeholder="输入标题" />
+            <textarea type="text" style=" border-top: 2px solid rgb(146, 145, 145); padding: 8px;  box-sizing: border-box;width: 90%; height:200px"
+            class="weui-input" name="content" placeholder="添加正文" />
           </view>
         </view>
       </view>
-    </view>
-    <view class="image-upload">
-      <button bindtap="chooseImage">上传图片</button>
-      <block wx:for="{{images}}" wx:key="index">
-        <image src="{{item}}" mode="aspectFill" class="uploaded-image" />
-      </block>
-    </view>
+   
+   
+    
+
     <button formType="submit" class="submit-button">提交</button>
     <button formType="reset" class="reset-button">重置</button>
   </form>

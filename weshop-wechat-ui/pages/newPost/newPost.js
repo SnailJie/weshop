@@ -9,21 +9,43 @@ Page({
       title: e.detail.value  
     });  
   },  
+  data: {  
+    images: []  
+  },  
   
   chooseImage() {  
+    const that = this;  
     wx.chooseImage({  
-      count: 1, // 允许选择图片的数量，这里设为1表示只能上传一张图片  
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图  
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机  
+      count: 9, // 允许选择图片的数量  
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success(res) {  
         const tempFilePaths = res.tempFilePaths;  
-        this.setData({  
-          images: [...this.data.images, tempFilePaths[0]] // 将选中的图片添加到数组中  
+        that.setData({  
+          images: [...that.data.images, ...tempFilePaths]  
         });  
       },  
       fail(err) {  
-        console.error('选择图片失败', err);  
+        console.error(err);  
       }  
+    });  
+  },  
+  
+  previewImage(e) {  
+    const current = e.currentTarget.dataset.index;  
+    const urls = this.data.images;  
+    wx.previewImage({  
+      current: urls[current],  
+      urls: urls  
+    });  
+  },  
+  
+  deleteImage(e) {  
+    const index = e.currentTarget.dataset.index;  
+    const images = this.data.images;  
+    images.splice(index, 1);  
+    this.setData({  
+      images: images  
     });  
   },  
   

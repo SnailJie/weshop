@@ -22,7 +22,7 @@ Page({
     PageCur: 'basics',
     TabCur: 0,
     scrollLeft: 0,
-    navlist: ["推荐", "旅游", "穿搭", "影视", "动漫", "游戏"],
+    navlist: ["推荐", "森系", "历史", "国外", "自然", "亲子"],
     allfallList: [
       {
         imgUrl:"/image/疯狂暗黑圈.webp",
