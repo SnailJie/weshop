@@ -3,7 +3,7 @@
 /**app.wxss**/
 .container {
   box-sizing: border-box;
-  background-color: #da5c5c;
+  background-color: #faf8f8;
   font-family: PingFangSC-Light,helvetica,'Heiti SC';
   display: flex;
   flex-wrap: wrap;

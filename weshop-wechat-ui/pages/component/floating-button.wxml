@@ -1,3 +1,3 @@
 <view class="floating-button" bindtap="onButtonClick">  
-  <button class="button-inner">发表</button>  
+  <button class="button-inner" style=" background-color: #c5783a;">举手</button>  
 </view>

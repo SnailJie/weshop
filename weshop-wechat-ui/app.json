@@ -77,9 +77,6 @@
 	},
 	"debug": true,
   "sitemapLocation": "sitemap.json",
-  "window": {
-    "navigationStyle": "custom"
-  },
   "usingComponents": {
     "cu-custom":"/colorui/components/cu-custom"
   }

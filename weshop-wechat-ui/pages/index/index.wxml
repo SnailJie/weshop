@@ -1,9 +1,9 @@
 <import src="/waterfall/waterfall.wxml" />
 
 <!-- 标题栏 -->
-<cu-custom bgColor="bg-white">
+<!-- <cu-custom bgColor="bg-white">
   <view slot="content">放学去哪儿</view>
-</cu-custom>
+</cu-custom> -->
 <!-- 搜索栏 -->
 <view>
   <view class="cu-bar search bg-white">
