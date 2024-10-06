@@ -1,38 +1,30 @@
-<!-- 标题栏 -->
-<!-- <cu-custom bgColor="bg-white">
-  <view slot="content">放学去哪儿</view>
-</cu-custom> -->
-<view>
-  <form bindsubmit="formSubmit" bindreset="formReset" class="post-form">
-  <!-- 图片选择 -->
-    <view class="image-section" style="border: 1px dashed #cecbcb">
-      <block wx:if="{{images.length > 0 && images.length < 6}}">
-        <block wx:for="{{images}}" wx:key="index" >
-          <view class="image-container" style="position: relative;" style="display: inline-block;">  
-          <image class="image-item" src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage"></image>
-          <button class="delete-btn" bindtap="deleteImage" data-index="{{index}}">X</button>
-        </view>  
-        </block>
-        <button class="add-image-btn" bindtap="chooseImage" style="width: 100px; height: 100px; font-size: xx-large; margin-top: 2px;margin-left: 10px;background-color: rgb(223, 223, 226);  ">+</button>
-      </block>
-      <block wx:if="{{images.length == 6}}">
-        <block wx:for="{{images}}" wx:key="index">
-          <image class="image-item" src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImage"></image>
-          <button class="delete-btn" bindtap="deleteImage" data-index="{{index}}" backgrou>X</button>
-        </block>
-      </block>
-      <button class="add-image-btn" wx:if="{{images.length === 0}}" bindtap="chooseImage" style="width: 100px; height: 100px; font-size: xx-large;background-color: rgb(223, 223, 226); margin-left: 10px; margin-bottom: 8px;">+</button>
-    </view>
-<!-- 文本输入 -->
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__bd" style="display: flex;  justify-content: center;align-items: center; flex-direction: column;">
-          <input class="weui-input" name="title" style="width: 90%;" placeholder="输入标题" />
-          <textarea type="text" style=" border-top: 2px solid rgb(146, 145, 145); padding: 8px;  box-sizing: border-box;width: 90%; height:200px" class="weui-input" name="content" placeholder="添加正文" />
-        </view>
-      </view>
-    </view>
-    <button formType="submit" class="send-post" style=" border-radius: 40px;  ">发布笔记</button>
-     
-  </form>
+<view class="container">  
+  <!-- 顶部图片 -->  
+  <image class="post-image" src="{{post.imageUrl}}" mode="aspectFit"></image>  
+  
+  <!-- 中间内容 -->  
+  <view class="post-content">  
+    <rich-text nodes="{{post.content}}"></rich-text>  
+    <!-- 如果内容中包含多张图片，你可能需要遍历一个图片数组并显示它们 -->  
+  </view>  
+  
+  <!-- 底部信息 -->  
+  <view class="post-footer">  
+    <view class="footer-item">  
+      <text>作者：{{post.author}}</text>  
+    </view>  
+    <view class="footer-item">  
+      <text>发布时间：{{post.timestamp}}</text>  
+    </view>  
+    <view class="footer-item">  
+      <button bindtap="likePost">点赞</button>  
+      <text>{{post.likeCount}}</text>  
+    </view>  
+    <view class="footer-item">  
+      <button bindtap="commentPost">评论</button>  
+    </view>  
+    <view class="footer-item">  
+      <button bindtap="sharePost">分享</button>  
+    </view>  
+  </view>  
 </view>

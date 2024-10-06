@@ -33,6 +33,5 @@
       </view>
     </view>
     <button formType="submit" class="send-post" style=" border-radius: 40px;  ">发布笔记</button>
-     
   </form>
 </view>

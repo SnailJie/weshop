@@ -247,5 +247,11 @@ Page({
       wx.navigateTo({  
         url: '/pages/newPost/newPost'  
       });  
+    } ,
+    navigateToDetailPage() {  
+      console.log('------xxxxxx')
+      wx.navigateTo({  
+        url: '/pages/postDetail/postDetail'  
+      });  
     }  
 })
