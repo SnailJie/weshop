@@ -1,89 +1,41 @@
-Page({  
-  data: {  
-    title: '',  
-    images: []  
-  },  
-  
-  onTitleInput(e) {  
-    this.setData({  
-      title: e.detail.value  
-    });  
-  },  
-  data: {  
-    images: []  
-  },  
-  
-  chooseImage() {  
-    const that = this;  
-     
-    wx.chooseImage({  
-      count: 6, // 允许选择图片的数量  
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
-      success(res) {  
-        const tempFilePaths = res.tempFilePaths;  
-        that.setData({  
-          images: [...that.data.images, ...tempFilePaths]  
-        });  
-      },  
-      fail(err) {  
-        console.error(err);  
-      }  
-    });  
-  },  
-  
-  previewImage(e) {  
-    const current = e.currentTarget.dataset.index;  
-    const urls = this.data.images;  
-    wx.previewImage({  
-      current: urls[current],  
-      urls: urls  
-    });  
-  },  
-  
-  deleteImage(e) {  
-    const index = e.currentTarget.dataset.index;  
-    const images = this.data.images;  
-    images.splice(index, 1);  
-    this.setData({  
-      images: images  
-    });  
-  },  
-  
-  submitPost() {  
-    if (!this.data.title) {  
-      wx.showToast({  
-        title: '请输入标题',  
-        icon: 'none'  
-      });  
-      return;  
-    }  
-  
-    if (this.data.images.length === 0) {  
-      wx.showToast({  
-        title: '请上传图片',  
-        icon: 'none'  
-      });  
-      return;  
-    }  
-  
-    // 这里应该添加将帖子数据发送到服务器的逻辑  
-    // 例如：wx.request({...})  
-  
-    // 假设发送成功，显示提示并重置表单（或导航到其他页面）  
-    wx.showToast({  
-      title: '发布成功',  
-      icon: 'success',  
-      duration: 2000,  
-      success() {  
-        // 重置表单（可选）  
-        this.setData({  
-          title: '',  
-          images: []  
-        });  
-        // 或者导航到其他页面（可选）  
-        // wx.navigateTo({ url: '/pages/someOtherPage/someOtherPage' });  
-      }
-    });  
-  }  
-});
+Page({
+  data: {
+    title: '详情页',
+    postDetail: {
+      imageUrl: "/image/疯狂暗黑圈.webp",
+      title: "玫瑰的故事🌹再次被刘亦菲的颜值所震撼❗",
+      content: "刘亦菲确实是不老女神",
+      headUrl: "/image/疯狂暗黑圈-head.webp",
+      userName: "疯狂暗黑圈",
+      likeNum: 9,
+      isLike: 1,
+      gmtCreate: "09-11",
+      commentList: [
+        { id: 1,
+          content: "你说的都对",
+          createTime: "09-11",
+          userInfo:{
+            nickname: "疯狂暗黑圈",
+            avatar: "/image/疯狂暗黑圈-head.webp",
+          },
+         
+        },
+        { id: 2,
+          content: "这个帖子是我以前看过的",
+          createTime: "09-13",
+          userInfo:{
+            nickname: "巴啦啦小魔仙",
+            avatar: "/image/疯狂暗黑圈-head.webp",
+          },
+          
+        }
+      ]
+    }
+  },
+  likePost() {  
+    console.log('------xxxlikePostxxx')
+   
+  } ,
+
+   }
+);

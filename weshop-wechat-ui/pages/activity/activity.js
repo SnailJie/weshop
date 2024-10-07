@@ -10,6 +10,27 @@ Page({
         hotGoodsList: [],
         topicList: [],
         brandList: [],
+        bad_brandList:[
+{
+  id:'1',
+  name:'兔子研学',
+  newPicUrl:"http://yanxuan.nosdn.127.net/76638fb8e6990aadf837ce761c3b7399.jpg"
+},{
+  id:'2',
+  name:'天府乐学',
+  newPicUrl:"http://yanxuan.nosdn.127.net/76638fb8e6990aadf837ce761c3b7399.jpg"
+},{
+  id:'3',
+  name:'外研U学',
+  newPicUrl:"http://yanxuan.nosdn.127.net/76638fb8e6990aadf837ce761c3b7399.jpg"
+},{
+  id:'4',
+  name:'三毛研学',
+  newPicUrl:"http://yanxuan.nosdn.127.net/76638fb8e6990aadf837ce761c3b7399.jpg"
+}
+
+        ],
+
         floorGoods: [],
         bannerList: [],
         channelList: []

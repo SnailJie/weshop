@@ -27,7 +27,7 @@
 <view class="fall-content">
   <view class="fall-left">
     <block wx:for="{{fallList}}" wx:key="index" wx:for-item="item">
-      <template  is="waterfall" data="{{item}}" wx:if="{{index%2==0}}"></template>
+      <template is="waterfall" data="{{item}}" wx:if="{{index%2==0}}"></template>
     </block>
   </view>
   <view class="fall-right">
@@ -35,9 +35,8 @@
       <template is="waterfall" data="{{item}}" wx:if="{{index%2==1}}"></template>
     </block>
   </view>
-  <!-- 悬浮发帖球 -->
-  
 </view>
+<!-- 悬浮发帖球 -->
 <view>
-    <floating-button bind:click="navigateToPostPage"></floating-button> 
-  </view>
+  <floating-button bind:click="navigateToPostPage"></floating-button>
+</view>

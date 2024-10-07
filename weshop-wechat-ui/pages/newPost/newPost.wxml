@@ -24,7 +24,7 @@
       <button class="add-image-btn" wx:if="{{images.length === 0}}" bindtap="chooseImage" style="width: 100px; height: 100px; font-size: xx-large;background-color: rgb(223, 223, 226); margin-left: 10px; margin-bottom: 8px;">+</button>
     </view>
 <!-- 文本输入 -->
-    <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells weui-cells_after-title" >
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd" style="display: flex;  justify-content: center;align-items: center; flex-direction: column;">
           <input class="weui-input" name="title" style="width: 90%;" placeholder="输入标题" />
@@ -32,6 +32,6 @@
         </view>
       </view>
     </view>
-    <button formType="submit" class="send-post" style=" border-radius: 40px;  ">发布笔记</button>
+    <button formType="submit" class="send-post" style=" border-radius: 40px; ">发布笔记</button>
   </form>
 </view>

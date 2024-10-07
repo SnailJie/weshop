@@ -3,13 +3,13 @@
 /**app.wxss**/
 .container {
   box-sizing: border-box;
-  background-color: #faf8f8;
+  background-color: white;
   font-family: PingFangSC-Light,helvetica,'Heiti SC';
   display: flex;
   flex-wrap: wrap;
 } 
 page {  
-  background-color: #e7e4e4; /* 浅灰色，你可以根据需要调整颜色值 */  
+  background-color: white; /* 浅灰色，你可以根据需要调整颜色值 */  
   /* 或者使用更深的灰色 */  
   /* background-color: #cccccc; */  
 }
