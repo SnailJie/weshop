@@ -1,59 +1,32 @@
-package tech.wetech.weshop.goods.po.post;
+package tech.wetech.weshop.goods.po;
 
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Table(name = "quaner_post")
-public class Posts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
-    @Column(name = "gmt_create")
+/**
+ * 首页帖子摘要模型
+ */
+public class PostIndexModel {
+
     private Date gmtCreate;
 
-    @Column(name = "gmt_modify")
     private Date gmtModify;
 
-    @Column(name = "code")
     private String code;
 
-    @Column(name = "title")
     private String title;
 
-
-    @Column(name = "content")
-    private String content;
-
-    @Column(name = "creator_id")
     private String creatorId;
 
-    @Column(name = "pic_list")
-    private String picList;
 
-    @Column(name = "supplier_id")
+    private String indexPicURL;
+
     private String supplierId;
 
-    @Column(name = "collect_cnt")
     private Integer collectCnt;
 
-    @Column(name = "like_cnt")
     private Integer likeCnt;
-
-
-    @Column(name = "is_delete")
-    private Integer isDelete;
-
-    public Integer getId() {
-        return id;
-    }
-
-
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Date getGmtCreate() {
         return gmtCreate;
@@ -61,14 +34,6 @@ public class Posts {
 
     public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
-    }
-
-    public Integer getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
     }
 
     public Date getGmtModify() {
@@ -95,15 +60,6 @@ public class Posts {
         this.title = title;
     }
 
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getCreatorId() {
         return creatorId;
     }
@@ -112,12 +68,12 @@ public class Posts {
         this.creatorId = creatorId;
     }
 
-    public String getPicList() {
-        return picList;
+    public String getIndexPicURL() {
+        return indexPicURL;
     }
 
-    public void setPicList(String picList) {
-        this.picList = picList;
+    public void setIndexPicURL(String indexPicURL) {
+        this.indexPicURL = indexPicURL;
     }
 
     public String getSupplierId() {

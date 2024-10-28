@@ -1,14 +1,9 @@
-package tech.wetech.weshop.goods.po.post;
-
+package tech.wetech.weshop.wechat.dal.po;
 
 import java.util.Date;
 
-
-/**
- * 首页帖子摘要模型
- */
-public class PostIndexModel {
-
+public class QuanerPost {
+    private Short id;
 
     private Date gmtCreate;
 
@@ -16,18 +11,21 @@ public class PostIndexModel {
 
     private String code;
 
-    private String title;
-
     private String creatorId;
-
-
-    private String indexPicURL;
-
-    private String supplierId;
 
     private Integer collectCnt;
 
     private Integer likeCnt;
+
+    private Byte isDelete;
+
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
+    }
 
     public Date getGmtCreate() {
         return gmtCreate;
@@ -53,36 +51,12 @@ public class PostIndexModel {
         this.code = code;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getCreatorId() {
         return creatorId;
     }
 
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
-    }
-
-    public String getIndexPicURL() {
-        return indexPicURL;
-    }
-
-    public void setIndexPicURL(String indexPicURL) {
-        this.indexPicURL = indexPicURL;
-    }
-
-    public String getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(String supplierId) {
-        this.supplierId = supplierId;
     }
 
     public Integer getCollectCnt() {
@@ -99,5 +73,13 @@ public class PostIndexModel {
 
     public void setLikeCnt(Integer likeCnt) {
         this.likeCnt = likeCnt;
+    }
+
+    public Byte getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Byte isDelete) {
+        this.isDelete = isDelete;
     }
 }

@@ -1,7 +1,8 @@
 package tech.wetech.weshop.goods.convert;
 
-import tech.wetech.weshop.goods.po.post.PostIndexModel;
-import tech.wetech.weshop.goods.po.post.Posts;
+
+import tech.wetech.weshop.goods.po.PostIndexModel;
+import tech.wetech.weshop.goods.po.Posts;
 
 public class Convert {
 
@@ -21,4 +22,8 @@ public class Convert {
         return to;
 
     }
+
+
+
+
 }

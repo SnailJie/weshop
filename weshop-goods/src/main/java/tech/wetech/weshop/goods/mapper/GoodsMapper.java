@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface GoodsMapper extends MyMapper<Goods> {
 
-    List<Goods> selectByIdIn(List<Integer> ids);
+    List<Goods> selectList();
 }

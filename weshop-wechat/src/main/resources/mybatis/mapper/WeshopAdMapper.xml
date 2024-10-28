@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.wetech.weshop.wechat.dal.mapper.WeshopAdMapper">
+  <resultMap id="BaseResultMap" type="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    <id column="id" jdbcType="SMALLINT" property="id" />
+    <result column="ad_position_id" jdbcType="SMALLINT" property="adPositionId" />
+    <result column="media_type" jdbcType="TINYINT" property="mediaType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="enabled" jdbcType="TINYINT" property="enabled" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    <result column="image_url" jdbcType="LONGVARCHAR" property="imageUrl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ad_position_id, media_type, name, link, content, end_time, enabled
+  </sql>
+  <sql id="Blob_Column_List">
+    image_url
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAdExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from weshop_ad
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAdExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from weshop_ad
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from weshop_ad
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from weshop_ad
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAdExample">
+    delete from weshop_ad
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    insert into weshop_ad (id, ad_position_id, media_type, 
+      name, link, content, 
+      end_time, enabled, image_url
+      )
+    values (#{id,jdbcType=SMALLINT}, #{adPositionId,jdbcType=SMALLINT}, #{mediaType,jdbcType=TINYINT}, 
+      #{name,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=TINYINT}, #{imageUrl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    insert into weshop_ad
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adPositionId != null">
+        ad_position_id,
+      </if>
+      <if test="mediaType != null">
+        media_type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="adPositionId != null">
+        #{adPositionId,jdbcType=SMALLINT},
+      </if>
+      <if test="mediaType != null">
+        #{mediaType,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAdExample" resultType="java.lang.Long">
+    select count(*) from weshop_ad
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update weshop_ad
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=SMALLINT},
+      </if>
+      <if test="record.adPositionId != null">
+        ad_position_id = #{record.adPositionId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.mediaType != null">
+        media_type = #{record.mediaType,jdbcType=TINYINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link != null">
+        link = #{record.link,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enabled != null">
+        enabled = #{record.enabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.imageUrl != null">
+        image_url = #{record.imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update weshop_ad
+    set id = #{record.id,jdbcType=SMALLINT},
+      ad_position_id = #{record.adPositionId,jdbcType=SMALLINT},
+      media_type = #{record.mediaType,jdbcType=TINYINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      link = #{record.link,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      enabled = #{record.enabled,jdbcType=TINYINT},
+      image_url = #{record.imageUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update weshop_ad
+    set id = #{record.id,jdbcType=SMALLINT},
+      ad_position_id = #{record.adPositionId,jdbcType=SMALLINT},
+      media_type = #{record.mediaType,jdbcType=TINYINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      link = #{record.link,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      enabled = #{record.enabled,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    update weshop_ad
+    <set>
+      <if test="adPositionId != null">
+        ad_position_id = #{adPositionId,jdbcType=SMALLINT},
+      </if>
+      <if test="mediaType != null">
+        media_type = #{mediaType,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    update weshop_ad
+    set ad_position_id = #{adPositionId,jdbcType=SMALLINT},
+      media_type = #{mediaType,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=TINYINT},
+      image_url = #{imageUrl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tech.wetech.weshop.wechat.dal.po.WeshopAd">
+    update weshop_ad
+    set ad_position_id = #{adPositionId,jdbcType=SMALLINT},
+      media_type = #{mediaType,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=TINYINT}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

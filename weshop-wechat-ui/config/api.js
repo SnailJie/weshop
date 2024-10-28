@@ -1,6 +1,6 @@
-const ApiRootUrl = 'http://127.0.0.1:9014/wechat/';
+const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
 
-const BaseUrl = 'http://127.0.0.1:9014/wechat/';
+const BaseUrl = 'http://127.0.0.1:8000/wechat/';
 module.exports = {
 	IndexUrl: BaseUrl + 'home/index', //首页数据接口
 	CatalogList: BaseUrl + 'catalog/index',  //分类目录全部分类数据接口
@@ -15,9 +15,9 @@ module.exports = {
 	GoodsNew: BaseUrl + 'goods/new',  //新品
 	GoodsHot: BaseUrl + 'goods/hot',  //热门
   GoodsRelated: BaseUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
-  
 
-  PostsDetail: BaseUrl + 'posts/detail',  //获得商品的详情
+  PostsList: BaseUrl + 'posts/list',  //收货地址列表
+  PostsDetail: BaseUrl + 'posts/detail',  //帖子详情
   PostsComments: BaseUrl + 'posts/comments',  //商品详情页的关联商品（大家都在看）
 
 	BrandList: BaseUrl + 'brand/list',  //品牌列表

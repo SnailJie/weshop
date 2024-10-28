@@ -3,8 +3,7 @@ package tech.wetech.weshop.wechat.vo;
 import tech.wetech.weshop.goods.po.Brand;
 import tech.wetech.weshop.goods.po.Channel;
 import tech.wetech.weshop.goods.po.Goods;
-import tech.wetech.weshop.goods.po.post.PostIndexModel;
-import tech.wetech.weshop.goods.po.post.Posts;
+import tech.wetech.weshop.goods.po.PostIndexModel;
 import tech.wetech.weshop.user.po.Ad;
 import tech.wetech.weshop.user.po.Topic;
 

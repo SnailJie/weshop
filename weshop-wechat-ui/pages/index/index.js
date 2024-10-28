@@ -5,19 +5,6 @@ const user = require('../../services/user.js');
 //获取应用实例
 const app = getApp()
 Page({
-    // data: {
-    //     newGoodsList: [],
-    //     hotGoodsList: [],
-    //     topicList: [],
-    //     brandList: [],
-    //     floorGoods: [],
-    //     bannerList: [],
-    //     channelList: [],
-    //     postsList: []
-    // },
-    /**
-   * 页面的初始数据
-   */
   data: {
     PageCur: 'basics',
     TabCur: 0,
@@ -168,9 +155,11 @@ Page({
         isLike:1,
         category:[0,4]
       },
-    ]
+    ],
+    postsList: [],
   },
   tabSelect(e) {
+
     let list = this.data.allfallList;
     let categoryId = e.currentTarget.dataset.id;
     let newList = [];
@@ -212,14 +201,18 @@ Page({
                     floorGoods: res.data.categoryList,
                     bannerList: res.data.bannerList,
                     channelList: res.data.channelList,
-                    postsList: res.data.postsList
+                   
                 });
             }
         });
     },
     onLoad: function (options) {
         // this.getIndexData();
-        let list = this.data.allfallList;
+        let result =  this.getPostsList();
+        // let list = this.data.allfallList;
+        let list = this.data.postsList;
+        console.log("---------")
+        console.log(result)
         let newList = []
         for(let index = 0;index < list.length;index++){
             if(!(list[index].category.indexOf(0) == -1)){
@@ -253,5 +246,18 @@ Page({
       wx.navigateTo({  
         url: '/pages/postDetail/postDetail'  
       });  
-    }  
+    },
+    getPostsList() {
+      let that = this;
+      let tempPostsList = [];
+      util.request(api.PostsList).then(function (res) {
+          if (res.success) {
+              that.setData({
+                postsList: res.data,
+                tempPostsList:res.data
+              });
+          }
+      });
+      return tempPostsList;
+  },
 })
