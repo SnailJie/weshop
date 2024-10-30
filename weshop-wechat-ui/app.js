@@ -14,6 +14,12 @@ App({
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
     })
+
+    wx.cloud.init({
+      env: 'prod-4gyaq2skbf5fb439',
+      traceUser: true,
+    })
+    
 	},
 
 	globalData: {
