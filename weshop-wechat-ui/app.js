@@ -4,6 +4,7 @@ App({
 			this.globalData.userInfo = JSON.parse(wx.getStorageSync('userInfo'));
 			this.globalData.token = wx.getStorageSync('token');
 		} catch (e) {
+      console.log("启动异常")
 			console.log(e);
     }
     wx.getSystemInfo({

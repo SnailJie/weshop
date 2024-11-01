@@ -42,7 +42,6 @@ Page({
         code: res,
         userInfo: e.detail.userInfo
       }, 'POST').then(res => {
-
         if (res.code == 200) {
           //存储用户信息
           wx.setStorageSync('userInfo', JSON.stringify(res.data.userInfo));

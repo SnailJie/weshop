@@ -20,7 +20,6 @@ Page({
 
         util.request(api.TopicDetail, {id: that.data.id}).then(function (res) {
             if (res.success) {
-
                 that.setData({
                     topic: res.data,
                 });
