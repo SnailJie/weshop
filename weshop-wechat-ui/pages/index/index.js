@@ -178,7 +178,6 @@ Page({
             PageCur: e.currentTarget.dataset.cur
         })
     },
-
     onShareAppMessage: function () {
         return {
             title: '放学去哪儿',
@@ -186,7 +185,6 @@ Page({
             path: '/pages/index/index'
         }
     },
-
     getIndexData: function () {
         let that = this;
         // util.request(api.IndexUrl).then(function (res) {
@@ -199,7 +197,6 @@ Page({
         //             floorGoods: res.data.categoryList,
         //             bannerList: res.data.bannerList,
         //             channelList: res.data.channelList,
-
         //         });
         //     }
         // });

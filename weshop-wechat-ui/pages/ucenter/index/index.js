@@ -12,17 +12,66 @@ Page({
         // 页面初始化 options为页面跳转所带来的参数
         // 查看是否授权
         wx.getSetting({
-            success(res) {
+          success: (res) => {  // 使用箭头函数
+              if (res.authSetting['scope.userInfo']) {
+                  console.log("已授权获得用户信息");
+                  // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                  this.getUserInfo();
+              } else {
+                  this.requestAuthorization();
+              }
+          }
+      });
+    },
+    requestAuthorization() {
+      wx.authorize({
+        scope: 'scope.userInfo',
+        success: () => {
+          // 用户已授权，可以直接获取用户信息
+          this.getUserInfo();
+        },
+        fail: () => {
+          // 用户拒绝授权，可以引导用户去设置页面授权
+          this.showAuthModal();
+        }
+      });
+    },
+    showAuthModal() {
+      wx.showModal({
+        title: '授权提示',
+        content: '需要您的授权才能正常使用功能',
+        confirmText: '去授权',
+        cancelText: '取消',
+        success: (res) => {
+          if (res.confirm) {
+            wx.openSetting({
+              success: (res) => {
                 if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                    wx.getUserInfo({
-                        success: function (res) {
-                            console.log(res.userInfo)
-                        }
-                    })
+                  // 用户已授权，可以直接获取用户信息
+                  this.getUserInfo()
+                } else {
+                  // 用户仍然拒绝授权，可以再次提示或记录日志
+                  console.log('用户拒绝授权');
                 }
-            }
-        })
+              }
+            });
+          }
+        }
+      });
+    },
+    getUserInfo() {
+      wx.getUserInfo({
+        success: (res) => {
+          console.log('用户信息', res.userInfo);
+          // 处理用户信息，例如保存到本地或发送到服务器
+          this.setData({
+            userInfo: res.userInfo
+          });
+        },
+        fail: (err) => {
+          console.error('获取用户信息失败', err);
+        }
+      });
     },
     onReady: function () {
 

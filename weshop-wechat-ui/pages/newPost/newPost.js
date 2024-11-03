@@ -135,8 +135,8 @@ Page({
         Promise.all(uploadPromises)
             .then(results => {
                 console.log('所有文件上传成功:', results);
-                submitData.imagePath = results
-                submitData.userInfo = app.globalData.userInfo,
+                submitData.picList = results
+                // submitData.userInfo = app.globalData.userInfo,
                     this.sendToServer(submitData)
             })
             .catch(error => {
@@ -152,23 +152,23 @@ Page({
     sendToServer(submitData) {
         console.log("--------")
         console.log(submitData)
-        // // 发送请求
-        // util.post(api.PostsNew, submitData).then(function (res) {
-        //     wx.hideLoading();
-        //     if (res.data.success) {
-        //         wx.showToast({
-        //             title: '提交成功',
-        //             icon: 'success',
-        //             duration: 2000
-        //         });
-        //     } else {
-        //         wx.showToast({
-        //             title: '提交失败',
-        //             icon: 'none',
-        //             duration: 2000
-        //         });
-        //     }
-        // });
+        // 发送请求
+        util.post(api.PostsNew, submitData).then(function (res) {
+            wx.hideLoading();
+            if (res.data.success) {
+                wx.showToast({
+                    title: '提交成功',
+                    icon: 'success',
+                    duration: 2000
+                });
+            } else {
+                wx.showToast({
+                    title: '提交失败',
+                    icon: 'none',
+                    duration: 2000
+                });
+            }
+        });
     },
     uploadImages(filePaths) {
         const that = this;

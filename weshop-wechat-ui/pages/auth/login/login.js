@@ -5,7 +5,7 @@ var backUrl = '/pages/index/index';
 var backParams = {};
 Page({
   data: {
-
+    userInfo:{}
   },
   onLoad: function(options) {
     //返回的页面
@@ -35,23 +35,40 @@ Page({
   },
   //js核心代码：其中利用backtype来确认授权登录后跳转回那个页面
   bindGetUserInfo: function(e) {
-
+    this.getUserInfo()
+    console.log("----==========-------")
+    console.log(e.detail)
     return util.login().then((res) => {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
         code: res,
-        userInfo: e.detail.userInfo
+        userInfo: e.detail
       }, 'POST').then(res => {
         if (res.code == 200) {
           //存储用户信息
           wx.setStorageSync('userInfo', JSON.stringify(res.data.userInfo));
           wx.setStorageSync('token', res.data.token);
           //返回上一页面
-          wx.redirectTo({
-            url: backUrl + '?' + backParams,
-          })
+          // wx.redirectTo({
+          //   url: backUrl + '?' + backParams,
+          // })
+          this.navigateBack()
         }
       })
+    });
+  },
+  getUserInfo: function() {
+    wx.getUserInfo({
+      success: (res) => {
+        console.log('用户信息', res.userInfo);
+        // 处理用户信息，例如保存到本地或发送到服务器
+        this.setData({
+          userInfo: res.userInfo
+        });
+      },
+      fail: (err) => {
+        console.error('获取用户信息失败', err);
+      }
     });
   },
   navigateBack: function(e) {

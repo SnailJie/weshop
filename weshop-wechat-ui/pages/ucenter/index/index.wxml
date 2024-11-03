@@ -2,8 +2,8 @@
   <view class="profile-info">
     <image bindtap="onUserInfoClick" class="avatar" src="{{userInfo.avatar}}"></image>
     <view class="info">
-      <text class='name' bindtap='onUserInfoClick'>{{ userInfo.nickname || '点击登录' }}</text>
-      <!-- <text class='level' bindtap='onUserInfoClick'></text> -->
+      <text class='name' bindtap='onUserInfoClick'>{{ userInfo.nickName || '点击登录' }}</text>
+      <!-- <text class='level' bindtap='onUserInfoClick' > {{ userInfo.level}}</text> -->
     </view>
     <image bindtap="onUserInfoClick" class='btn' src='/static/images/address_right.png'></image>
   </view>
