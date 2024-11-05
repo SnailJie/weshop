@@ -6,7 +6,8 @@ const app = getApp();
 Page({
     data: {
         userInfo: {},
-        showLoginDialog: false
+        showLoginDialog: false,
+        isModalVisible: false
     },
     onLoad: function (options) {
         // 页面初始化 options为页面跳转所带来的参数
@@ -34,6 +35,17 @@ Page({
           // 用户拒绝授权，可以引导用户去设置页面授权
           this.showAuthModal();
         }
+      });
+    },
+    showModal() {
+      this.setData({
+        isModalVisible: true
+      });
+    },
+
+    hideModal() {
+      this.setData({
+        isModalVisible: false
       });
     },
     showAuthModal() {
