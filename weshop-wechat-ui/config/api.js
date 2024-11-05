@@ -1,6 +1,6 @@
-const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
+const ApiRootUrl = 'https://springboot-gn2d-118537-7-1308266486.sh.run.tcloudbase.com/wechat/';
 
-const BaseUrl = 'http://127.0.0.1:8000/wechat/';
+const BaseUrl = 'https://springboot-gn2d-118537-7-1308266486.sh.run.tcloudbase.com/wechat/';
 module.exports = {
 	IndexUrl: BaseUrl + 'home/index', //首页数据接口
 	CatalogList: BaseUrl + 'catalog/index',  //分类目录全部分类数据接口

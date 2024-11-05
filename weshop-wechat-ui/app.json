@@ -1,83 +1,78 @@
 {
-	"pages": [
-		"pages/index/index",
-		"pages/catalog/catalog",
-		"pages/newGoods/newGoods",
-		"pages/hotGoods/hotGoods",
-		"pages/ucenter/address/address",
-		"pages/ucenter/addressAdd/addressAdd",
-		"pages/ucenter/footprint/footprint",
-		"pages/ucenter/order/order",
-		"pages/ucenter/orderDetail/orderDetail",
-		"pages/ucenter/express/express",
-		"pages/ucenter/feedback/feedback",
-		"pages/ucenter/coupon/coupon",
-		"pages/ucenter/collect/collect",
-		"pages/auth/login/login",
-		"pages/auth/register/register",
-		"pages/auth/reset/reset",
-		"pages/pay/pay",
-		"pages/payResult/payResult",
-		"pages/ucenter/index/index",
-		"pages/topic/topic",
-		"pages/comment/comment",
-		"pages/commentPost/commentPost",
-		"pages/topicComment/topicComment",
-		"pages/brand/brand",
-		"pages/brandDetail/brandDetail",
-		"pages/search/search",
+  "pages": [
+    "pages/index/index",
+    "pages/newGoods/newGoods",
+    "pages/ucenter/address/address",
+    "pages/ucenter/addressAdd/addressAdd",
+    "pages/ucenter/footprint/footprint",
+    "pages/ucenter/order/order",
+    "pages/ucenter/orderDetail/orderDetail",
+    "pages/ucenter/express/express",
+    "pages/ucenter/feedback/feedback",
+    "pages/ucenter/coupon/coupon",
+    "pages/ucenter/collect/collect",
+    "pages/auth/login/login",
+    "pages/auth/register/register",
+    "pages/auth/reset/reset",
+    "pages/pay/pay",
+    "pages/payResult/payResult",
+    "pages/ucenter/index/index",
+    "pages/topic/topic",
+    "pages/comment/comment",
+    "pages/commentPost/commentPost",
+    "pages/topicComment/topicComment",
+    "pages/search/search",
     "pages/category/category",
     "pages/activity/activity",
-		"pages/cart/cart",
-		"pages/shopping/checkout/checkout",
-		"pages/shopping/address/address",
-		"pages/shopping/addressAdd/addressAdd",
+    "pages/shopping/checkout/checkout",
+    "pages/shopping/address/address",
+    "pages/shopping/addressAdd/addressAdd",
     "pages/goods/goods",
     "pages/postDetail/postDetail",
     "pages/newPost/newPost",
-		"pages/topicDetail/topicDetail"
-	],
-	"window": {
-		"backgroundTextStyle": "dark",
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "放学去哪儿",
-		"navigationBarTextStyle": "black",
-		"enablePullDownRefresh": true
-	},
-	"tabBar": {
-		"backgroundColor": "#fafafa",
-		"borderStyle": "white",
-		"selectedColor": "#b4282d",
-		"color": "#666",
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"iconPath": "static/images/ic_menu_choice_nor.png",
-				"selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-				"text": "广场"
-			},
-			{
-				"pagePath": "pages/activity/activity",
-				"iconPath": "static/images/ic_menu_sort_nor.png",
-				"selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-				"text": "榜单"
+    "pages/topicDetail/topicDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "放学去哪儿",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#b4282d",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "广场"
+      },
+      {
+        "pagePath": "pages/activity/activity",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "榜单"
+      },
+      {
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "text": "我的"
       }
-      ,
-			{
-				"pagePath": "pages/ucenter/index/index",
-				"iconPath": "static/images/ic_menu_me_nor.png",
-				"selectedIconPath": "static/images/ic_menu_me_pressed.png",
-				"text": "我的"
-			}
-		]
-	},
-	"networkTimeout": {
-		"request": 10000,
-		"downloadFile": 10000
-	},
-	"debug": true,
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "cu-custom":"/colorui/components/cu-custom"
-  }
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "lazyCodeLoading": "requiredComponents"
 }
