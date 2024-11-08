@@ -1,6 +1,12 @@
 <view class="container" style="position: relative;">
   <!-- 顶部图片 -->
-  <image class="post-image" src="{{postDetail.imageUrl}}" mode="aspectFit"></image>
+  <swiper class="post-image" style="height: 300px;" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500">
+    <block wx:for="{{downloadImgs}}" wx:key="index">
+      <swiper-item >
+        <image src="{{item}}"  class="post-image" mode="aspectFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
   <!-- 中间内容 -->
   <block>
     <view class="post-content" style="width: 100%;">
