@@ -22,7 +22,9 @@ module.exports = {
   PostsList: BaseUrl + 'posts/list',  //收货地址列表
   PostsDetail: BaseUrl + 'posts/detail',  //帖子详情
   PostsNew: BaseUrl + 'posts/add',  //帖子详情
-  PostsComments: BaseUrl + 'posts/comments',  //商品详情页的关联商品（大家都在看）
+  PostsComments: BaseUrl + 'comment/list',  //发表评论
+
+
 
 	BrandList: BaseUrl + 'brand/list',  //品牌列表
 	BrandDetail: BaseUrl + 'brand',  //品牌详情

@@ -26,7 +26,7 @@
   wx:if="{{index%2==1}}" 这里，用if来辨别是奇数还是偶数，两边加载相反的 -->
 <view class="fall-content">
   <view class="fall-left">
-    <block wx:for="{{fallList}}" wx:key="index" wx:for-item="item">
+    <block wx:for="{{fallList}}" wx:key="code" wx:for-item="item">
       <template is="waterfall" data="{{item}}" wx:if="{{index%2==0}}"></template>
     </block>
   </view>

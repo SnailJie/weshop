@@ -18,8 +18,8 @@
 }  
 .post-image {  
   width: 100%;  
-  
-  margin-bottom: 20px;  
+/*   
+  margin-bottom: 20px;   */
 }  
 .image-section {  
   display: flex;  
@@ -213,6 +213,7 @@ width: 100%;
   padding-left:30rpx;
   background: #fff;
   margin-top: 20rpx;
+  margin-bottom: 51px
 }
 .comments .user .avatar{
   display: block;

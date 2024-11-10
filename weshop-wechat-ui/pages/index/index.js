@@ -238,17 +238,24 @@ Page({
         // 页面关闭
     },
     navigateToPostPage() {
-        console.log('------xxxxxx')
+        
         wx.navigateTo({
             url: '/pages/newPost/newPost'
         });
     },
-    navigateToDetailPage() {
-        console.log('------xxxxxx')
-        wx.navigateTo({
-            url: '/pages/postDetail/postDetail'
-        });
+    navigateToDetailPage: function(e) {
+      const item = e.currentTarget;
+      console.log('------xxxxxx')
+      const postCode = item.dataset.item.code
+      wx.navigateTo({
+        url: '/pages/postDetail/postDetail?item=' +postCode
+      });
     },
+    // navigateToDetailPage() {
+    //     wx.navigateTo({
+    //         url: '/pages/postDetail/postDetail'
+    //     });
+    // },
     getPostsList() {
         let that = this;
         let tempPostsList = [];

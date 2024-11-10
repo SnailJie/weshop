@@ -37,7 +37,7 @@ page{
 }
 .fall-title-wrap{
   padding: 5rpx 20rpx 0rpx 20rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
   font-weight: 600;
   color: #333;
 }
