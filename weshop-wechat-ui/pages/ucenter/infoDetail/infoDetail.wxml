@@ -1,0 +1,51 @@
+<view class="add-address">
+    <view class="add-form">
+        <view class="form-item">
+            <text>昵称</text>
+            <text class="required" wx:if="{{!nickName}}">*</text>
+            <input class="input" bindinput="setNickName" placeholder="想让大家怎么称呼您呢"  style="font-size:14px;margin-left: 20px;" value="{{nickName}}" auto-focus/>
+        </view>
+        <view class="form-item">
+            <text>家庭身份</text>
+            <text class="required" wx:if="{{!familyRoleIndex}}">*</text>
+            <picker mode="selector" range="{{familyRoleOptions}}" value="{{familyRoleIndex}}"   style="font-size:14px;margin-left: 20px;" bindchange="setFamilyRole">
+              <view class="picker"   style="font-size:14px;margin-left: 20px;">
+                {{familyRoleOptions[familyRoleIndex]}}
+              </view>
+            </picker>
+        </view>
+        <view class="form-item">
+            <text>孩子年龄</text>
+            <text class="required" wx:if="{{!childAge}}">*</text>
+            <input class="input" bindinput="setChildAge" placeholder="宝贝多大啦"  style="font-size:14px;margin-left: 20px;" value="{{childAge}}" />
+        </view>
+        <view class="form-item">
+            <text>学校</text>
+            <text class="required" wx:if="{{!childSchool}}">*</text>
+            <input class="input" bindinput="setChildSchool" placeholder="小孩就读学校，方便同校交流哦"  style="font-size:14px;margin-left: 20px;" value="{{childSchool}}"  />
+        </view>
+        <view class="form-item">
+          <text>微信号</text>
+          <text class="required" wx:if="{{!wechat}}">*</text>
+          <input class="input" bindinput="setWechat" value="{{wechat}}" style="font-size:14px;margin-left: 20px;" placeholder="接收各类福利通知"/>
+        </view>
+        <!-- <view class="form-item">
+          <text>常驻区域</text>
+          <text class="required" wx:if="{{!name}}">*</text>
+          <view class="form-item">
+            <input class="input" value="{{userInfo.fullRegion}}" disabled="true" bindtap="chooseRegion" placeholder="省份、城市、区县"/>
+        </view>
+        </view> -->
+<!--         
+        <view class="form-default">
+            <text bindtap="bindIsDefault" class="default-input {{address.isDefault == 1 ? 'selected' : ''}}">设为默认地址</text>
+        </view> -->
+    </view>
+
+    <view class="btns">
+        <button class="cannel" bindtap="cancelAddress">取消</button>
+        <button class="save" bindtap="saveUserInfo">保存</button>
+    </view>
+ 
+</view>
+ 

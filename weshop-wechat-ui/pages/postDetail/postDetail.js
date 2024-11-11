@@ -7,41 +7,123 @@ Page({
         title: '详情页',
         postDetail: {},
         commentList: [],
-        createTime:'',
-        inputContent:'',
-        postCode:''
+        createTime: '',
+        inputContent: '',
+        postCode: '',
+        objectType: '',
+        objectCode: '',
+        isLike: '0',
+        isCollect: '0',
     },
     likePost() {
-        console.log('------xxxlikePostxxx')
-    },
-    commentPost(){
-      const inputContent = this.data.inputContent;
-      console.log('------inputContent')
-      console.log(inputContent)
-      
-    },
-    handleInput: function(e) {
-      this.setData({
-        inputContent: e.detail.value
+       const submitData={
+        actionType:this.data.isLike ==='0' ? 'LIKE':'UNLIKE',
+        actionObjectType:'POST',
+        actionObjectCode:this.data.postCode
+       }
+         // 发送请求
+         util.post(api.ActionDo, submitData).then((res) => {
+           if (res.success) {
+              wx.showToast({
+                  title: '点赞成功',
+                  icon: 'success',
+                  duration: 2000
+              });
+              this.setData({
+                isLike: this.data.isLike ==='0'?'1':'0'
+            });
+          } else {
+              wx.showToast({
+                  title: '点赞',
+                  icon: 'none',
+                  duration: 2000
+              });
+          }
       });
+    },
+    commentPost() {
+        const inputContent = this.data.inputContent;
+        const submitData = {
+            content: inputContent,
+            belongType: 'POST',
+            belongCode: this.data.postCode,
+            objectType: 'POST',
+            objectCode: this.data.postCode
+        }
+        // 发送请求
+        util.post(api.CommentsAdd, submitData).then((res) => {
+            wx.hideLoading();
+            if (res.success) {
+                wx.showToast({
+                    title: '提交成功',
+                    icon: 'success',
+                    duration: 2000
+                });
+                // 清空输入框
+                this.setData({
+                    inputContent: ''
+                });
+                // 重新加载评论数据
+                this.getCommentsData(this.data.postCode);
+            } else {
+                wx.showToast({
+                    title: '提交失败',
+                    icon: 'none',
+                    duration: 2000
+                });
+            }
+        });
+
+    },
+    handleInput: function (e) {
+        this.setData({
+            inputContent: e.detail.value
+        });
     },
     onLoad: function (options) {
-      const item = decodeURIComponent(options.item);
-      console.log("--postCode----")
-      console.log(item)
-      this.setData({
-        postCode: item
-      });
+        const item = decodeURIComponent(options.item);
+        this.setData({
+            postCode: item
+        });
         this.getPostDetailData(item);
         this.getCommentsData(item);
-        console.log(this.commentList)
+        this.getActionData(item);
+
+    },
+    getActionData(postCode) {
+        util.request(api.ActionQueryDetail, {
+            actionObjectCode: postCode,
+            actionObjectType: 'POST'
+        }).then((res) => {
+            if (res.success) {
+                console.log("action.data")
+                console.log(res.data)
+                let detailList = res.data
+                let isLike = 1;
+                let isCollection = 1;
+                if( detailList && detailList.length > 0){
+                  for (let item of detailList) {
+                    if (item.actionType === 'LIKE') {
+                        isLike = '1';
+                    }
+                    if (item.actionType === 'COLLECT') {
+                        isCollection = '1';
+                    }
+                }
+                this.setData({
+                    isLike: isLike,
+                    isCollection: isCollection
+                });
+                }
+            }
+        });
     },
     getPostDetailData(postCode) {
         let that = this;
         let data = null;
         util.request(api.PostsDetail, {
             code: postCode
-        }).then((res)  =>{
+        }).then((res) => {
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
@@ -49,7 +131,7 @@ Page({
                 let formateTime = this.formatISODate(detail.gmtCreate)
                 that.setData({
                     postDetail: detail,
-                    createTime:formateTime
+                    createTime: formateTime
                 });
                 data = detail;
                 that.downloadFiles(data.imageURL.split(';'))
@@ -57,59 +139,61 @@ Page({
         });
     },
     formatISODate(isoTime) {
-      const date = new Date(isoTime);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      return `${year}-${month}-${day}`;
+        const date = new Date(isoTime);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     },
-    getCommentsData() {
+    getCommentsData(postCode) {
         let that = this;
         util.request(api.PostsComments, {
-          postCode: "e08eaf746d9c9d40"
-        }).then((res)=> {
+            postCode: postCode
+        }).then((res) => {
+            console.log('---------------')
+            console.log(this.commentList)
             if (res.success) {
                 console.log("comments")
                 console.log(res.data)
                 that.setData({
-                  commentList: this.processComments(res.data),
+                    commentList: this.processComments(res.data),
                 });
             }
         });
     },
-    processComments: function(comments) {
-      return comments.map(comment => ({
-        ...comment,
-        gmtCreate: this.formatISODate(comment.gmtCreate),
-        commentList: comment.commentList ? comment.commentList.map(subComment => ({
-          ...subComment,
-          gmtCreate: this.formatISODate(subComment.gmtCreate)
-        })) : []
-      }));
+    processComments: function (comments) {
+        return comments.map(comment => ({
+            ...comment,
+            gmtCreate: this.formatISODate(comment.gmtCreate),
+            commentList: comment.commentList ? comment.commentList.map(subComment => ({
+                ...subComment,
+                gmtCreate: this.formatISODate(subComment.gmtCreate)
+            })) : []
+        }));
     },
-  
+
     downloadFiles(fileUrls) {
         let that = this;
         // 或如下传参
         wx.cloud.getTempFileURL({
             fileList: fileUrls, // 对象存储文件ID列表，最多50个，从上传文件接口或者控制台获取
             success: res => {
-            const fileListPreview = res.fileList.map(user => user.tempFileURL);
-              that.setData({
-                downloadImgs: fileListPreview
-              })
+                const fileListPreview = res.fileList.map(user => user.tempFileURL);
+                that.setData({
+                    downloadImgs: fileListPreview
+                })
             },
             fail: err => {
                 console.error(err)
             }
         })
-  
+
     },
     downloadFile(fileID, onCall = () => {}) {
         wx.cloud.downloadFile({
             fileID: fileID, // 对象存储文件ID，从上传文件接口或者控制台获取
         }).then(res => {
-          // resolve(res.tempFilePath)
+            // resolve(res.tempFilePath)
             return res.tempFilePath
         }).catch(error => {
             console.error(err)

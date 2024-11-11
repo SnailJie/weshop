@@ -24,6 +24,11 @@ module.exports = {
   PostsNew: BaseUrl + 'posts/add',  //帖子详情
   PostsComments: BaseUrl + 'comment/list',  //发表评论
 
+  CommentsAdd: BaseUrl + 'comment/add',  //发表评论
+
+  ActionDo: BaseUrl + 'action/doAction',  //点赞/收藏
+  ActionQueryDetail: BaseUrl + 'action/queryAction',  //查询
+
 
 
 	BrandList: BaseUrl + 'brand/list',  //品牌列表
@@ -59,7 +64,10 @@ module.exports = {
 	AddressList: BaseUrl + 'address/list',  //收货地址列表
 	AddressDetail: BaseUrl + 'address/detail',  //收货地址详情
 	AddressSave: ApiRootUrl + 'address/save',  //保存收货地址
-	AddressDelete: ApiRootUrl + 'address/delete',  //保存收货地址
+  AddressDelete: ApiRootUrl + 'address/delete',  //保存收货地址
+  
+  UserInfoModify: ApiRootUrl + 'userInfo/modify',  //用户信息修改
+  UserInfoQueryDetail: ApiRootUrl + 'userInfo/queryDetail',  //用户信息修改
 
 	RegionList: BaseUrl + 'region/list',  //获取区域列表
 

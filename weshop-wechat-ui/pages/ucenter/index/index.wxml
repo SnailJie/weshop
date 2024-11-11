@@ -63,6 +63,13 @@
         <text class="txt">账号安全</text>
       </navigator>
     </view> -->
+  
+    <view class="item">
+      <navigator url="../infoDetail/infoDetail" class="a">
+        <text class="icon address"></text>
+        <text class="txt">个人信息</text>
+      </navigator>
+    </view>
     <view class="item no-border">
       <navigator url="url" class="a" bindtap="showModal">
         <text class="icon kefu"></text>

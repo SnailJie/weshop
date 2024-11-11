@@ -4,6 +4,7 @@
     "pages/newGoods/newGoods",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
+    "pages/ucenter/infoDetail/infoDetail",
     "pages/ucenter/footprint/footprint",
     "pages/ucenter/order/order",
     "pages/ucenter/orderDetail/orderDetail",
