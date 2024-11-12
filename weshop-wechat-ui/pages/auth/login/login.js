@@ -36,8 +36,7 @@ Page({
   //js核心代码：其中利用backtype来确认授权登录后跳转回那个页面
   bindGetUserInfo: function(e) {
     this.getUserInfo()
-    console.log("----==========-------")
-    console.log(e.detail)
+     
     return util.login().then((res) => {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
@@ -46,8 +45,17 @@ Page({
       }, 'POST').then(res => {
         if (res.code == 200) {
           //存储用户信息
+          console.log("----登陆成功")
+          console.log(res)
           wx.setStorageSync('userInfo', JSON.stringify(res.data.userInfo));
           wx.setStorageSync('token', res.data.token);
+          try {
+            app.globalData.userInfo = res.data.userInfo;
+            app.globalData.token = res.data.token;
+          } catch (e) {
+            console.log("启动异常")
+            console.log(e);
+          }
           //返回上一页面
           // wx.redirectTo({
           //   url: backUrl + '?' + backParams,

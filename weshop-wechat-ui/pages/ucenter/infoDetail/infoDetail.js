@@ -18,26 +18,26 @@ Page({
         });
     },
     setChildAge: function (e) {
-      this.setData({
-          childAge: e.detail.value
-      });
+        this.setData({
+            childAge: e.detail.value
+        });
     },
     setNickName: function (e) {
-      console.log('---nickName-')
-      console.log( e.detail.value)
-      this.setData({
-        nickName: e.detail.value
-      });
+        console.log('---nickName-')
+        console.log(e.detail.value)
+        this.setData({
+            nickName: e.detail.value
+        });
     },
     setChildSchool: function (e) {
-      this.setData({
-        childSchool: e.detail.value
-      });
+        this.setData({
+            childSchool: e.detail.value
+        });
     },
-    setinputWechat: function (e) {
-      this.setData({
-        wechat: e.detail.value
-      });
+    setWechat: function (e) {
+        this.setData({
+            wechat: e.detail.value
+        });
     },
     onLoad: function (options) {
         // 页面初始化 options为页面跳转所带来的参数
@@ -47,62 +47,53 @@ Page({
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
-               
                 that.setData({
-                  familyRole: res.data.familyRole,
-                  childAge: res.data.childAge,
-                  childSchool: res.data.childSchool,
-                  nickName: res.data.nickName,
-                  wechat: res.data.wechat,
-                  familyRoleIndex: Number(res.data.familyRole),
+                    familyRole: res.data.familyRole,
+                    childAge: res.data.childAge,
+                    childSchool: res.data.childSchool,
+                    nickName: res.data.nickname,
+                    wechat: res.data.wechat,
+                    familyRoleIndex: Number(res.data.familyRole),
                 })
             }
         });
     },
     onReady: function () {
 
-    }, 
+    },
     saveUserInfo() {
         console.log('--submitData')
         const submitdata = {
-          familyRole: this.data.familyRole,
-          childAge: this.data.childAge,
-          childSchool: this.data.childSchool,
-          nickName: this.data.nickName,
-          wechat: this.data.wechat,
-          familyRole: this.data.familyRoleIndex
+            childAge: this.data.childAge,
+            childSchool: this.data.childSchool,
+            nickname: this.data.nickName,
+            wechat: this.data.wechat,
+            familyRole: this.data.familyRoleIndex
         }
         console.log(submitdata)
-        // let address = this.data.userInfo;
-        // if (nickName == '') {
-        //     util.showErrorToast('请输入昵称');
-        //     return false;
-        // }
-        // if (familyRole == '') {
-        //     util.showErrorToast('请输入家庭角色');
-        //     return false;
-        // }
-        // if (address.childAge == '') {
-        //     util.showErrorToast('请输入孩子年龄');
-        //     return false;
-        // }
-        // if (address.childSchool == 0) {
-        //     util.showErrorToast('请输入小孩学校');
-        //     return false;
-        // }
-        // if (address.wechat == '') {
-        //     util.showErrorToast('请输入微信号');
-        //     return false;
-        // }
+        
         let that = this;
-        util.request(api.UserInfoModify, submitdata, 'POST').then(function (res) {
-            if (res.success) {
-                wx.navigateTo({
-                    url: '/pages/ucenter/index/index',
-                })
-            }
+        util.request(api.UserInfoModify, submitdata, 'POST').then((res)=> {
+          console.log("res .userInfo")
+          console.log(res)
+          if(res.success){
+              let newUserInfo =  app.globalData.userInfo;
+              newUserInfo.childAge= this.data.childAge;
+              newUserInfo.childSchool= this.data.childSchool;
+              newUserInfo.nickname= this.data.nickName;
+              newUserInfo.wechat= this.data.wechat;
+              app.globalData.userInfo= newUserInfo;
+              console.log("app.global.userInfo")
+              console.log(app.globalData.userInfo)
+          }
         });
+        this.navigateToPostPage()
     },
+    navigateToPostPage() {
+      wx.reLaunch({
+          url: '/pages/ucenter/index/index',
+      })
+  },
     onShow: function () {
         // 页面显示
 

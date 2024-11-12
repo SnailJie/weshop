@@ -9,7 +9,7 @@
   <view class="cu-bar search bg-white">
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索笔记" confirm-type="search"></input>
+      <input type="text" placeholder="搜索笔记" confirm-type="search" bindconfirm="doSearch" bindinput="onSearchInput" ></input>
     </view>
   </view>
 </view>
