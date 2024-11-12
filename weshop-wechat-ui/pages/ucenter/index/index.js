@@ -79,7 +79,7 @@ Page({
         console.log(uniqueRandom)
         let fileName_split = filePath.split('/');
         let fileName = fileName_split[fileName_split.length - 1]
-        let cloudPath = 'postPic' + '/' + uniqueRandom + '/' + fileName
+        let cloudPath = 'avatar' + '/' + uniqueRandom + '/' + fileName
         console.log("cloudPath")
         console.log(cloudPath)
         wx.cloud.uploadFile({
