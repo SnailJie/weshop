@@ -7,7 +7,8 @@ Page({
     data: {
         userInfo: {},
         showLoginDialog: false,
-        isModalVisible: false
+        isModalVisible: false,
+        avataImagePath: ''
     },
     onLoad: function (options) {
         let that = this;
@@ -15,8 +16,9 @@ Page({
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
-                that.setData({
-                    userInfo: res.data
+                this.setData({
+                    userInfo: res.data,
+                    avataImagePath: res.data.avatar
                 })
                 app.globalData.userInfo = res.data
                 //存储用户信息
@@ -50,37 +52,72 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
+    chooseAvatar() {
+        const that = this;
+        wx.chooseImage({
+            count: 1, // 允许选择图片的数量  
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+            success(res) {
+                const tempFilePaths = res.tempFilePaths;
+                console.log("选择头像上传")
+                console.log(tempFilePaths)
+                that.uploadFile(tempFilePaths[0])
+            },
+            fail(err) {
+                console.error(err);
+            }
+        });
 
-    onUserInfoClick: function () {
-        if (wx.getStorageSync('token')) {
-
-        } else {
-            this.showLoginDialog();
+    },
+    uploadFile(filePath) {
+        const that = this;
+        console.log("filePath")
+        console.log(filePath)
+        let uniqueRandom = this.generateUniqueRandom();
+        console.log("uniqueRandom")
+        console.log(uniqueRandom)
+        let fileName_split = filePath.split('/');
+        let fileName = fileName_split[fileName_split.length - 1]
+        let cloudPath = 'postPic' + '/' + uniqueRandom + '/' + fileName
+        console.log("cloudPath")
+        console.log(cloudPath)
+        wx.cloud.uploadFile({
+            cloudPath: cloudPath, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
+            filePath: filePath, // 微信本地文件，通过选择图片，聊天文件等接口获取
+            config: {
+                env: 'prod-4gyaq2skbf5fb439' // 需要替换成自己的微信云托管环境ID
+            }
+        }).then(res => {
+            console.log("xxxxfileIDxxx")
+            console.log(res.fileID)
+            that.setData({
+                avataImagePath: res.fileID
+            });
+            that.updateAvatar(res.fileID)
+        }).catch(error => {
+            console.error(error)
+        });
+    },
+    updateAvatar(avatarFilePath){
+      const submitdata={
+        avatar:avatarFilePath
+      }
+      util.request(api.UserInfoModify, submitdata, 'POST').then((res)=> {
+        console.log("res.userInfo")
+        console.log(res)
+        if(res.success){
+            let newUserInfo =  app.globalData.userInfo;
+            newUserInfo.avatar= avatarFilePath;
+            app.globalData.userInfo= newUserInfo;
+            console.log("app.global.userInfo")
+            console.log(app.globalData.userInfo)
         }
+      });
     },
-
-    showLoginDialog() {
-        this.setData({
-            showLoginDialog: true
-        })
-    },
-
-    onCloseLoginDialog() {
-        this.setData({
-            showLoginDialog: false
-        })
-    },
-
-    onDialogBody() {
-        // 阻止冒泡
-    },
-
-    onOrderInfoClick: function (event) {
-        wx.navigateTo({
-            url: '/pages/ucenter/order/order',
-        })
-    },
-    onSectionItemClick: function (event) {
-    },
-
+    generateUniqueRandom() {
+        const uniqueId = new Date().getTime().toString(36) + '-' + Math.random().toString(36).substr(2, 9);
+        console.log(uniqueId);
+        return uniqueId;
+    }
 })

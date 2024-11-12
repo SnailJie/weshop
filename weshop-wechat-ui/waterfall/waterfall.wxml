@@ -1,7 +1,7 @@
 <template name="waterfall">
   <view class="fall-item" bindtap="navigateToDetailPage"  data-item="{{item}}">
     <view class="fall-li" >
-      <image class="fall-pic" src="{{item.imgUrl}}" mode="widthFix"></image>
+      <image class="fall-pic" src="{{item.headURL}}" mode="widthFix"></image>
       <view class="fall-title-wrap">
         <navigator url="url" class="fall-title" style="font-weight: normal;">{{item.title}}</navigator>
       </view>

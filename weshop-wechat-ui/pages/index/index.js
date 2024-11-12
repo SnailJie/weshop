@@ -47,7 +47,14 @@ Page({
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
-                let total = res.data
+                let total = res.data.map(item => {
+                  const picList = item.picList || '';
+                  const headURL = picList.split(';')[0].trim();
+                  return {
+                    ...item,
+                    headURL: headURL  // 默认头像
+                  };
+                });
                 that.setData({
                     postsList: total,
                 });
