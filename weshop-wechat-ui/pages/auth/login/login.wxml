@@ -1,6 +1,6 @@
 <view class="container">
   <view style="margin: 10%;">
-  <text style="font-size: large">  允许微信授权后，可体验更多功能</text>
+  <text style="font-size: large">  允许微信授权后，使用更多功能</text>
   </view>
   <view style=" display: contents">
     <button  class='content' open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" class="button-primary" hover-class="button-primary-hover">授权登录</button>

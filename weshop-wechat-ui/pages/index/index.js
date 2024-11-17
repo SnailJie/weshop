@@ -104,63 +104,62 @@ Page({
             isLoading: true
         });
         this.getIndexData();
-        this.getLocation();
+        // this.getLocation();
     },
-    //获得地理位置
-    getLocation: function () {
-        const that = this;
-        if (that.data.hasLocation) {
-            return
-        }
-        wx.getLocation({
-            type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
-            success: function (res) {
-                const latitude = res.latitude;
-                const longitude = res.longitude;
-                that.setData({
-                    hasLocation: true,
-                    latitude: latitude,
-                    longitude: longitude
-                });
-                that.sendLoginLog(latitude, longitude)
-            },
-            fail: function (res) {
-                console.log(res)
-                if (res.errMsg === 'getLocation:fail auth deny') {
-                    wx.showModal({
-                        title: '提示',
-                        content: '您拒绝了授权，无法获取地理位置信息',
-                        showCancel: false,
-                        confirmText: '确定',
-                        success: function (res) {
-                            if (res.confirm) {
-                                // 用户点击确定后，可以引导用户去设置页面重新授权
-                                wx.openSetting({
-                                    success: function (res) {
-                                        if (res.authSetting['scope.userLocation']) {
-                                            // 用户重新授权后，再次尝试获取地理位置
-                                            that.getLocation();
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                    });
-                } else {
-                    wx.showToast({
-                        title: '获取位置失败',
-                        icon: 'none'
-                    });
-                }
-            }
-        });
-    },
-    sendLoginLog(latitude, longitude) {
-        console.log("获取地理位置")
-        console.log(latitude)
-        console.log(longitude)
-    },
-
+    // //获得地理位置
+    // getLocation: function () {
+    //     const that = this;
+    //     if (that.data.hasLocation) {
+    //         return
+    //     }
+    //     wx.getLocation({
+    //         type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
+    //         success: function (res) {
+    //             const latitude = res.latitude;
+    //             const longitude = res.longitude;
+    //             that.setData({
+    //                 hasLocation: true,
+    //                 latitude: latitude,
+    //                 longitude: longitude
+    //             });
+    //             that.sendLoginLog(latitude, longitude)
+    //         },
+    //         fail: function (res) {
+    //             console.log(res)
+    //             if (res.errMsg === 'getLocation:fail auth deny') {
+    //                 wx.showModal({
+    //                     title: '提示',
+    //                     content: '您拒绝了授权，无法获取地理位置信息',
+    //                     showCancel: false,
+    //                     confirmText: '确定',
+    //                     success: function (res) {
+    //                         if (res.confirm) {
+    //                             // 用户点击确定后，可以引导用户去设置页面重新授权
+    //                             wx.openSetting({
+    //                                 success: function (res) {
+    //                                     if (res.authSetting['scope.userLocation']) {
+    //                                         // 用户重新授权后，再次尝试获取地理位置
+    //                                         that.getLocation();
+    //                                     }
+    //                                 }
+    //                             });
+    //                         }
+    //                     }
+    //                 });
+    //             } else {
+    //                 wx.showToast({
+    //                     title: '获取位置失败',
+    //                     icon: 'none'
+    //                 });
+    //             }
+    //         }
+    //     });
+    // },
+    // sendLoginLog(latitude, longitude) {
+    //     console.log("获取地理位置")
+    //     console.log(latitude)
+    //     console.log(longitude)
+    // },
 
     onReady: function () {
         // 页面渲染完成
