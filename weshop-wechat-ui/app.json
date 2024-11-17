@@ -50,7 +50,7 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "广场"
+        "text": "纸飞机"
       },
       {
         "pagePath": "pages/ucenter/index/index",
@@ -68,6 +68,14 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息，将用于向您推荐同城信息"
+    }
   },
   "lazyCodeLoading": "requiredComponents"
 }

@@ -72,16 +72,11 @@ Page({
     },
     uploadFile(filePath) {
         const that = this;
-        console.log("filePath")
-        console.log(filePath)
         let uniqueRandom = this.generateUniqueRandom();
-        console.log("uniqueRandom")
-        console.log(uniqueRandom)
         let fileName_split = filePath.split('/');
         let fileName = fileName_split[fileName_split.length - 1]
         let cloudPath = 'avatar' + '/' + uniqueRandom + '/' + fileName
-        console.log("cloudPath")
-        console.log(cloudPath)
+      
         wx.cloud.uploadFile({
             cloudPath: cloudPath, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
             filePath: filePath, // 微信本地文件，通过选择图片，聊天文件等接口获取
@@ -89,8 +84,6 @@ Page({
                 env: 'prod-4gyaq2skbf5fb439' // 需要替换成自己的微信云托管环境ID
             }
         }).then(res => {
-            console.log("xxxxfileIDxxx")
-            console.log(res.fileID)
             that.setData({
                 avataImagePath: res.fileID
             });
@@ -104,14 +97,10 @@ Page({
         avatar:avatarFilePath
       }
       util.request(api.UserInfoModify, submitdata, 'POST').then((res)=> {
-        console.log("res.userInfo")
-        console.log(res)
         if(res.success){
             let newUserInfo =  app.globalData.userInfo;
             newUserInfo.avatar= avatarFilePath;
             app.globalData.userInfo= newUserInfo;
-            console.log("app.global.userInfo")
-            console.log(app.globalData.userInfo)
         }
       });
     },

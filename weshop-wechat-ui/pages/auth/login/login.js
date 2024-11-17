@@ -36,7 +36,6 @@ Page({
   //js核心代码：其中利用backtype来确认授权登录后跳转回那个页面
   bindGetUserInfo: function(e) {
     this.getUserInfo()
-     
     return util.login().then((res) => {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {

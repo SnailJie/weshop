@@ -1,6 +1,6 @@
 const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
 // const ApiRootUrl = 'https://springboot-gn2d-118537-7-1308266486.sh.run.tcloudbase.com/wechat/';
-const BaseUrl = 'http://127.0.0.1:8000/wechat/';
+const BaseUrl = ApiRootUrl
 // const BaseUrl = 'https://springboot-gn2d-118537-7-1308266486.sh.run.tcloudbase.com/wechat/';
 
 
@@ -70,12 +70,13 @@ module.exports = {
   UserInfoQueryDetail: ApiRootUrl + 'userInfo/queryDetail',  //用户信息修改
 
 	RegionList: BaseUrl + 'region/list',  //获取区域列表
-
 	OrderList: BaseUrl + 'order/list',  //订单列表
 	OrderDetail: BaseUrl + 'order/detail',  //订单详情
 	OrderCancel: ApiRootUrl + 'order/cancel',  //取消订单
 	OrderExpress: BaseUrl + 'order/express', //物流详情
 
 	FootprintList: BaseUrl + 'footprint/list',  //足迹列表
-	FootprintDelete: BaseUrl + 'footprint',  //删除足迹
+  FootprintDelete: BaseUrl + 'footprint',  //删除足迹
+  
+  FeedBack: BaseUrl + 'feedback/post',  //热门
 };

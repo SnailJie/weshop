@@ -1,24 +1,23 @@
 <view class="container">
 
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"    >
     <view class="picker">
       <view class="fb-type">
         <view class="type-label">{{array[index]}}</view>
         <image class="type-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png"></image>
-
       </view>
     </view>
   </picker>
   <view class="fb-body">
-    <textarea class="content" placeholder="对我们有任何意见和建议，都可以反馈，我们会第一时间回复您" />
+    <textarea class="content"   bindinput="setFeedBackContent" value="{{feedbackContent}}" placeholder="对我们有任何意见和建议，都可以反馈，我们会第一时间回复您" />
     <view class="text-count">0/500</view>
   </view>
   <view class="fb-mobile">
     <view class="label">联系方式</view>
     <view class="mobile-box">
-      <input  placeholder="方便我们与你联系" />
+      <input value="{{concat}}" bindinput="setConcat" placeholder="方便我们与你联系"  />
       <image class="clear-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clear-fb-dd9d604f86.png"></image>
     </view>
   </view>
-  <button class="fb-btn">提交</button>
+  <button class="fb-btn"  bindtap="submit">提交</button>
 </view>

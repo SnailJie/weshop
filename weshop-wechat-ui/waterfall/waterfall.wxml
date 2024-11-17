@@ -12,8 +12,8 @@
         </view>
         <view class="fall-love-num">
           <text   class="cuIcon-like lg text-gray"></text>
-          <text wx:if="{{item.isLike == 1}}" class="cuIcon-likefill lg text-red"></text>
-          <text wx:if="{{item.isLike == 0}}" class="cuIcon-like lg text-gray"></text>
+          <!-- <text wx:if="{{item.isLike == 1}}" class="cuIcon-likefill lg text-red"></text>
+          <text wx:if="{{item.isLike == 0}}" class="cuIcon-like lg text-gray"></text> -->
           <text class="fall-num">{{item.likeNum}}</text>
         </view>
       </view>

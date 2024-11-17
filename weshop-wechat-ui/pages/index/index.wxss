@@ -6,11 +6,50 @@
   height: 417rpx;
 }
 
+.city-selector {
+  display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #eae8e8;
+    border-radius: 14px;
+    font-size: 13px;
+    color: #333;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 设置容器高度为视口高度 */
+}
+
+.fall-content {
+  display: flex;
+  width: 100%;
+}
+
+.fall-left, .fall-right {
+  flex: 1;
+  padding: 0px;
+}
+
+.loading {
+  text-align: center;
+  padding: 10px;
+  color: #999;
+}
+.iconfont {
+  margin-left: 5px;
+  font-size: 12px;
+}
 .banner image {
   width: 100%;
   height: 417rpx;
 }
-
+.loading {
+  text-align: center;
+  padding: 10px;
+  color: #999;
+}
 .m-menu {
   display: flex;
   height: 181rpx;

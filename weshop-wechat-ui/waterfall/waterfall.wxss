@@ -6,8 +6,8 @@ page{
 .fall-content{
   display: flex;
   flex-direction: row;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  margin-left: 10rpx;
+  /* margin-right: 20rpx; */
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@ page{
 
 .fall-right{
   width: 345rpx;
-  margin-left: 20rpx;
+   
 }
 .fall-li{
   margin-top: 20rpx;

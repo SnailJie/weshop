@@ -23,8 +23,6 @@ Page({
         });
     },
     setNickName: function (e) {
-        console.log('---nickName-')
-        console.log(e.detail.value)
         this.setData({
             nickName: e.detail.value
         });
