@@ -41,13 +41,11 @@ Page({
         })
     },
     submit: function () {
-        console.log(this.data.feedbackType)
-        console.log(this.data.feedbackContent)
-        console.log(this.data.concat)
+    
         const submitDate = {
             msgType: this.data.feedbackType,
             msgContent: this.data.feedbackContent,
-            userConcat: this.data.concat
+            userConcat: this.data.concat ==='' ? 'DEFAULT':this.data.concat
         }
         util.post(api.FeedBack, submitDate).then(function (res) {
             wx.showToast({

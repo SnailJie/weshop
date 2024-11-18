@@ -25,8 +25,8 @@
             <input class="input" bindinput="setChildSchool" placeholder="小孩就读学校，方便同校交流哦"  style="font-size:14px;margin-left: 20px;" value="{{childSchool}}"  />
         </view>
         <view class="form-item">
-          <text>微信号</text>
-          <text class="required" wx:if="{{!wechat}}">*</text>
+          <text>联系方式(选填)</text>
+          <!-- <text class="required" wx:if="{{!wechat}}">*</text> -->
           <input class="input" bindinput="setWechat" value="{{wechat}}" style="font-size:14px;margin-left: 20px;" placeholder="接收各类福利通知"/>
         </view>
         <!-- <view class="form-item">
