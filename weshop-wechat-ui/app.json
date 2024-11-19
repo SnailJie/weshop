@@ -1,34 +1,23 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/newGoods/newGoods",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
     "pages/ucenter/infoDetail/infoDetail",
     "pages/ucenter/footprint/footprint",
-    "pages/ucenter/order/order",
-    "pages/ucenter/orderDetail/orderDetail",
-    "pages/ucenter/express/express",
     "pages/ucenter/feedback/feedback",
     "pages/ucenter/coupon/coupon",
-    "pages/ucenter/collect/collect",
     "pages/auth/login/login",
     "pages/auth/register/register",
     "pages/auth/reset/reset",
-    "pages/pay/pay",
-    "pages/payResult/payResult",
     "pages/ucenter/index/index",
     "pages/topic/topic",
     "pages/comment/comment",
     "pages/commentPost/commentPost",
     "pages/topicComment/topicComment",
     "pages/search/search",
-    "pages/category/category",
+    
     "pages/activity/activity",
-    "pages/shopping/checkout/checkout",
-    "pages/shopping/address/address",
-    "pages/shopping/addressAdd/addressAdd",
-    "pages/goods/goods",
     "pages/postDetail/postDetail",
     "pages/newPost/newPost",
     "pages/topicDetail/topicDetail"
@@ -69,7 +58,6 @@
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
   },
- 
   "permission": {
     "scope.userLocation": {
       "desc": "您的位置信息，将用于向您推荐同城信息"

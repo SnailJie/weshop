@@ -9,15 +9,9 @@
     </view>
   </picker>
   <view class="fb-body">
-    <textarea class="content"   bindinput="setFeedBackContent" value="{{feedbackContent}}" placeholder="对我们有任何意见和建议，都可以反馈，我们会第一时间回复您" />
+    <textarea class="content"   bindinput="setFeedBackContent" value="{{feedbackContent}}" placeholder="对我们有任何意见和建议，都可以反馈。如果需要我们直接回复，请点击： 我的 - 联系我们"></textarea>
     <view class="text-count">0/500</view>
   </view>
-  <view class="fb-mobile">
-    <view class="label">联系方式（选填）</view>
-    <view class="mobile-box">
-      <input value="{{concat}}" bindinput="setConcat" placeholder="方便我们与你联系"  />
-      <image class="clear-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clear-fb-dd9d604f86.png"></image>
-    </view>
-  </view>
+  
   <button class="fb-btn"  bindtap="submit">提交</button>
 </view>

@@ -78,8 +78,8 @@
        <!-- 模态对话框 -->
      <cover-view wx:if="{{isModalVisible}}" class="modal">
        <cover-view class="modal-content">
-         <cover-view class="modal-body">微信联系:LightStudio2019</cover-view>
-         <button bindtap="hideModal">确定</button>
+         <cover-view class="modal-body">微信联系:Snail_JR</cover-view>
+         <button style="width:80px;height: 40px; font-size: 15px;" bindtap="hideModal">确定</button>
        </cover-view>
      </cover-view>
     </view>

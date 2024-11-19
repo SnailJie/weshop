@@ -52,6 +52,17 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
+    showModal(){
+      
+      this.setData({
+  isModalVisible:true
+})
+    },
+    hideModal(){
+      this.setData({
+        isModalVisible:false
+      })
+    },
     chooseAvatar() {
         const that = this;
         wx.chooseImage({
