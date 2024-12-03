@@ -1,4 +1,4 @@
-<view class="add-address">
+<!-- <view class="add-address">
     <view class="add-form">
         <view class="form-item">
             <input class="input" bindinput="bindinputName" placeholder="姓名" value="{{address.name}}" auto-focus/>
@@ -36,4 +36,4 @@
       </view>
     </view>
 </view>
-<view class="bg-mask" bindtap="cancelSelectRegion" wx:if="{{openSelectRegion}}"></view>
+<view class="bg-mask" bindtap="cancelSelectRegion" wx:if="{{openSelectRegion}}"></view> -->
