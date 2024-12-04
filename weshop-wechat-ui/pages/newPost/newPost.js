@@ -149,36 +149,20 @@ Page({
             });
         this.navigateToPostPage()
     },
-
-    modifyPoint() {
-        // 发送请求
-        const points = {
-            actionType: "ADD",
-            targetPoints: 10
-        }
-        util.post(api.ModifyPoints, points).then(function (res) {
-            wx.hideLoading();
-            if (res.data.success) {
-                wx.showToast({
-                    title: '恭喜获得10积分！',
-                    icon: 'success',
-                    duration: 2000
-                });
-            }  
-        });
-    },
-
     sendToServer(submitData) {
         // 发送请求
+        const that = this;
         util.post(api.PostsNew, submitData).then(function (res) {
             wx.hideLoading();
-            if (res.data.success) {
-                this.modifyPoint();
+            console.log("xxx")
+            console.log(res)
+            if (res.success) {
                 wx.showToast({
                     title: '提交成功',
                     icon: 'success',
                     duration: 2000
                 });
+                that.modifyPoint();
             } else {
                 wx.showToast({
                     title: '提交失败',
@@ -205,7 +189,7 @@ Page({
                     cloudPath: cloudPath, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
                     filePath: filePath, // 微信本地文件，通过选择图片，聊天文件等接口获取
                     config: {
-                        env: 'prod-4gyaq2skbf5fb439' // 需要替换成自己的微信云托管环境ID
+                        env: 'prod-1gizsfg5ac036f2a' // 需要替换成自己的微信云托管环境ID
                     }
                 }).then(res => {
                     resolve(res.fileID);
@@ -226,4 +210,21 @@ Page({
             url: '/pages/index/index',
         })
     },
+    modifyPoint() {
+      // 发送请求
+      const points = {
+          actionType: "ADD",
+          targetPoints: 10
+      }
+      util.post(api.ModifyPoints, points).then(function (res) {
+          wx.hideLoading();
+          if (res.data) {
+              wx.showToast({
+                  title: '恭喜获得 10 积分！',
+                  icon: 'success',
+                  duration: 1500
+              });
+          }  
+      });
+  },
 });
