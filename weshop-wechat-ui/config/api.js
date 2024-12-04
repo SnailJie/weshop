@@ -68,7 +68,7 @@ module.exports = {
   
   UserInfoModify: ApiRootUrl + 'userInfo/modify',  //用户信息修改
   UserInfoQueryDetail: ApiRootUrl + 'userInfo/queryDetail',  //用户信息修改
-
+  ModifyPoints: ApiRootUrl + 'userInfo/points',  //修改积分
 	RegionList: BaseUrl + 'region/list',  //获取区域列表
 	OrderList: BaseUrl + 'order/list',  //订单列表
 	OrderDetail: BaseUrl + 'order/detail',  //订单详情

@@ -26,8 +26,8 @@ Page({
         });
     },
     onWechatLogin(e) {
-      console.log("开始微信登陆")
-      console.log(e.detail)
+        console.log("开始微信登陆")
+        console.log(e.detail)
         if (e.detail.errMsg !== 'getUserInfo:ok') {
             if (e.detail.errMsg === 'getUserInfo:fail auth deny') {
                 return false
@@ -137,7 +137,7 @@ Page({
                 console.log('所有文件上传成功:', results);
                 submitData.picList = results
                 // submitData.userInfo = app.globalData.userInfo,
-                    this.sendToServer(submitData)
+                this.sendToServer(submitData)
             })
             .catch(error => {
                 console.error('部分文件上传失败:', error);
@@ -149,13 +149,31 @@ Page({
             });
         this.navigateToPostPage()
     },
+
+    modifyPoint() {
+        // 发送请求
+        const points = {
+            actionType: "ADD",
+            targetPoints: 10
+        }
+        util.post(api.ModifyPoints, points).then(function (res) {
+            wx.hideLoading();
+            if (res.data.success) {
+                wx.showToast({
+                    title: '恭喜获得10积分！',
+                    icon: 'success',
+                    duration: 2000
+                });
+            }  
+        });
+    },
+
     sendToServer(submitData) {
-        console.log("--------")
-        console.log(submitData)
         // 发送请求
         util.post(api.PostsNew, submitData).then(function (res) {
             wx.hideLoading();
             if (res.data.success) {
+                this.modifyPoint();
                 wx.showToast({
                     title: '提交成功',
                     icon: 'success',
@@ -169,6 +187,7 @@ Page({
                 });
             }
         });
+
     },
     uploadImages(filePaths) {
         const that = this;
