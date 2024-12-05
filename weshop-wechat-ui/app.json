@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/group/index",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
     "pages/ucenter/infoDetail/infoDetail",
@@ -39,6 +40,12 @@
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
         "text": "纸飞机"
+      },
+      {
+        "pagePath": "pages/group/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "悄悄小组"
       },
       {
         "pagePath": "pages/ucenter/index/index",

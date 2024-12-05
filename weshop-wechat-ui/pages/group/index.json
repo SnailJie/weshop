@@ -1,0 +1,5 @@
+{  
+  "usingComponents": {  
+    "add-group": "../addGroup/add-group"  
+  }  
+}

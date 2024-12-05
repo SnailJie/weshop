@@ -220,7 +220,7 @@ Page({
           wx.hideLoading();
           if (res.data) {
               wx.showToast({
-                  title: '恭喜获得 10 积分！',
+                  title: '恭喜获得10积分！',
                   icon: 'success',
                   duration: 1500
               });
