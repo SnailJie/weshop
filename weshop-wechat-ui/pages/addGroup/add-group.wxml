@@ -1,42 +1,92 @@
-<view class="floating-button" bindtap="onButtonClick">  
-  <button class="button-inner" style="background-color: #bd0a96;">加入</button>  
+<view class="floating-button" bindtap="onButtonClick">
+  <button class="button-inner" style="background-color: #bd0a96;">加入</button>
 </view>
 
 <!-- 弹窗 -->
 <view class="modal" wx:if="{{showModal}}">
-  <view class="modal-content">
-    <view class="modal-header">
-      <text>选择学校</text>
-    </view>
-    
-    <view class="modal-body">
-      <view class="search-container">
-        <input 
-          type="text" 
-          placeholder="请输入学校名称" 
-          bindinput="onSearchInput"
-          bindfocus="onFocus"
-          bindblur="onBlur"
-          value="{{searchQuery}}"
-        />
-        <!-- 下拉列表 -->
-        <view class="dropdown-list" wx:if="{{showDropdown && filteredSchools.length > 0}}">
-          <view 
-            class="dropdown-item" 
-            wx:for="{{filteredSchools}}" 
-            wx:key="index"
-            data-school="{{item}}"
-            bindtap="selectSchool"
-          >
-            {{item}}
+  <view class="modal-container" style="width: 80%;">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text style="font-weight:bold;font-size: 20px;">加入匿名家长圈</text>
+      </view>
+
+      <view class="modal-body">
+        <!-- 学校选择区域 -->
+        <view class="search-container">
+          <text class="section-title" style="font-weight:bold;color: dimgray;">选择学校</text>
+          <input
+            type="text"
+            placeholder="请输入学校名称"
+            bindinput="onSearchInput"
+            bindfocus="onFocus"
+            bindblur="onBlur"
+            value="{{searchQuery}}"
+          />
+          <view class="dropdown-list" wx:if="{{showDropdown && filteredSchools.length > 0}}">
+            <view
+              class="dropdown-item"
+              wx:for="{{filteredSchools}}"
+              wx:key="index"
+              data-school="{{item}}"
+              bindtap="selectSchool"
+            >
+              {{item}}
+            </view>
           </view>
         </view>
+
+        <!-- 图片上传区域 -->
+        <view class="image-container">
+          <text class="section-title"  style="font-weight:bold;color: dimgray; margin-top: 20px; display: block;">认证</text>
+          <text class="section-title"  style="font-weight:100;font-size:smaller;color:dimgray;/* margin-top:20px; */display:block;">上传证明您是该校学生家长的材料
+          </text>
+          <form
+            bindsubmit="formSubmit"
+            bindreset="formReset"
+            class="post-form"
+          >
+            <view class="image-section" style="display: flex; justify-content: center;">
+              <block wx:if="{{images.length > 0 && images.length < 6}}">
+                <block wx:for="{{images}}" wx:key="index">
+                  <view
+                    class="image-container"
+                    style="position: relative;"
+                    style="display: inline-block;"
+                  >
+                    <image
+                      class="image-item"
+                      src="{{item}}"
+                      mode="aspectFill"
+                      data-index="{{index}}"
+                      bindtap="previewImage"
+                    ></image>
+                    <button
+                      class="delete-btn"
+                      bindtap="deleteImage"
+                      data-index="{{index}}"
+                    >X
+                    </button>
+                  </view>
+                </block>
+              </block>
+              <button
+                class="add-image-btn"
+                bindtap="chooseImage"
+                style="width: 100px; height: 100px; font-size: xx-large; margin-top: 2px;background-color: rgb(223, 223, 226);"
+                wx:if="{{images.length === 0}}"
+              >+
+              </button>
+            </view>
+          </form>
+        </view>
       </view>
-    </view>
-    
-    <view class="modal-footer">
-      <button class="cancel-btn" bindtap="hideModal">取消</button>
-      <button class="confirm-btn" bindtap="confirmJoin">确定</button>
+
+      <!-- 底部按钮 -->
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="hideModal">取消</button>
+        <button class="confirm-btn" bindtap="confirmJoin">确定</button>
+      </view>
     </view>
   </view>
 </view>
+

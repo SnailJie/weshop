@@ -79,4 +79,5 @@ module.exports = {
   FootprintDelete: BaseUrl + 'footprint',  //删除足迹
   
   FeedBack: BaseUrl + 'feedback/post',  //热门
+  GroupAuth: BaseUrl + 'group/auth',  //认证加入小组
 };

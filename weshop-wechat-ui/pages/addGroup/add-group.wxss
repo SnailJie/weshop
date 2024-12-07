@@ -39,7 +39,8 @@
 }
 
 .modal-content {
-  width: 80%;
+  /* width: 80%; */
+  height: 100%;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -92,11 +93,11 @@
 
 .search-container input {
   width: 100%;
-  padding: 10px;
+  /* padding: 10px; */
   border: 1px solid #eee;
   border-radius: 5px;
   box-sizing: border-box;
-  height: 60px;
+  height: 40px;
 }
 
 .dropdown-list {
@@ -125,4 +126,74 @@
 
 .dropdown-item:hover {
   background-color: #f5f5f5;
+}
+
+
+
+.image-container {  
+  /* 其他样式，如宽度、高度、边距等，根据需要添加 */  
+  display: inline-block; /* 使容器根据内容大小自动调整 */  
+  background-color: white;
+}  
+
+.image-section {  
+  display: flex;  
+  flex-wrap: wrap;  
+  margin-bottom: 20px;  
+  /* margin-left: 20px;   */
+  align-items: center;  
+  background-color: white;
+}  
+  
+.image-item {  
+  width: 100px;  
+  height: 100px;  
+  margin: 10px;  
+  margin-left: 20px;
+}  
+  
+.delete-btn {  
+  position: absolute;  
+  top: 0;  
+  right: 0;  
+  width: 20px;  
+  height: 28px;  
+  color: #795548;  
+  border: none;  
+  border-radius: 50%;  
+  font-size: xx-small;  
+  z-index: 1;
+  background-size: cover; /* 使背景图片覆盖整个按钮 */  
+  background-position: center; /* 使背景图片居中 */  
+  border: none; /* 去掉按钮的边框，如果需要的话 */
+
+  background-image: url('/image/deletebtn.png');
+}  
+
+.picker {  
+  padding: 10px;  
+  border: 1px solid #ccc;  
+  border-radius: 4px;  
+  background-color: #fff;  
+}
+
+.add-image-btn {  
+  margin-top: 20px;  
+  background-color: #f1ebeb;  
+  color: white;  
+  border: none;  
+  border-radius: 5px;  
+  height: 40px;
+}  
+.button-wrapper {  
+  display: flex;  
+  width: 100%;  
+  justify-content: flex-end; /* 将“+”按钮推到右侧，但当有图片时，它会被包裹在另一个view中并移到行尾 */  
+}  
+.submit-btn {  
+  padding: 10px 20px;  
+  background-color: #ff5722;  
+  color: white;  
+  border: none;  
+  border-radius: 5px;  
 }
