@@ -98,7 +98,7 @@ Component({
       let uploadPromises = this.uploadImages(this.data.images);
        // Prepare data to send
        const submitData = {
-        school: this.data.selectedSchool
+        schoolName: this.data.selectedSchool
       };
  
  
@@ -106,7 +106,7 @@ Component({
       Promise.all(uploadPromises)
         .then(results => {
           console.log('所有文件上传成功:', results);
-          submitData.picList = results
+          submitData.authPic = results
           // submitData.userInfo = app.globalData.userInfo,
           this.sendToServer(submitData)
         })
@@ -158,12 +158,20 @@ Component({
       const that = this;
       util.post(api.GroupAuth, submitData).then(function (res) {
           wx.hideLoading();
+          that.hideModal(); // {{ edit_1 }}
           if (res.success) {
               wx.showToast({
-                  title: '提交成功，预计1个工作日内完成审核认证',
+                  title: '提交成功',
                   icon: 'success',
-                  duration: 2000
+                  duration: 1000
               });
+              setTimeout(() => {
+                wx.showToast({
+                  title: '预计1个工作日内完成审核认证',
+                  icon: 'none', 
+                  duration: 2500
+                });
+              }, 2000);
               
           } else {
               wx.showToast({
@@ -178,13 +186,11 @@ Component({
       const that = this;
       const uploadPromises = filePaths.map(filePath => {
         let uniqueRandom = this.generateUniqueRandom();
-        console.log("uniqueRandom")
-        console.log(uniqueRandom)
+        
         let fileName_split = filePath.split('/');
         let fileName = fileName_split[fileName_split.length - 1]
         let cloudPath = 'authGroup' + '/' + uniqueRandom + '/' + fileName
-        console.log("cloudPath")
-        console.log(cloudPath)
+        
         return new Promise((resolve, reject) => {
           wx.cloud.uploadFile({
             cloudPath: cloudPath, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头

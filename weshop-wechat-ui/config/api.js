@@ -79,5 +79,6 @@ module.exports = {
   FootprintDelete: BaseUrl + 'footprint',  //删除足迹
   
   FeedBack: BaseUrl + 'feedback/post',  //热门
-  GroupAuth: BaseUrl + 'group/auth',  //认证加入小组
+  GroupAuth: BaseUrl + 'group/join',  //认证加入小组
+  SystemConfGet: BaseUrl + 'systemconf/get',  //获取系统配置
 };
