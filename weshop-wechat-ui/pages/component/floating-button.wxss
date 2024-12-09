@@ -16,7 +16,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   font-size: x-large;  
   font-weight: bolder;
-  background-color: rgb(235 92 92); /* 自定义背景颜色 */  
+  /* background-color: rgb(235 92 92); 自定义背景颜色   */
+  background-color: #009E9D;
   bottom: 50px; /* 调整到你想要的位置 */  
   right: 20px;  /* 调整到你想要的位置 */  
   width: 60px;  

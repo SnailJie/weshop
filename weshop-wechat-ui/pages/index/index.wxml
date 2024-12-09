@@ -48,7 +48,7 @@
       </view>
     </view>
     <view class="loading" wx:if="{{isLoading}}">
-      老师，等我想一想...
+      -----我也有底线，被你看到了-----
     </view>
   </scroll-view>
 </view>

@@ -92,7 +92,7 @@ Page({
             cloudPath: cloudPath, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
             filePath: filePath, // 微信本地文件，通过选择图片，聊天文件等接口获取
             config: {
-                env: 'prod-4gyaq2skbf5fb439' // 需要替换成自己的微信云托管环境ID
+                env: 'prod-1gizsfg5ac036f2a' // 需要替换成自己的微信云托管环境ID
             }
         }).then(res => {
             that.setData({

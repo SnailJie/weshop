@@ -1,3 +1,4 @@
-<view class="floating-button" bindtap="onButtonClick">  
-  <button class="button-inner" style=" background-color: #bd0a96;">发表</button>  
+<view class="floating-button" bindtap="onButtonClick">
+  <button class="button-inner" style=" background-color: #009E9D;">发表</button>
 </view>
+

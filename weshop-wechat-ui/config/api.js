@@ -80,5 +80,8 @@ module.exports = {
   
   FeedBack: BaseUrl + 'feedback/post',  //热门
   GroupAuth: BaseUrl + 'group/join',  //认证加入小组
+  GroupPost: BaseUrl + 'group/post',  //发布帖子
+  GroupJoinList: BaseUrl + 'group/queryJoinGroupList',  //小组帖子列表
+  GroupPostList: BaseUrl + 'group/queryGroupPostList',  //小组帖子列表
   SystemConfGet: BaseUrl + 'systemconf/get',  //获取系统配置
 };

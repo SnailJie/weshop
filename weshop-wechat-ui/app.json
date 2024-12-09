@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/group/index",
+    "pages/groupPostDetail/groupPostDetail",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
     "pages/ucenter/infoDetail/infoDetail",
@@ -39,7 +40,7 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/images/ic_menu_choice_nor.png",
         "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "纸飞机"
+        "text": "广场"
       },
       {
         "pagePath": "pages/group/index",

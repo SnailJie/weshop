@@ -1,0 +1,88 @@
+<view class="container" style="position: relative; margin-top: 10px; background-color: #f5f5f5; border-radius: 12px; width: 95%; margin-left: auto; margin-right: auto;">
+
+  <!-- 作者信息 -->
+  <view class="fall-bottom" style="  display: flex;  justify-content: flex-end; align-items: center;">
+    <view class="fall-toux-name" style="display: flex; align-items: center; width: 100%;">
+      <image class="fall-toux" src="{{postDetail.userInfoDTO.avatar}}"></image>
+      <text class="fall-name">{{postDetail.userInfoDTO.nickName}}</text>
+      <view class="footer-item" style="margin-left: 100px;">
+        <text style="font-size:23rpx; color: #9E9E9E">{{createTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view style="display: contents; justify-content: flex-end; align-items: center;">
+    <view class="post-content" style="width: 80%;">
+      <rich-text style="font-size:15px" nodes="{{postDetail.content}}"></rich-text>
+    </view>
+  </view>
+
+  <!-- <button bindtap="likePost" style="border-width: 0; border-style: none; margin-left: 120px; font-size: smaller;" >点赞</button> -->
+  <view
+    class="fall-love-num"
+    style="margin-left: auto; margin-right: 20px;"
+    bindtap="likePost"
+  >
+    <text wx:if="{{isLike == 1}}" class="cuIcon-likefill lg text-red"></text>
+    <text wx:if="{{isLike == 0}}" class="cuIcon-like lg text-gray"></text>
+    <text class="fall-num" style="font-size:15px">{{postDetail.likeNum}}</text>
+  </view>
+</view>
+
+<!-- 历史评论 -->
+<view style="display: flex;">
+  <text class="t" style="font-weight: bolder; margin-left:10px;margin-top:10px">评论</text>
+</view>
+
+<scroll-view class="comments" style="margin-top: 10px; background-color: #f5f5f5; border-radius: 12px; width: 95%; margin-left: auto; margin-right: auto; margin-bottom: 50px; height: calc(80vh - 100px);">
+  <view class="has-comments" wx:if="{{commentList.length > 0 }}">
+    <view class="h" style=" margin-bottom: 20px;">
+    </view>
+    <view class="b">
+      <view
+        class="item"
+        wx:for="{{commentList}}"
+        wx:key="{{item.id}}"
+      >
+        <view class="info" style="margin-bottom: 10px;">
+          <view class="user">
+            <image
+              class="avatar"
+              style="width:20px; height:20px;"
+              src="{{item.creator.avatar}}"
+            ></image>
+            <text class="nickname" style="font-size:23rpx; color: lightgray">{{item.creator.nickName}}</text>
+            <view style="display: flex;">
+              <view class="comment" style="font-size: 25rpx; margin-left: 40px; font-family:sans-serif"> {{item.content}} </view>
+              <view class="time" style="font-size: 23rpx; color: lightgray;margin-left: 10px;">{{item.gmtCreate}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="no-comments" wx:else="">
+    <view class="b">
+      <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/no-comment-560f87660a.png"></image>
+    </view>
+  </view>
+</scroll-view>
+<!-- 评论信息 -->
+<view class="input-container" style="width: 100%; position: fixed;bottom: 0px; ">
+  <view class="footer-item" style="display: flex;    width: 100%">
+    <input
+      class="weui-input"
+      value="{{inputContent}}"
+      name="title"
+      style="box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); height: 40px; width: 70%; background-color: rgb(228, 226, 226);    border-radius: 5px 20px 5px 20px;"
+      placeholder=" 说几句..."
+      bindinput="handleInput"
+    />
+    <button bindtap="commentPost" style="width:20%;background-color:rgb(212, 88, 30);border-radius:5px 20px 5px 20px;font-size: initial; font-weight: 700;color: white;">发送</button>
+  </view>
+</view>
+
+<!-- <view class="footer-item">
+    <text>{{postDetail.likeCount}}</text>
+  </view> -->
+

@@ -1,63 +1,92 @@
 <import src="/waterfall/waterfall.wxml" />
 
-<!-- 标题栏 -->
-<!-- <cu-custom bgColor="bg-white">
-  <view slot="content">放学去哪儿</view>
-</cu-custom> -->
-<!-- 搜索栏 -->
-
-<view>
-  <!-- <view class="cu-bar search bg-white"> -->
-    <!-- 城市选择 -->
-    <!-- <picker mode="selector" range="{{cities}}" bindchange="onCityChange">
-      <view class="city-selector">
-        {{currentCity}}
-        <text class="iconfont icon-down"></text>
-      </view>
-    </picker> -->
-    <!-- <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索笔记" confirm-type="search" bindconfirm="doSearch" bindinput="onSearchInput"></input>
-    </view> -->
-  <!-- </view> -->
-</view>
-
-
 <!-- 导航栏 -->
-<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
-  <view class="cu-item {{index==TabCur?'text-black text-bold':''}} " wx:for="{{navlist}}" wx:key bindtap="tabSelect" data-id="{{index}}" style="background-color:{{index==TabCur?'#eb5c5c':'#ece8e8'}};border-radius:10px 30px 0px 30px;height:20px;font-weight: 43px;">
-    {{item}}
+<scroll-view
+  scroll-x
+  class="bg-white nav"
+  scroll-with-animation
+  scroll-left="{{scrollLeft}}"
+>
+  <view
+    class="cu-item {{index==TabCur?'text-black text-bold':''}} "
+    wx:for="{{groupList}}"
+    wx:key="index"
+    bindtap="tabSelect"
+    data-id="{{index}}"
+    data-group="{{item.id}}"
+    style="background-color:{{index==TabCur?'#eb5c5c':'#ece8e8'}};border-radius:10px 30px 0px 30px;height:20px;font-weight: 43px;"
+  >
+    {{item.groupName}}
   </view>
 </scroll-view>
 
-<!-- 瀑布流大概的思路就是，直接定义两列等宽的view，然后两列都加载相同的数据
-  wx:if="{{index%2==1}}" 这里，用if来辨别是奇数还是偶数，两边加载相反的 -->
+<view class="container" style="margin-top: 20px;">
+  <scroll-view
+    scroll-y="true"
+    bindscrolltolower="loadMore"
+    style="height: 100%;"
+  >
+    <view class="post-list">
+      <block
+        wx:for="{{postsList}}"
+        wx:key="id"
+        wx:for-item="item"
+      >
+        <view
+          class="fall-item"
+          bindtap="navigateToDetailPage"
+          data-item="{{item}}"
+          style="background-color: #f5f5f5 !important; border-radius: 12px; margin-bottom: 2px; width: 90%; margin-left: auto; margin-right: auto; padding: 5px;"
+        >
+          <view class="fall-li">
+            <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
+              <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
+                <image
+                  class="fall-toux"
+                  style="width: 40px; height: 40px;"
+                  src="{{item.creator.avatar}}"
+                ></image>
+                <view style="display: flex; flex-direction: column;">
+                  <text class="fall-name" style="font-size:15px;font-weight: bold;">{{item.creator.nickName}}</text>
+                  <text class="fall-name" style="font-size:10px">{{item.createTime}}</text>
+                </view>
+              </view>
 
-  <view class="container">
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height: 100%;">
-    <view class="fall-content">
-      <view class="fall-left">
-        <block wx:for="{{fallList}}" wx:key="code" wx:for-item="item">
-          <template is="waterfall" data="{{item}}" wx:if="{{index % 2 == 0}}"></template>
-        </block>
-      </view>
-      <view class="fall-right">
-        <block wx:for="{{fallList}}" wx:key="index" wx:for-item="item">
-          <template is="waterfall" data="{{item}}" wx:if="{{index % 2 == 1}}"></template>
-        </block>
-      </view>
+              <view style="margin-bottom: 8px; align-self: flex-start;">
+                <navigator
+                  url="url"
+                  class="fall-title"
+                  style="font-weight: normal;"
+                >{{item.content}}
+                </navigator>
+              </view>
+
+              <view class="fall-love-num" style="align-self: flex-start;">
+                <text class="cuIcon-comment lg text-gray"></text>
+                <text class="fall-num">{{item.likeNum}}</text>
+                <text style="margin-left: 20px;" class="cuIcon-like lg text-gray"></text>
+                <text class="fall-num">{{item.likeNum}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </block>
     </view>
     <view class="loading" wx:if="{{isLoading}}">
-      老师，等我想一想...
+      -----我也有底线，被你看到了-----
     </view>
   </scroll-view>
 </view>
 
-
-
-
+<!-- 悬浮发帖球 -->
 
 <!-- 悬浮发帖球 -->
-<view>
+<view style="position: fixed; top: 80px; right: 20px; z-index: 1000;">
   <add-group bind:click="navigateToPostPage"></add-group>
 </view>
+
+<view style="position: fixed; top: 80px; right: 90px; z-index: 1200;">
+  <new-group-post bind:click="navigateToPostPage"></new-group-post>
+</view>
+

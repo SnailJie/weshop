@@ -1,5 +1,6 @@
 {  
   "usingComponents": {  
-    "add-group": "../addGroup/add-group"  
+    "add-group": "../addGroup/add-group",
+    "new-group-post": "../newGroupPost/new-group-post"
   }  
 }

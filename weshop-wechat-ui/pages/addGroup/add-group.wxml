@@ -1,5 +1,5 @@
 <view class="floating-button" bindtap="onButtonClick">
-  <button class="button-inner" style="background-color: #bd0a96;">加入</button>
+  <button class="button-inner" style="background-color: #009E9D;">加入学校</button>
 </view>
 
 <!-- 弹窗 -->
@@ -7,7 +7,7 @@
   <view class="modal-container" style="width: 80%;">
     <view class="modal-content">
       <view class="modal-header">
-        <text style="font-weight:bold;font-size: 20px;">加入匿名家长圈</text>
+        <text style="font-weight:bold;font-size: 20px;">认证加入匿名家长圈</text>
       </view>
 
       <view class="modal-body">
@@ -38,7 +38,7 @@
         <!-- 图片上传区域 -->
         <view class="image-container">
           <text class="section-title"  style="font-weight:bold;color: dimgray; margin-top: 20px; display: block;">认证</text>
-          <text class="section-title"  style="font-weight:100;font-size:smaller;color:dimgray;/* margin-top:20px; */display:block;">上传证明您是该校学生家长的材料
+          <text class="section-title"  style="font-weight:100;font-size:smaller;color:dimgray;/* margin-top:20px; */display:block;">上传证明您是该校学生家长/教职工的真实材料\n仅用于平台审核
           </text>
           <form
             bindsubmit="formSubmit"

@@ -1,0 +1,61 @@
+<view class="floating-button" bindtap="onButtonClick">
+  <button class="button-inner" style="background-color: #009E9D;">发帖</button>
+</view>
+
+<!-- 弹窗 -->
+<view class="modal" wx:if="{{showModal}}">
+  <view class="modal-container" style="width: 80%;">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text style="font-weight:bold;font-size: 20px;">发表匿名帖</text>
+      </view>
+
+      <view class="modal-body">
+        <!-- 学校选择区域 -->
+        <view class="search-container">
+
+          <input
+            type="text"
+            placeholder="选择要发布的学校圈子"
+            bindinput="onSearchInput"
+            bindfocus="onFocus"
+            bindblur="onBlur"
+            value="{{searchQuery}}"
+            style="border: none;box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); "
+          />
+          <view class="dropdown-list" wx:if="{{showDropdown && filteredSchools.length > 0}}">
+            <view
+              class="dropdown-item"
+              wx:for="{{filteredSchools}}"
+              wx:key="index"
+              data-school="{{item.groupName}}"
+              data-id="{{item.id}}"
+              bindtap="selectSchool"
+            >
+              {{item.groupName}}
+            </view>
+          </view>
+        </view>
+
+        <view>
+
+          <textarea
+            class="weui-input"
+            style="border: 1px dashed #cecbcb; padding: 8px; box-sizing: border-box; width: 100%; height:200px;margin-top: 10px;"
+            name="content"
+            bindinput="onContentInput"
+            placeholder="输入内容"
+          ></textarea>
+
+        </view>
+      </view>
+
+      <!-- 底部按钮 -->
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="hideModal">取消</button>
+        <button class="confirm-btn" bindtap="confirmJoin">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+

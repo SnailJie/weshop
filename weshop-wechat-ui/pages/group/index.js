@@ -9,7 +9,8 @@ Page({
         PageCur: 'basics',
         TabCur: 0,
         scrollLeft: 0,
-        navlist: ["天府七中", "小组广场"],
+        navlist: ["天府七中", "加入小组"],
+        groupList: [],
         postsList: [],
         searchText: '',
         hasLocation: false,
@@ -24,13 +25,17 @@ Page({
         currentCity: '成都' // 当前选中的城市
     },
     tabSelect(e) {
-        let list = this.data.postsList;
         let categoryId = e.currentTarget.dataset.id;
+        let groupId = e.currentTarget.dataset.group;
+        console.log("groupId")
+        console.log(groupId)
+        console.log("categoryId")
+        console.log(categoryId)
         this.initData()
         this.setData({
             TabCur: e.currentTarget.dataset.id,
         })
-        this.getPageData(categoryId)
+        this.getGroupPostListData(groupId)
     },
     initData() {
         this.setData({
@@ -54,16 +59,18 @@ Page({
     },
     getIndexData: function () {
         let that = this;
-        this.getPageData(0)
+       
     },
-    getPageData(type) {
+    getGroupPostListData(groupId) {
         let that = this;
         const queryCondition = {
             pageNum: this.data.page,
             pageSize: this.data.pageSize,
-            category: type
+            groupId: groupId.toString()
         }
-        util.request(api.PostsList, queryCondition).then(function (res) {
+        console.log("queryCondition")
+        console.log(queryCondition)
+        util.post(api.GroupPostList, queryCondition).then(function (res) {
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
@@ -74,27 +81,31 @@ Page({
                     isLoading: false,
                     hasMore: hasMore
                 });
-                let total = res.data.map(item => {
-                    const picList = item.picList || '';
-                    const headURL = picList.split(';')[0].trim();
-                    return {
-                        ...item,
-                        headURL: headURL // 默认头像
-                    };
-                });
+                let total = res.data;
                 that.setData({
                     postsList: that.data.postsList.concat(total),
-                    fallList: that.data.postsList.concat(total)
                 });
-                // let newList = []
-                // for (let index = 0; index < total.length; index++) {
-                //     if (!(total[index].category.indexOf(0) == -1)) {
-                //         newList.push(total[index])
-                //     }
-                // }
-
             }
         });
+    },
+    getJoinGroupList() {
+        let that = this;
+        let firstGroupId = '';
+        util.request(api.GroupJoinList).then(function (res) {
+            if (res.success) {
+                console.log("res.data")
+                console.log(res.data)
+                that.setData({
+                    groupList: res.data
+                });
+                firstGroupId = res.data[0].id;
+                console.log("firstGroupId")
+                console.log(firstGroupId)
+                that.getGroupPostListData(firstGroupId)
+            }
+        });
+        
+         
     },
     onLoad: function (options) {
         if (this.data.isLoading || !this.data.hasMore) {
@@ -103,63 +114,11 @@ Page({
         this.setData({
             isLoading: true
         });
-        this.getIndexData();
-        // this.getLocation();
+        this.getJoinGroupList();
+       
+        // this.getGroupPostListData(firstGroupId);
     },
-    // //获得地理位置
-    // getLocation: function () {
-    //     const that = this;
-    //     if (that.data.hasLocation) {
-    //         return
-    //     }
-    //     wx.getLocation({
-    //         type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
-    //         success: function (res) {
-    //             const latitude = res.latitude;
-    //             const longitude = res.longitude;
-    //             that.setData({
-    //                 hasLocation: true,
-    //                 latitude: latitude,
-    //                 longitude: longitude
-    //             });
-    //             that.sendLoginLog(latitude, longitude)
-    //         },
-    //         fail: function (res) {
-    //             console.log(res)
-    //             if (res.errMsg === 'getLocation:fail auth deny') {
-    //                 wx.showModal({
-    //                     title: '提示',
-    //                     content: '您拒绝了授权，无法获取地理位置信息',
-    //                     showCancel: false,
-    //                     confirmText: '确定',
-    //                     success: function (res) {
-    //                         if (res.confirm) {
-    //                             // 用户点击确定后，可以引导用户去设置页面重新授权
-    //                             wx.openSetting({
-    //                                 success: function (res) {
-    //                                     if (res.authSetting['scope.userLocation']) {
-    //                                         // 用户重新授权后，再次尝试获取地理位置
-    //                                         that.getLocation();
-    //                                     }
-    //                                 }
-    //                             });
-    //                         }
-    //                     }
-    //                 });
-    //             } else {
-    //                 wx.showToast({
-    //                     title: '获取位置失败',
-    //                     icon: 'none'
-    //                 });
-    //             }
-    //         }
-    //     });
-    // },
-    // sendLoginLog(latitude, longitude) {
-    //     console.log("获取地理位置")
-    //     console.log(latitude)
-    //     console.log(longitude)
-    // },
+   
 
     onReady: function () {
         // 页面渲染完成
@@ -180,9 +139,11 @@ Page({
     },
     navigateToDetailPage: function (e) {
         const item = e.currentTarget;
-        const postCode = item.dataset.item.code
+        console.log("item")
+        console.log(item)
+        const postCode = "GROUP_"+item.dataset.item.groupId
         wx.navigateTo({
-            url: '/pages/postDetail/postDetail?item=' + postCode
+            url: '/pages/groupPostDetail/groupPostDetail?item=' + postCode
         });
     },
     getPostsList() {
@@ -203,51 +164,15 @@ Page({
         });
         this.searchPosts(searchText);
     },
-    searchPosts: function (searchText) {
-        let that = this;
-        const conditon = {
-            keyword: searchText
-        }
-        util.request(api.PostsList, conditon).then(function (res) {
-            if (res.success) {
-                let total = res.data
-                that.setData({
-                    postsList: total,
-                });
-                let newList = []
-                for (let index = 0; index < total.length; index++) {
-                    if (!(total[index].category.indexOf(0) == -1)) {
-                        newList.push(total[index])
-                    }
-                }
-                that.setData({
-                    fallList: newList
-                })
-                wx.hideLoading();
-            }
-        });
-    },
+    
     loadMore: function () {
 
         this.setData({
             isLoading: true
         });
-        this.getIndexData();
+        this.getGroupPostListData(groupId);
     },
-
-    onScrollLeft: function (e) {
-        this.setData({
-            scrollTop: e.detail.scrollTop
-        });
-        this.syncScroll('right');
-    },
-
-    onScrollRight: function (e) {
-        this.setData({
-            scrollTop: e.detail.scrollTop
-        });
-        this.syncScroll('left');
-    },
+ 
     syncScroll: function (direction) {
         const targetId = direction === 'left' ? '#fall-left' : '#fall-right';
         const targetScrollView = this.selectComponent(targetId);
