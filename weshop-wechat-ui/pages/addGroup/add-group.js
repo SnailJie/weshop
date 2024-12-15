@@ -2,12 +2,10 @@ const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 const user = require('../../services/user.js');
 
-
-
 Component({
   data: {
     showModal: false,
-    schools: ['学校1', '学校2', '学校3', '学校4', '学校5', '学校6', '学校11', '学校12', '学校123', '学校14', '学校15', '学校16'],
+    schools: [],
     filteredSchools: [],
     images: [],
     selectedSchool: '',
@@ -16,12 +14,47 @@ Component({
   },
   lifetimes: {
     attached() {
-      this.setData({
-        filteredSchools: this.data.schools
-      });
+      this.initializeSchools();
     }
   },
   methods: {
+    initializeSchools() {
+      console.log('initializeSchools')
+      const that = this;
+      wx.cloud.downloadFile({
+        fileID: 'cloud://prod-1gizsfg5ac036f2a.7072-prod-1gizsfg5ac036f2a-1332718886/system/school.json',
+        success: function (res) {
+          wx.getFileSystemManager().readFile({
+            filePath: res.tempFilePath,
+            encoding: 'utf8',
+            success: function (data) {
+              console.log(data)
+              // const schools = JSON.parse(data.data).map(school => school.name);
+              const schools = JSON.parse(data.data);
+              that.setData({
+                schools: schools,
+                filteredSchools: schools
+              });
+            },
+            fail: function (error) {
+              console.error('读取学校数据失败:', error);
+              wx.showToast({
+                title: '读取学校数据失败',
+                icon: 'none'
+              });
+            }
+          });
+        },
+        fail: function (error) {
+          console.error('下载学校数据文件失败:', error);
+          wx.showToast({
+            title: '下载学校数据文件失败',
+            icon: 'none'
+          });
+        }
+      });
+      console.log('initializeSchools end')
+    },
     onButtonClick() {
       this.setData({
         showModal: true
@@ -40,7 +73,7 @@ Component({
     },
     onSearchInput(e) {
       const query = e.detail.value.toLowerCase();
-      const filtered = this.data.schools.filter(school => school.toLowerCase().includes(query));
+      const filtered = this.data.schools.filter(school => school.name.toLowerCase().includes(query));
       this.setData({
         searchQuery: query,
         filteredSchools: filtered,
@@ -67,8 +100,10 @@ Component({
     },
     selectSchool(e) {
       const school = e.currentTarget.dataset.school;
+      const id = e.currentTarget.dataset.id;
+      console.log('selectSchool--', id)
       this.setData({
-        selectedSchool: school,
+        selectedSchool: id,
         searchQuery: school,
         showDropdown: false
       });
@@ -94,20 +129,18 @@ Component({
         return;
       }
 
-
       let uploadPromises = this.uploadImages(this.data.images);
        // Prepare data to send
        const submitData = {
-        schoolName: this.data.selectedSchool
+        groupId: this.data.selectedSchool,
+        schoolName: this.data.searchQuery
       };
- 
  
       // 使用 Promise.all 处理所有上传请求
       Promise.all(uploadPromises)
         .then(results => {
           console.log('所有文件上传成功:', results);
           submitData.authPic = results
-          // submitData.userInfo = app.globalData.userInfo,
           this.sendToServer(submitData)
         })
         .catch(error => {
@@ -118,40 +151,8 @@ Component({
             duration: 2000
           });
         });
-
-     
-
-      // Send data to the remote API
-      //   wx.request({
-      //     url: api.joinSchool, // Replace with your actual API endpoint
-      //     method: 'POST',
-      //     data: dataToSend,
-      //     success(res) {
-      //       if (res.statusCode === 200) {
-      //         wx.showToast({
-      //           title: '加入成功',
-      //           icon: 'success'
-      //         });
-      //         this.hideModal();
-      //       } else {
-      //         wx.showToast({
-      //           title: '加入失败，请重试',
-      //           icon: 'none'
-      //         });
-      //       }
-      //     }.bind(this), // Bind 'this' to access component context
-      //     fail(err) {
-      //       console.error(err);
-      //       wx.showToast({
-      //         title: '请求失败',
-      //         icon: 'none'
-      //       });
-      //     }
-      //   });
-      // }
     },
     sendToServer(submitData) {
-
       console.log('submitData')
       console.log(submitData)
       // 发送请求

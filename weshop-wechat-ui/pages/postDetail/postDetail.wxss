@@ -176,14 +176,14 @@ width: 100%;
   color: #333;
 }
 .fall-toux{
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 30rpx;
 }
 .fall-name{
-  font-size: 25rpx;
+  font-size: 32rpx;
   color: #333;
-  font-weight: 300;
+  font-weight: 900;
   margin-left: 20rpx;
 }
 .fall-toux-name{

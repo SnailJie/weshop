@@ -27,10 +27,11 @@
               class="dropdown-item"
               wx:for="{{filteredSchools}}"
               wx:key="index"
-              data-school="{{item}}"
+              data-school="{{item.name}}"
+              data-id="{{item.key}}"
               bindtap="selectSchool"
             >
-              {{item}}
+              {{item.name}}
             </view>
           </view>
         </view>

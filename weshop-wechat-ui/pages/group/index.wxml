@@ -8,16 +8,17 @@
   scroll-left="{{scrollLeft}}"
 >
   <view
-    class="cu-item {{index==TabCur?'text-black text-bold':''}} "
+    class="cu-item {{index == TabCur ? 'text-black text-bold' : ''}}"
     wx:for="{{groupList}}"
     wx:key="index"
     bindtap="tabSelect"
     data-id="{{index}}"
     data-group="{{item.id}}"
-    style="background-color:{{index==TabCur?'#eb5c5c':'#ece8e8'}};border-radius:10px 30px 0px 30px;height:20px;font-weight: 43px;"
+    style="background-color:{{index == TabCur ? '#eb5c5c' : '#ece8e8'}}; border-radius:10px 30px 0px 30px; height:20px; font-weight: bold;"
   >
     {{item.groupName}}
   </view>
+
 </scroll-view>
 
 <view class="container" style="margin-top: 20px;">
@@ -44,14 +45,13 @@
                 <image
                   class="fall-toux"
                   style="width: 40px; height: 40px;"
-                  src="{{item.creator.avatar}}"
+                  src="../../image/logo.png"
                 ></image>
                 <view style="display: flex; flex-direction: column;">
                   <text class="fall-name" style="font-size:15px;font-weight: bold;">{{item.creator.nickName}}</text>
                   <text class="fall-name" style="font-size:10px">{{item.createTime}}</text>
                 </view>
               </view>
-
               <view style="margin-bottom: 8px; align-self: flex-start;">
                 <navigator
                   url="url"
@@ -63,7 +63,7 @@
 
               <view class="fall-love-num" style="align-self: flex-start;">
                 <text class="cuIcon-comment lg text-gray"></text>
-                <text class="fall-num">{{item.likeNum}}</text>
+                <text class="fall-num">{{item.commentNum}}</text>
                 <text style="margin-left: 20px;" class="cuIcon-like lg text-gray"></text>
                 <text class="fall-num">{{item.likeNum}}</text>
               </view>

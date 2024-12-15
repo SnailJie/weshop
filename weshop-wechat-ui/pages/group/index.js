@@ -27,10 +27,7 @@ Page({
     tabSelect(e) {
         let categoryId = e.currentTarget.dataset.id;
         let groupId = e.currentTarget.dataset.group;
-        console.log("groupId")
-        console.log(groupId)
-        console.log("categoryId")
-        console.log(categoryId)
+         
         this.initData()
         this.setData({
             TabCur: e.currentTarget.dataset.id,
@@ -95,8 +92,12 @@ Page({
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
+                const groupList = res.data.map(item => ({
+                    ...item,
+                    groupName: item.groupName.replace(/^(?:.*省)?(?:.*市)?/, '')
+                }));
                 that.setData({
-                    groupList: res.data
+                    groupList: groupList
                 });
                 firstGroupId = res.data[0].id;
                 console.log("firstGroupId")
@@ -116,7 +117,6 @@ Page({
         });
         this.getJoinGroupList();
        
-        // this.getGroupPostListData(firstGroupId);
     },
    
 
@@ -141,7 +141,7 @@ Page({
         const item = e.currentTarget;
         console.log("item")
         console.log(item)
-        const postCode = "GROUP_"+item.dataset.item.groupId
+        const postCode =item.dataset.item.code
         wx.navigateTo({
             url: '/pages/groupPostDetail/groupPostDetail?item=' + postCode
         });

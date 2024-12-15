@@ -26,7 +26,8 @@ App({
 	globalData: {
 		userInfo: {
 			nickname: '点击登录',
-			avatar: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
+			avatar: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
+      secondName: ''
 		},
 		token: '',
 	}

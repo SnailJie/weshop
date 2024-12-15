@@ -1,9 +1,22 @@
 <template name="waterfall">
-  <view class="fall-item" bindtap="navigateToDetailPage"  data-item="{{item}}">
-    <view class="fall-li" >
-      <image class="fall-pic" src="{{item.headURL}}" mode="widthFix"></image>
+  <view
+    class="fall-item"
+    bindtap="navigateToDetailPage"
+    data-item="{{item}}"
+  >
+    <view class="fall-li">
+      <image
+        class="fall-pic"
+        src="{{item.headURL}}"
+        mode="widthFix"
+      ></image>
       <view class="fall-title-wrap">
-        <navigator url="url" class="fall-title" style="font-weight: normal;">{{item.title}}</navigator>
+        <navigator
+          url="url"
+          class="fall-title"
+          style="font-weight: normal;"
+        >{{item.title}}
+        </navigator>
       </view>
       <view class="fall-bottom">
         <view class="fall-toux-name">
@@ -11,7 +24,9 @@
           <text class="fall-name" style=" font-size:10px">{{item.creator.nickName}}</text>
         </view>
         <view class="fall-love-num">
-          <text   class="cuIcon-like lg text-gray"></text>
+          <text class="cuIcon-comment lg text-gray"></text>
+          <text  class="fall-num">{{item.commentNum}}</text>
+          <text style="margin-left: 10px;" class="cuIcon-like lg text-gray"></text>
           <!-- <text wx:if="{{item.isLike == 1}}" class="cuIcon-likefill lg text-red"></text>
           <text wx:if="{{item.isLike == 0}}" class="cuIcon-like lg text-gray"></text> -->
           <text class="fall-num">{{item.likeNum}}</text>
@@ -20,3 +35,4 @@
     </view>
   </view>
 </template>
+

@@ -23,10 +23,14 @@
   <!-- 中间内容 -->
   <block>
     <view class="post-content" style="width: 100%;">
-      <view wx:if="{{postDetail.title}}" class="fall-title   sa-wrap" style=" font-size: 30rpx;font-weight: 600;color: #333; margin-bottom: 12px;">
+      <view
+        wx:if="{{postDetail.title}}"
+        class="fall-title   sa-wrap"
+        style=" font-size: 30rpx;font-weight: 600;color: #333; margin-bottom: 12px;"
+      >
         <navigator url="url" class="fall-title">{{postDetail.title}}</navigator>
       </view>
-      <rich-text style="    font-size: smaller" nodes="{{postDetail.content}}"></rich-text>
+      <rich-text style="font-size:31rpx;" nodes="{{postDetail.content}}"></rich-text>
       <!-- 如果内容中包含多张图片，你可能需要遍历一个图片数组并显示它们 -->
     </view>
   </block>
@@ -35,9 +39,9 @@
   <view class="fall-bottom" style="margin-top: 10%;  display: flex;  justify-content: flex-end; align-items: center;">
     <view class="fall-toux-name">
       <image class="fall-toux" src="{{postDetail.userInfoDTO.avatar}}"></image>
-      <text class="fall-name">{{postDetail.userInfoDTO.nickName}}</text>
-      <view class="footer-item" style="margin-left: 20px;">
-        <text style="font-size:23rpx; color: lightgray">{{createTime}}</text>
+      <view style="display: flex; flex-direction: column;">
+        <text class="fall-name">{{postDetail.userInfoDTO.nickName}}</text>
+        <text style="font-size:24rpx; color:lightgray; margin-left:10px;font-weight: bold;">{{createTime}}</text>
       </view>
     </view>
 

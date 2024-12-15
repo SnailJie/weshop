@@ -148,10 +148,10 @@ Page({
     getCommentsData(postCode) {
         let that = this;
         util.request(api.PostsComments, {
-            postCode: postCode
+            postCode: postCode,
+            belongType: 'POST'
         }).then((res) => {
-            console.log('---------------')
-            console.log(this.commentList)
+
             if (res.success) {
                 console.log("comments")
                 console.log(res.data)

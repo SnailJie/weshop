@@ -83,5 +83,6 @@ module.exports = {
   GroupPost: BaseUrl + 'group/post',  //发布帖子
   GroupJoinList: BaseUrl + 'group/queryJoinGroupList',  //小组帖子列表
   GroupPostList: BaseUrl + 'group/queryGroupPostList',  //小组帖子列表
-  SystemConfGet: BaseUrl + 'systemconf/get',  //获取系统配置
+  GroupPostsDetail: BaseUrl + 'group/detail',  //帖子详情
+  SystemConfGet: BaseUrl + 'conf/get',  //获取系统配置
 };

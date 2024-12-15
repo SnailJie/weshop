@@ -11,15 +11,24 @@ Component({
     selectedSchool: '',
     content: '',
     searchQuery: '',
-    showDropdown: false
+    showDropdown: false,
+    secondName:'',
+    userInfo: {}
   },
   lifetimes: {
     attached() {
-      // 组件加载时获取学校列表
+      // 组件加载时获取学校列表和用户信息
       this.getSchoolList();
+      this.getUserInfo();
     }
   },
   methods: {
+    getUserInfo() {
+      const app = getApp();
+      this.setData({
+        userInfo: app.globalData.userInfo
+      });
+    },
     getSchoolList() {
       const that = this;
       util.get(api.GroupJoinList).then(function(res) {
@@ -125,7 +134,8 @@ Component({
       const submitData = {
         groupName: this.data.selectedSchool,
         content: this.data.content,
-        groupId: this.data.selectedSchoolId
+        groupId: this.data.selectedSchoolId,
+        secondName: this.data.secondName
       };
       console.log("submitData")
       console.log(submitData)
@@ -138,6 +148,11 @@ Component({
             icon: 'success',
             duration: 1000
           });
+
+          const app = getApp();
+          let newUserInfo =  app.globalData.userInfo;
+          newUserInfo.secondName= this.data.secondName;
+          app.globalData.userInfo= newUserInfo;
           this.hideModal(); // Close the modal
           wx.navigateBack();
         } else {
@@ -148,11 +163,16 @@ Component({
           });
         }
       });
-
     },
+ 
     onContentInput(e) {
       this.setData({
         content: e.detail.value
+      });
+    },
+    onSecondNameInput(e) {
+      this.setData({
+        secondName: e.detail.value
       });
     },
     uploadImages(filePaths) {

@@ -3,9 +3,9 @@
   <!-- 作者信息 -->
   <view class="fall-bottom" style="  display: flex;  justify-content: flex-end; align-items: center;">
     <view class="fall-toux-name" style="display: flex; align-items: center; width: 100%;">
-      <image class="fall-toux" src="{{postDetail.userInfoDTO.avatar}}"></image>
-      <text class="fall-name">{{postDetail.userInfoDTO.nickName}}</text>
-      <view class="footer-item" style="margin-left: 100px;">
+      <image class="fall-toux" src="{{avatar}}"></image>
+      <text class="fall-name">{{postDetail.creator.nickName}}</text>
+      <view class="footer-item" style="margin-left: 13px;">
         <text style="font-size:23rpx; color: #9E9E9E">{{createTime}}</text>
       </view>
     </view>

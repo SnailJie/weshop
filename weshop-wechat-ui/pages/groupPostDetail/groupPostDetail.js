@@ -14,11 +14,12 @@ Page({
         objectCode: '',
         isLike: '0',
         isCollect: '0',
+        avatar:'../../image/logo.png'
     },
     likePost() {
        const submitData={
         actionType:this.data.isLike ==='0' ? 'LIKE':'UNLIKE',
-        actionObjectType:'POST',
+        actionObjectType:'GROUP_POST',
         actionObjectCode:this.data.postCode
        }
          // 发送请求
@@ -32,6 +33,8 @@ Page({
               this.setData({
                 isLike: this.data.isLike ==='0'?'1':'0'
             });
+              // Start Generation Here
+              this.onLoad(this.options);
           } else {
               wx.showToast({
                   title: '点赞',
@@ -45,7 +48,7 @@ Page({
         const inputContent = this.data.inputContent;
         const submitData = {
             content: inputContent,
-            belongType: 'POST',
+            belongType: 'GROUP',
             belongCode: this.data.postCode,
             objectType: 'POST',
             objectCode: this.data.postCode
@@ -121,20 +124,20 @@ Page({
     getPostDetailData(postCode) {
         let that = this;
         let data = null;
-        util.request(api.PostsDetail, {
+        util.request(api.GroupPostsDetail, {
             code: postCode
         }).then((res) => {
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
                 let detail = res.data
-                let formateTime = this.formatISODate(detail.gmtCreate)
+                let formateTime = this.formatISODate(detail.createTime)
                 that.setData({
                     postDetail: detail,
                     createTime: formateTime
                 });
                 data = detail;
-                that.downloadFiles(data.imageURL.split(';'))
+                // that.downloadFiles(data.imageURL.split(';'))
             }
         });
     },
@@ -148,7 +151,8 @@ Page({
     getCommentsData(postCode) {
         let that = this;
         util.request(api.PostsComments, {
-            postCode: postCode
+            postCode: postCode,
+            belongType: 'GROUP'
         }).then((res) => {
             console.log('---------------')
             console.log(this.commentList)
