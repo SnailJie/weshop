@@ -143,18 +143,27 @@ Component({
         wx.hideLoading();
          
         if (res.success) {
-          wx.showToast({
-            title: '提交成功',
-            icon: 'success',
-            duration: 1000
+          if(res.data==='SUCCESS'){
+            wx.showToast({
+              title: '提交成功',
+              icon: 'success',
+              duration: 1000
           });
-
           const app = getApp();
           let newUserInfo =  app.globalData.userInfo;
           newUserInfo.secondName= this.data.secondName;
           app.globalData.userInfo= newUserInfo;
           this.hideModal(); // Close the modal
           wx.navigateBack();
+        }else{
+          wx.showToast({
+            title: '内容不合规，请修改内容重新提交',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+
+         
         } else {
           wx.showToast({
             title: '提交失败', 

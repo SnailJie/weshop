@@ -157,12 +157,20 @@ Page({
             console.log("xxx")
             console.log(res)
             if (res.success) {
-                wx.showToast({
-                    title: '提交成功',
-                    icon: 'success',
+                if(res.data==='SUCCESS'){
+                    wx.showToast({
+                        title: '提交成功',
+                        icon: 'success',
                     duration: 2000
                 });
-                that.modifyPoint();
+                    that.modifyPoint();
+                }else{
+                    wx.showToast({
+                        title: '内容不合规，请修改内容重新提交',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                }
             } else {
                 wx.showToast({
                     title: '提交失败',
