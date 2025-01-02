@@ -1,7 +1,8 @@
-const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
-// const ApiRootUrl = 'https://springboot-gn2d-118537-7-1308266486.sh.run.tcloudbase.com/wechat/';
+// const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
+// const ApiRootUrl = 'https://springboot-gstg-130912-9-1332718886.sh.run.tcloudbase.com/wechat/';
+const ApiRootUrl = '/wechat/';
 const BaseUrl = ApiRootUrl
-// const BaseUrl = 'https://springboot-gn2d-118537-7-1308266486.sh.run.tcloudbase.com/wechat/';
+// const BaseUrl = 'https://springboot-gstg-130912-9-1332718886.sh.run.tcloudbase.com/wechat/';
 
 
 module.exports = {
@@ -22,6 +23,7 @@ module.exports = {
   PostsList: BaseUrl + 'posts/list',  //收货地址列表
   PostsDetail: BaseUrl + 'posts/detail',  //帖子详情
   PostsNew: BaseUrl + 'posts/add',  //帖子详情
+  PostsMyList: BaseUrl + 'posts/mylist',  //帖子详情
   PostsComments: BaseUrl + 'comment/list',  //发表评论
 
   CommentsAdd: BaseUrl + 'comment/add',  //发表评论
@@ -83,6 +85,7 @@ module.exports = {
   GroupPost: BaseUrl + 'group/post',  //发布帖子
   GroupJoinList: BaseUrl + 'group/queryJoinGroupList',  //小组帖子列表
   GroupPostList: BaseUrl + 'group/queryGroupPostList',  //小组帖子列表
+  GroupMyPostList: BaseUrl + 'group/queryMyGroupPostList',  //小组帖子列表
   GroupPostsDetail: BaseUrl + 'group/detail',  //帖子详情
   SystemConfGet: BaseUrl + 'conf/get',  //获取系统配置
 };

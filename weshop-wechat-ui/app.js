@@ -17,7 +17,7 @@ App({
     })
 
     wx.cloud.init({
-      env: 'prod-4gyaq2skbf5fb439',
+      env: 'prod-1gizsfg5ac036f2a',
       traceUser: true,
     })
     

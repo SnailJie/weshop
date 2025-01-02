@@ -7,7 +7,7 @@
   <view class="modal-container" style="width: 80%;">
     <view class="modal-content">
       <view class="modal-header">
-        <text style="font-weight:bold;font-size: 20px;">认证加入匿名家长圈</text>
+        <text style="font-weight:bold;font-size: 20px;">认证加入学校小组</text>
       </view>
 
       <view class="modal-body">

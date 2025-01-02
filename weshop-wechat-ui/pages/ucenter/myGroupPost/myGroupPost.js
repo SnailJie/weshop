@@ -1,6 +1,6 @@
-const util = require('@../utils/util.js');
-const api = require('../../config/api.js');
-const user = require('../../services/user.js');
+const util = require('../../../utils/util.js');
+const api = require('../../../config/api.js');
+const user = require('../../../services/user.js');
 
 //获取应用实例
 const app = getApp()
@@ -8,7 +8,7 @@ Page({
     data: {
         PageCur: 'basics',
         TabCur: 0,
-        scrollLeft: 0,
+        scrollLeft: 0, 
         groupList: [],
         postsList: [],
         searchText: '',
@@ -20,15 +20,12 @@ Page({
         isLoading: false, // 是否正在加载
         hasMore: true, // 是否还有更多数据
         scrollTop: 0, // 当前滚动位置
-        cities: ['成都', '北京', '上海', '广州', '深圳', '杭州'], // 城市列表
-        currentCity: '成都' // 当前选中的城市
     },
     initData() {
         this.setData({
             page: 1, // 当前页数
             pageSize: 10, // 每页大小
-            postsList: [],
-            fallList: []
+            postsList: [], 
         })
     },
     onShareAppMessage: function () {
@@ -38,20 +35,15 @@ Page({
             path: '/pages/index/index'
         }
     },
-    getIndexData: function () {
-        let that = this;
-       
-    },
-    getGroupPostListData(groupId) {
+    getMyPostListData() {
         let that = this;
         const queryCondition = {
             pageNum: this.data.page,
-            pageSize: this.data.pageSize,
-            groupId: groupId.toString()
+            pageSize: this.data.pageSize
         }
         console.log("queryCondition")
         console.log(queryCondition)
-        util.post(api.GroupPostList, queryCondition).then(function (res) {
+        util.post(api.GroupMyPostList, queryCondition).then(function (res) {
             if (res.success) {
                 console.log("res.data")
                 console.log(res.data)
@@ -69,41 +61,18 @@ Page({
             }
         });
     },
-    getJoinGroupList() {
-        let that = this;
-        let firstGroupId = '';
-        util.request(api.GroupJoinList).then(function (res) {
-            if (res.success) {
-                console.log("res.data")
-                console.log(res.data)
-                const groupList = res.data.map(item => ({
-                    ...item,
-                    groupName: item.groupName.replace(/^(?:.*省)?(?:.*市)?/, '')
-                }));
-                that.setData({
-                    groupList: groupList
-                });
-                firstGroupId = res.data[0].id;
-                console.log("firstGroupId")
-                console.log(firstGroupId)
-                that.getGroupPostListData(firstGroupId)
-            }
-        });
-        
-         
-    },
+    
     onLoad: function (options) {
+      console.log("开始获取数据")
         if (this.data.isLoading || !this.data.hasMore) {
             return;
         }
         this.setData({
             isLoading: true
         });
-        this.getJoinGroupList();
-       
+        this.getMyPostListData()
     },
    
-
     onReady: function () {
         // 页面渲染完成
     },
@@ -116,47 +85,27 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
-    navigateToPostPage() {
-        wx.navigateTo({
-            url: '/pages/newPost/newPost'
-        });
-    },
     navigateToDetailPage: function (e) {
         const item = e.currentTarget;
         console.log("item")
         console.log(item)
         const postCode =item.dataset.item.code
         wx.navigateTo({
-            url: '/pages/groupPostDetail/groupPostDetail?item=' + postCode
+            url: '/pages/postDetail/postDetail?item=' + postCode
         });
-    },
-    getPostsList() {
-        let that = this;
-        let tempPostsList = [];
-        return tempPostsList;
     },
     onSearchInput: function (e) {
         this.setData({
             searchText: e.detail.value
         });
     },
-    doSearch: function (e) {
-        const searchText = this.data.searchText;
-        wx.showLoading({
-            title: '搜索中...',
-            mask: true
-        });
-        this.searchPosts(searchText);
-    },
-    
+     
     loadMore: function () {
-
         this.setData({
             isLoading: true
         });
-        this.getGroupPostListData(groupId);
+        this.getMyPostListData();
     },
- 
     syncScroll: function (direction) {
         const targetId = direction === 'left' ? '#fall-left' : '#fall-right';
         const targetScrollView = this.selectComponent(targetId);

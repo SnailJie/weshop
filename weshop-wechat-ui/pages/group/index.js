@@ -63,7 +63,8 @@ Page({
         const queryCondition = {
             pageNum: this.data.page,
             pageSize: this.data.pageSize,
-            groupId: groupId.toString()
+            groupId: groupId.toString(),
+            status:'ONLINE'
         }
         console.log("queryCondition")
         console.log(queryCondition)

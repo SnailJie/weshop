@@ -61,7 +61,8 @@ Page({
         const queryCondition = {
             pageNum: this.data.page,
             pageSize: this.data.pageSize,
-            category: type
+            category: type,
+            status:'ONLINE'
         }
         util.request(api.PostsList, queryCondition).then(function (res) {
             if (res.success) {

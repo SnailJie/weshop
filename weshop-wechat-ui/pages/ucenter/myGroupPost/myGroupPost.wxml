@@ -1,0 +1,35 @@
+<view class="container" style="margin-top: 20px;">
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height: 100%;">
+    <view class="post-list">
+
+      <block wx:for="{{postsList}}" wx:key="id" wx:for-item="item">
+        <view class="fall-item" bindtap="navigateToDetailPage" data-item="{{item}}" style="background-color: #f5f5f5 !important; border-radius: 12px; margin-bottom: 10px; width: 90%; margin-left: auto; margin-right: auto; padding: 5px;">
+          <view class="fall-li">
+            <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
+              <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
+                <view style="display: flex; flex-direction: column;">
+                  <text class="fall-name" style="font-size:15px;">{{item.title}}</text>
+                  <text class="fall-name" style="font-size:10px;">{{item.createTime}}</text>
+                  
+                </view>
+              </view>
+              <view style="margin-top: 2px;">
+                <text class="cuIcon-comment lg text-gray"></text>
+                <text class="fall-num">{{item.commentNum}}</text>
+                
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="loading" wx:if="{{isLoading}}">
+      -----还没有发表哟，快去发表一篇吧-----
+    </view>
+  </scroll-view>
+</view>
+
+<view style="position: fixed; top: 80px; right: 90px; z-index: 1200;">
+  <new-group-post bind:click="navigateToPostPage"></new-group-post>
+</view>

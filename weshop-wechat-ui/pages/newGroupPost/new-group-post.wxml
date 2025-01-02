@@ -7,12 +7,12 @@
   <view class="modal-container" style="width: 80%;">
     <view class="modal-content">
       <view class="modal-header">
-        <text style="font-weight:bold;font-size: 20px;">发表匿名帖</text>
+        <text style="font-weight:bold;font-size: 20px;">发表小组帖</text>
       </view>
 
       <view class="modal-body">
 
-        <!-- 匿名名称区域 -->
+        <!-- 名称区域 -->
         <view class="nickname-container" style="margin-bottom: 10px;">
           <view
             wx:if="{{userInfo.secondName}}"
@@ -24,7 +24,7 @@
           <input
             wx:else
             type="text"
-            placeholder="社区匿名名称，只允许设置一次"
+            placeholder="社区身份，只允许设置一次"
             value="{{secondName}}"
             bindinput="onSecondNameInput"
             style="border: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); padding: 8px; height: 40px;"
