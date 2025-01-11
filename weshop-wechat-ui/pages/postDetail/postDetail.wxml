@@ -54,7 +54,7 @@
       <!-- <text  class="cuIcon-like lg text-gray"></text> -->
       <text wx:if="{{isLike == 1}}" class="cuIcon-likefill lg text-red"></text>
       <text wx:if="{{isLike == 0}}" class="cuIcon-like lg text-gray"></text>
-      <text class="fall-num">{{postDetail.likeNum}}</text>
+      <text class="fall-num">{{postDetail.likeNum||0}}</text>
     </view>
   </view>
   <view class="divider" style="  justify-content: center;  align-items: center;  "></view>

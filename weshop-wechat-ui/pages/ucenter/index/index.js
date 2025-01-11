@@ -14,7 +14,7 @@ Page({
         let that = this;
         util.request(api.UserInfoQueryDetail).then((res) => {
             if (res.success) {
-                console.log("res.data")
+                console.log("UserInfoQueryDetail")
                 console.log(res.data)
                 this.setData({
                     userInfo: res.data,
@@ -42,7 +42,8 @@ Page({
         console.log(" on show userInfo")
         console.log(userInfoDetail)
         this.setData({
-            userInfo: userInfoDetail
+            userInfo: userInfoDetail,
+            avataImagePath: userInfoDetail.avatar
         });
     },
     onHide: function () {

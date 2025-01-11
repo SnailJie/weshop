@@ -141,7 +141,6 @@ Component({
       console.log(submitData)
       util.post(api.GroupPost, submitData).then((res) => {
         wx.hideLoading();
-         
         if (res.success) {
           if(res.data==='SUCCESS'){
             wx.showToast({

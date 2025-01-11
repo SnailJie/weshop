@@ -8,20 +8,20 @@
   scroll-left="{{scrollLeft}}"
 >
   <view
-    class="cu-item {{index == TabCur ? 'text-black text-bold' : ''}}"
+    class="cu-item {{index == TabCur ? 'text-white text-bold' : ''}}"
     wx:for="{{groupList}}"
     wx:key="index"
     bindtap="tabSelect"
     data-id="{{index}}"
     data-group="{{item.id}}"
-    style="background-color:{{index == TabCur ? '#eb5c5c' : '#ece8e8'}}; border-radius:10px 30px 0px 30px; height:20px; font-weight: bold;"
+    style="background-color:{{index == TabCur ? '#eb5c5c' : '#ece8e8'}}; border-radius:10px 10px 0px 0px;height:30px;line-height:30px;font-size:14px;"
   >
     {{item.groupName}}
   </view>
 
 </scroll-view>
 
-<view class="container" style="margin-top: 20px;">
+<view class="container">
   <scroll-view
     scroll-y="true"
     bindscrolltolower="loadMore"
@@ -37,9 +37,9 @@
           class="fall-item"
           bindtap="navigateToDetailPage"
           data-item="{{item}}"
-          style="background-color: #f5f5f5 !important; border-radius: 12px; margin-bottom: 2px; width: 90%; margin-left: auto; margin-right: auto; padding: 5px;"
+          style="background-color: #f5f5f5 !important; border-radius: 12px; margin-bottom: 2px; width: 90%; margin-left: auto; margin-right: auto;  "
         >
-          <view class="fall-li">
+          <view class="fall-li" style="margin-top: 0;">
             <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
               <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
                 <image
@@ -73,20 +73,20 @@
 
       </block>
     </view>
-    <view class="loading" wx:if="{{isLoading}}">
-      -----我也有底线，被你看到了-----
+    <view
+      wx:if="{{!groupList || groupList.length === 0}}"
+      class="empty-tip"
+      style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px;"
+    >
+      <text class="cuIcon-group lg text-gray" style="font-size: 48px;"></text>
+      <text style="color: #999; margin-top: 20px;">还没有加入学校，请先加入</text>
     </view>
   </scroll-view>
 </view>
 
-<!-- 悬浮发帖球 -->
-
-<!-- 悬浮发帖球 -->
-<view style="position: fixed; top: 80px; right: 20px; z-index: 1000;">
-  <add-group bind:click="navigateToPostPage"></add-group>
-</view>
-
-<view style="position: fixed; top: 80px; right: 90px; z-index: 1200;">
-  <new-group-post bind:click="navigateToPostPage"></new-group-post>
+<!-- 悬浮按钮组 -->
+<view style="position: fixed; bottom: 40px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 20px;">
+  <add-group bind:click="navigateToPostPage" style="margin-bottom: 20px;"></add-group>
+  <new-group-post wx:if="{{groupList && groupList.length > 0}}" bind:click="navigateToPostPage"></new-group-post>
 </view>
 

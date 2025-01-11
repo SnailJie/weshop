@@ -17,20 +17,23 @@
           data-item="{{item}}"
           style="background-color: #f5f5f5 !important; border-radius: 12px; margin-bottom: 10px; width: 90%; margin-left: auto; margin-right: auto; padding: 5px;"
         >
-          <view class="fall-li">
+          <view class="fall-li" style="position: relative;">
             <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
               <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
                 <view style="display: flex; flex-direction: column;">
                   <text class="fall-name" style="font-size:15px;">{{item.title}}</text>
                   <text class="fall-name" style="font-size:10px;">{{item.createTime}}</text>
-
                 </view>
               </view>
               <view style="margin-top: 2px;">
                 <text class="cuIcon-comment lg text-gray"></text>
                 <text class="fall-num">{{item.commentNum}}</text>
               </view>
-
+            </view>
+            <view style="position: absolute; top: 0; right: 0; padding: 5px;">
+              <text wx:if="{{item.status === 'ONLINE'}}" style="color: green; background-color: #e0ffe0;">通过</text>
+              <text wx:if="{{item.status === 'APPROVING'}}" style="color: orange; background-color: #fff5e0;">审核中</text>
+              <text wx:if="{{item.status !== 'ONLINE' && item.status !== 'APPROVING'}}" style="color: red; background-color: #ffe0e0;">审核失败</text>
             </view>
           </view>
         </view>

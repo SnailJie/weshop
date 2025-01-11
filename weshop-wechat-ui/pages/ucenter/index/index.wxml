@@ -12,27 +12,27 @@
 
     <!-- <image bindtap="onUserInfoClick" class='btn' src='/static/images/address_right.png'></image> -->
     <view>
-      <text class='jifen' style="font-family:fantasy;font-size:41px;color: darkcyan;">{{ userInfo.points === undefined ? 0 : userInfo.points }}</text>
+      <text class='jifen' style="font-family:fantasy;font-size:41px;color: darkcyan;">{{ userInfo.points ?userInfo.points:0 }}</text>
       <text class='jifen' style="font-family:fantasy;font-size:17px;color: darkcyan;">分</text>
     </view>
   </view>
 
   <view class="user-menu">
     <view class="item">
-      <navigator url="/pages/ucenter/collect/collect" class="a">
-        <text class="icon address"></text>
-        <text class="txt">我的收藏</text>
+      <navigator url="../infoDetail/infoDetail" class="a">
+        <text class="icon security"></text>
+        <text class="txt">个人资料</text>
       </navigator>
     </view>
     <view class="item">
       <navigator url="/pages/ucenter/myGroupPost/myGroupPost" class="a">
-        <text class="icon address"></text>
+        <text class="icon gift"></text>
         <text class="txt">小组发表</text>
       </navigator>
     </view>
     <view class="item">
       <navigator url="/pages/ucenter/mypost/mypost" class="a">
-        <text class="icon address"></text>
+        <text class="icon order"></text>
         <text class="txt">广场发表</text>
       </navigator>
     </view>
@@ -42,10 +42,11 @@
         <text class="txt">我的发言</text>
       </navigator>
     </view> -->
+
     <view class="item">
-      <navigator url="../infoDetail/infoDetail" class="a">
+      <navigator url="/pages/ucenter/collect/collect" class="a">
         <text class="icon address"></text>
-        <text class="txt">个人信息</text>
+        <text class="txt">我的收藏</text>
       </navigator>
     </view>
     <view class="item ">

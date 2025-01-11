@@ -22,6 +22,7 @@ function formatNumber(n) {
  * 封封微信的的request
  */
 function request(url, data = {}, method = "GET") {
+  console.log("request data:",data)
     // return new Promise(function (resolve, reject) {
     //     wx.request({
     //         url: url,
@@ -73,7 +74,7 @@ function request(url, data = {}, method = "GET") {
             },
             data: data,
             success: function (res) {
-                console.log("success");
+                console.log("success: ",res);
                 if (res.statusCode == 200) {
                     if (res.data.code == 616) {
                         //需要登录后才可以操作

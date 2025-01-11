@@ -21,7 +21,8 @@ Page({
         hasMore: true, // 是否还有更多数据
         scrollTop: 0, // 当前滚动位置
         cities: ['成都', '北京', '上海', '广州', '深圳', '杭州'], // 城市列表
-        currentCity: '成都' // 当前选中的城市
+        currentCity: '成都', // 当前选中的城市
+        isRefreshing: false, // 添加这一行来追踪刷新状态
     },
     tabSelect(e) {
         let list = this.data.postsList;
@@ -211,7 +212,15 @@ Page({
         }
         util.request(api.PostsList, conditon).then(function (res) {
             if (res.success) {
-                let total = res.data
+                let total = res.data.map(item => {
+                    const picList = item.picList || '';
+                    const headURL = picList.split(';')[0].trim();
+                    return {
+                        ...item,
+                        headURL: headURL
+                    };
+                });
+                
                 that.setData({
                     postsList: total,
                 });
@@ -258,5 +267,29 @@ Page({
                 duration: 0
             });
         }
+    },
+    onPullDownRefresh: function() {
+        if (this.data.isRefreshing) {
+            return;
+        }
+        
+        this.setData({
+            isRefreshing: true
+        });
+        
+        // 重置页面数据
+        this.initData();
+        
+        // 重新加载数据
+        this.getIndexData();
+        
+        // 完成刷新
+        wx.stopPullDownRefresh({
+            success: () => {
+                this.setData({
+                    isRefreshing: false
+                });
+            }
+        });
     }
 })

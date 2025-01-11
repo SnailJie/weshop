@@ -98,7 +98,8 @@ Page({
                     groupName: item.groupName.replace(/^(?:.*省)?(?:.*市)?/, '')
                 }));
                 that.setData({
-                    groupList: groupList
+                    groupList: groupList,
+                    TabCur: 0  // 重置当前选中的tab
                 });
                 firstGroupId = res.data[0].id;
                 console.log("firstGroupId")
@@ -106,8 +107,6 @@ Page({
                 that.getGroupPostListData(firstGroupId)
             }
         });
-        
-         
     },
     onLoad: function (options) {
         if (this.data.isLoading || !this.data.hasMore) {
@@ -167,11 +166,17 @@ Page({
     },
     
     loadMore: function () {
-
+        if (this.data.isLoading || !this.data.hasMore) {
+            return;
+        }
+        
+        // 获取当前选中群组的id
+        const currentGroupId = this.data.groupList[this.data.TabCur].id;
+        
         this.setData({
             isLoading: true
         });
-        this.getGroupPostListData(groupId);
+        this.getGroupPostListData(currentGroupId);
     },
  
     syncScroll: function (direction) {
@@ -183,5 +188,15 @@ Page({
                 duration: 0
             });
         }
+    },
+    onPullDownRefresh: function() {
+        // 重置页面数据
+        this.initData();
+        
+        // 重新获取群组列表和帖子数据
+        this.getJoinGroupList();
+        
+        // 完成刷新
+        wx.stopPullDownRefresh();
     }
 })

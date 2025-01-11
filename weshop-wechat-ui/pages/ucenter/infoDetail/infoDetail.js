@@ -10,7 +10,7 @@ Page({
         nickName: '',
         wechat: '',
         familyRoleIndex: 0,
-        familyRoleOptions: ['孩子美丽的妈妈', '孩子帅气的爸爸', '孩子慈祥的爷爷', '孩子慈祥的奶奶'],
+        familyRoleOptions: ['妈妈', '爸爸', '爷爷', '奶奶','其他'],
     },
     setFamilyRole: function (e) {
         this.setData({
@@ -40,7 +40,7 @@ Page({
     onLoad: function (options) {
         // 页面初始化 options为页面跳转所带来的参数
         let that = this;
-        let data = null;
+       
         util.request(api.UserInfoQueryDetail).then((res) => {
             if (res.success) {
                 console.log("res.data")

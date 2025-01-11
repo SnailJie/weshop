@@ -1,5 +1,7 @@
 {  
   "usingComponents": {  
     "floating-button": "../component/floating-button"  
-  }  
+  },  
+  "enablePullDownRefresh": true,  
+  "backgroundTextStyle": "dark"  
 }
