@@ -1,4 +1,4 @@
 <view class="floating-button" bindtap="onButtonClick">
-  <button class="button-inner" style=" background-color: #009E9D;">发表</button>
+  <button class="button-inner" style="background-color: #ffffff; box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.3);color:red ">发表</button>
 </view>
 

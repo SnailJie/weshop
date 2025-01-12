@@ -9,7 +9,7 @@ Page({
         PageCur: 'basics',
         TabCur: 0,
         scrollLeft: 0,
-        navlist: ["同城", "森系", "历史", "国外", "自然", "亲子"],
+        navlist: ["同城"],
         postsList: [],
         searchText: '',
         hasLocation: false,

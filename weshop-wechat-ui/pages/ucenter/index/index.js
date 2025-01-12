@@ -8,7 +8,7 @@ Page({
         userInfo: {},
         showLoginDialog: false,
         isModalVisible: false,
-        avataImagePath: ''
+        avataImagePath: '',
     },
     onLoad: function (options) {
         let that = this;
@@ -63,7 +63,7 @@ Page({
       this.setData({
         isModalVisible:false
       })
-    },
+    }, 
     chooseAvatar() {
         const that = this;
         wx.chooseImage({

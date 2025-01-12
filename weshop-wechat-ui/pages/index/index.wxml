@@ -36,12 +36,12 @@
   scroll-left="{{scrollLeft}}"
 >
   <view
-    class="cu-item {{index==TabCur?'text-white text-bold':''}}"
+    class="cu-item {{index==TabCur?'text-bold':''}}"
     wx:for="{{navlist}}"
     wx:key
     bindtap="tabSelect"
     data-id="{{index}}"
-    style="background-color:{{index==TabCur?'#eb5c5c':'white'}};border-radius:10px 10px 0px 0px;height:30px;line-height:30px;font-size:14px;"
+    style="color:{{index==TabCur?'black':'gray'}};border-bottom:{{index==TabCur?'3px solid red':'none'}};border-radius:10px 10px 0px 0px;height:30px;line-height:30px;font-size:14px;"
   >
     {{item}}
   </view>

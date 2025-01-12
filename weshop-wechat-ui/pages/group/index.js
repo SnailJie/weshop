@@ -95,7 +95,7 @@ Page({
                 console.log(res.data)
                 const groupList = res.data.map(item => ({
                     ...item,
-                    groupName: item.groupName.replace(/^(?:.*省)?(?:.*市)?/, '')
+                    groupName: item.groupName.replace(/^(?:.*省)?(?:.*市)?(?:.*区)?(?:.*县)?/, '')
                 }));
                 that.setData({
                     groupList: groupList,

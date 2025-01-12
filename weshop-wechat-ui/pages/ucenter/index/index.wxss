@@ -17,7 +17,7 @@ page{
   align-items: center;
   justify-content: flex-start;
   padding: 0 30.25rpx;
-  background: #333;
+  background: #efaa45;
 }
 
 .profile-info .avatar {
