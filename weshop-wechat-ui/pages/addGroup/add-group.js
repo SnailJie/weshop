@@ -14,7 +14,7 @@ Component({
   },
   lifetimes: {
     attached() {
-      this.initializeSchools();
+      // this.initializeSchools();
     }
   },
   methods: {

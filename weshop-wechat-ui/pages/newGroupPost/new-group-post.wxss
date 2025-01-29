@@ -2,8 +2,8 @@
   /* position: fixed;   */
   bottom: 50px; /* 调整到你想要的位置 */  
   right: 20px;  /* 调整到你想要的位置 */  
-  width: 20px;  
-  height: 20px;  
+  /* width: 20px;   */
+  /* height: 20px;   */
   justify-content: center;  
 }  
   

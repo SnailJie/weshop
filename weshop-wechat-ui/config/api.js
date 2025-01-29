@@ -1,6 +1,6 @@
-// const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
+const ApiRootUrl = 'http://127.0.0.1:8000/wechat/';
 // const ApiRootUrl = 'https://springboot-gstg-130912-9-1332718886.sh.run.tcloudbase.com/wechat/';
-const ApiRootUrl = '/wechat/';
+// const ApiRootUrl = '/wechat/';
 const BaseUrl = ApiRootUrl
 // const BaseUrl = 'https://springboot-gstg-130912-9-1332718886.sh.run.tcloudbase.com/wechat/';
 
@@ -87,5 +87,6 @@ module.exports = {
   GroupPostList: BaseUrl + 'group/queryGroupPostList',  //小组帖子列表
   GroupMyPostList: BaseUrl + 'group/queryMyGroupPostList',  //小组帖子列表
   GroupPostsDetail: BaseUrl + 'group/detail',  //帖子详情
+  GroupInfoQuery: BaseUrl + 'group/queryInfo',  //查询小组信息
   SystemConfGet: BaseUrl + 'conf/get',  //获取系统配置
 };

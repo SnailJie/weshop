@@ -1,6 +1,10 @@
 <view class="container">
   <view class="profile-info">
     <image
+      src="../../../static/images/head_icon.png"
+      style="position:absolute;z-index:1000000;margin-top:122rpx;height:162rpx;width:171rpx;margin-left:368rpx;margin-right:auto;"
+    ></image>
+    <image
       bindtap="chooseAvatar"
       class="avatar"
       src="{{avataImagePath}}"
@@ -27,7 +31,7 @@
     <view class="item">
       <navigator url="/pages/ucenter/myGroupPost/myGroupPost" class="a">
         <text class="icon gift"></text>
-        <text class="txt">我的小组</text>
+        <text class="txt">我的校内</text>
       </navigator>
     </view>
     <view class="item">

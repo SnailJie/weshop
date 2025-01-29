@@ -2,6 +2,7 @@
   <view class="header">  
     <button bindtap="goBack">返回</button>  
     <text>发帖</text>  
+    
   </view>  
     
   <view class="content">  

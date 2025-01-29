@@ -23,58 +23,17 @@ function formatNumber(n) {
  */
 function request(url, data = {}, method = "GET") {
   console.log("request data:",data)
-    // return new Promise(function (resolve, reject) {
-    //     wx.request({
-    //         url: url,
-    //         data: data,
-    //         method: method,
-    //         header: {
-    //             'Content-Type': 'application/json',
-    //             'X-Weshop-Token': wx.getStorageSync('token')
-    //         },
-    //         success: function (res) {
-    //             console.log("success");
-    //             if (res.statusCode == 200) {
-    //                 if (res.data.code == 616) {
-    //                     //需要登录后才可以操作
-    //                     var pages = getCurrentPages() //获取加载的页面
-    //                     var currentPage = pages[pages.length - 1] //获取当前页面的对象
-    //                     var url = currentPage.route //当前页面url
-    //                     var options = currentPage.options; //如果要获取url中所带的参数可以查看options
-    //                     wx.redirectTo({
-    //                         url: '/pages/auth/login/login?backUrl=/' + url + '&backParamJson=' + JSON.stringify(options)
-    //                     });
-    //                 } else {
-    //                     resolve(res.data);
-    //                 }
-    //             } else {
-    //                 reject(res.errMsg);
-    //             }
-
-    //         },
-    //         fail: function (err) {
-    //             reject(err)
-    //             console.log("failed")
-    //         }
-    //     })
-
-    // })
-
     return new Promise(function (resolve, reject) {
-        wx.cloud.callContainer({
-            config: {
-                env: 'prod-1gizsfg5ac036f2a', 
-            },
-            path: url, 
-            method: method, 
-            header: {
-                'X-WX-SERVICE': 'springboot-gstg', 
-                'X-Weshop-Token': wx.getStorageSync('token'),
-                'Content-Type': 'application/json'
-            },
+        wx.request({
+            url: url,
             data: data,
+            method: method,
+            header: {
+                'Content-Type': 'application/json',
+                'X-Weshop-Token': wx.getStorageSync('token')
+            },
             success: function (res) {
-                console.log("success: ",res);
+                console.log("success");
                 if (res.statusCode == 200) {
                     if (res.data.code == 616) {
                         //需要登录后才可以操作
@@ -100,6 +59,47 @@ function request(url, data = {}, method = "GET") {
         })
 
     })
+
+    // return new Promise(function (resolve, reject) {
+    //     wx.cloud.callContainer({
+    //         config: {
+    //             env: 'prod-1gizsfg5ac036f2a', 
+    //         },
+    //         path: url, 
+    //         method: method, 
+    //         header: {
+    //             'X-WX-SERVICE': 'springboot-gstg', 
+    //             'X-Weshop-Token': wx.getStorageSync('token'),
+    //             'Content-Type': 'application/json'
+    //         },
+    //         data: data,
+    //         success: function (res) {
+    //             console.log("success: ",res);
+    //             if (res.statusCode == 200) {
+    //                 if (res.data.code == 616) {
+    //                     //需要登录后才可以操作
+    //                     var pages = getCurrentPages() //获取加载的页面
+    //                     var currentPage = pages[pages.length - 1] //获取当前页面的对象
+    //                     var url = currentPage.route //当前页面url
+    //                     var options = currentPage.options; //如果要获取url中所带的参数可以查看options
+    //                     wx.redirectTo({
+    //                         url: '/pages/auth/login/login?backUrl=/' + url + '&backParamJson=' + JSON.stringify(options)
+    //                     });
+    //                 } else {
+    //                     resolve(res.data);
+    //                 }
+    //             } else {
+    //                 reject(res.errMsg);
+    //             }
+
+    //         },
+    //         fail: function (err) {
+    //             reject(err)
+    //             console.log("failed")
+    //         }
+    //     })
+
+    // })
 }
 
 

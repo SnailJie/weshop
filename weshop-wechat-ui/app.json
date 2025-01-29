@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/group/index",
+    "pages/welfare/index",
     "pages/groupPostDetail/groupPostDetail",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
@@ -41,20 +42,26 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "iconPath": "static/images/sun_icon.png",
+        "selectedIconPath": "static/images/sun_icon.png",
         "text": "广场"
       },
       {
         "pagePath": "pages/group/index",
-        "iconPath": "static/images/ic_menu_choice_nor.png",
-        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-        "text": "悄悄小组"
+        "iconPath": "static/images/renzhe_icon.png",
+        "selectedIconPath": "static/images/renzhe_icon.png",
+        "text": "校内"
+      },
+      {
+        "pagePath": "pages/welfare/index",
+        "iconPath": "static/images/tuzi_icon.png",
+        "selectedIconPath": "static/images/tuzi_icon.png",
+        "text": "公益"
       },
       {
         "pagePath": "pages/ucenter/index/index",
-        "iconPath": "static/images/ic_menu_me_nor.png",
-        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "iconPath": "static/images/person_icon.png",
+        "selectedIconPath": "static/images/person_icon.png",
         "text": "我的"
       }
     ]
