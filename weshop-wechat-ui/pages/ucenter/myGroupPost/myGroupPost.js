@@ -41,12 +41,8 @@ Page({
             pageNum: this.data.page,
             pageSize: this.data.pageSize
         }
-        console.log("queryCondition")
-        console.log(queryCondition)
         util.post(api.GroupMyPostList, queryCondition).then(function (res) {
             if (res.success) {
-                console.log("res.data")
-                console.log(res.data)
                 const newPosts = res.data;
                 const hasMore = newPosts.length === that.data.pageSize;
                 that.setData({

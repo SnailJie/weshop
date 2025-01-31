@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/group/index",
     "pages/welfare/index",
+    "pages/welfareDetail/welfareDetail",
     "pages/groupPostDetail/groupPostDetail",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",

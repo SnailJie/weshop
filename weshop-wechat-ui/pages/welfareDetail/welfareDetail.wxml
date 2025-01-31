@@ -1,0 +1,188 @@
+<view class="container" style="position: relative; margin-top: 10px; background-color: #f5f5f5; border-radius: 12px; width: 95%; margin-left: auto; margin-right: auto;">
+
+  <!-- 作者信息 -->
+  <view class="fall-bottom" style=" display: flex;  justify-content: flex-end; align-items: center;">
+    <view class="fall-toux-name" style="display: flex; align-items: center; width: 100%;">
+      <image class="fall-toux" src="{{avatar}}"></image>
+      <text class="fall-name">凉山希望小学</text>
+    </view>
+  </view>
+
+  <view style="display: contents; justify-content: flex-end; align-items: center;">
+    <view class="post-content" style="width: 80%;">
+      <rich-text style="font-size:15px" nodes="请大家多多帮助，真实有效"></rich-text>
+    </view>
+
+  </view>
+
+  <!-- <button bindtap="likePost" style="border-width: 0; border-style: none; margin-left: 120px; font-size: smaller;" >点赞</button> -->
+  <view
+    class="fall-love-num"
+    style="margin-left: auto; margin-right: 20px;"
+    bindtap="likePost"
+  >
+  </view>
+</view>
+<view style="display: flex;">
+  <text class="t" style="font-weight: bolder; margin-left:10px;margin-top:10px">需求清单</text>
+</view>
+<view class="container" style="position: relative; margin-top: 10px; background-color: #f5f5f5; border-radius: 12px; width: 95%; margin-left: auto; margin-right: auto;">
+  <view style="width: 80%;">
+    <view tyle="margin-left: 13px;">
+      <view>
+        <view>
+          <text style="font-size:26rpx; font-weight: bold;">【衣物】\n</text>
+          <text style="font-size:25rpx;  ">需要100份冬装,请洗干净。样式要求尽量大方，不能有奇装异服\n</text>
+        </view>
+        <view>
+          <text style="font-size:26rpx; font-weight: bold;">【书籍】\n</text>
+          <text style="font-size:25rpx;  ">以2-5岁儿童读物为主，8成新\n</text>
+        </view>
+        <view>
+          <text style="font-size:26rpx; font-weight: bold;">【文具】\n</text>
+          <text style="font-size:25rpx;  ">铅笔和各种本子\n</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="container" style=" margin-top: 10px; background-color: #f5f5f5; border-radius: 12px; width: 95%; margin-left: auto; margin-right: auto; display: block; ">
+  <view>
+    <view>
+      <text style="font-size:26rpx;  font-weight: bold;">有效日期\n </text>
+    </view>
+    <text style="font-size:23rpx;  ">2025-01-12 ～ </text>
+    <text style="font-size:23rpx; ">2026-01-12</text>
+  </view>
+</view>
+
+<view style="display: flex;">
+
+</view>
+
+<!-- 评论信息 -->
+<view class="input-container" style="width: 100%; position: fixed;bottom: 0px; ">
+  <button bindtap="showReportModal" style="width:50%;background-color:#FF9800;border-radius:20px 20px 20px 20px;font-size: initial; font-weight: 700;color: white;">我要举报</button>
+  <!-- 举报弹窗 -->
+  <button bindtap="showDonateModal" style="width:50%;background-color:rgb(212, 88, 30);border-radius:20px 20px 20px 20px;font-size: initial; font-weight: 700;color: white;">我要捐赠</button>
+</view>
+
+<view
+  class="modal"
+  wx:if="{{showReportModal}}"
+  style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 999;"
+>
+  <view class="modal-container" style="width: 90%; max-width: 600rpx; background-color: #FF9800; border-radius: 24rpx; box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.15); animation: modalFadeIn 0.3s ease;">
+    <view class="modal-content" style="width: 95%; margin: 20rpx auto; background-color: white; border-radius: 16rpx; padding: 30rpx 20rpx;">
+      <view class="modal-header" style="margin-bottom: 30rpx; text-align: center;">
+        <text style="font-weight: bold; font-size: 40rpx; color: #333;">情况说明</text>
+      </view>
+      <view class="modal-body">
+        <textarea
+          class="weui-input"
+          style="padding: 20rpx; width: 100%; height: 200rpx; margin-bottom: 20rpx; border: 2rpx solid #eee; border-radius: 12rpx; font-size: 28rpx; background: #f9f9f9;"
+          name="reportContent"
+          bindinput="onReportContentInput"
+          placeholder="请输入举报说明,方便我们核实"
+        ></textarea>
+        <input
+          type="text"
+          style="padding: 20rpx; border: 2rpx solid #eee; border-radius: 12rpx; width: 100%; height: 80rpx; font-size: 28rpx; background: #f9f9f9;"
+          placeholder="请输入联系方式,方便我们联系你"
+          bindinput="onContactInput"
+        />
+      </view>
+      <view class="modal-footer" style="display: flex; justify-content: space-between; margin-top: 40rpx;">
+        <button
+          class="cancel-btn"
+          style="width: 45%; height: 80rpx; line-height: 80rpx; border-radius: 40rpx; font-size: 32rpx; color: #666; background: #f5f5f5; border: none;"
+          bindtap="hideReportModal"
+        >取消
+        </button>
+        <button
+          class="confirm-btn"
+          style="width: 45%; height: 80rpx; line-height: 80rpx; border-radius: 40rpx; font-size: 32rpx; color: white; background: #FF9800; border: none;"
+          bindtap="submitReport"
+        >确定
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<view
+  class="modal"
+  wx:if="{{showDonateModal}}"
+  style="display: block;"
+>
+  <view class="modal-container" style="width: 95%;position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 999;">
+    <view class="modal-content" style="width: 95%; margin-left: auto; margin-right: auto; background-color:white;">
+      <view style="margin-top: 10px;margin-left: 10px">
+        <text style="font-weight:bold;font-size:17px;">捐赠方式</text>
+        <view style="margin-top: 10px;margin-left: 10px">
+          <text style="font-size:30rpx;  font-weight: bold;">邮寄不包邮(量大包邮)</text>
+          <text style="font-size:23rpx; ">四川省凉山州西昌市</text>
+        </view>
+      </view>
+      <view class="modal-body" style="margin-top: 10px;">
+        <text style="font-weight:bold;font-size:17px; margin-left: 10px;">选择捐赠物品</text>
+
+        <view class="donate-options" style="margin-top: 10px; width: 90%; margin-left: auto; margin-right: auto;">
+          <!-- 衣服选项 -->
+          <view class="option-item" style="margin-bottom: 10px;">
+            <scroll-view scroll-y style="height: 400rpx;">
+              <checkbox-group bindchange="checkboxChange">
+                <label
+                  class="weui-cell weui-check__label"
+                  wx:for="{{items}}"
+                  wx:key="{{item.value}}"
+                >
+                  <view style="display: flex; align-items: center;">
+                    <view class="weui-cell__hd">
+                      <checkbox value="{{item.value}}" checked="{{item.checked}}" />
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                  </view>
+                  <input
+                    type="text"
+                    style="padding: 8px; margin-top: 5px; border: 1px solid #ddd; width: 100%; height: 32px;border-radius: 12rpx;"
+                    placeholder="请尽量详细说明，比如数量、质量、新旧程度等"
+                    bindinput="onClothesRemarkInput"
+                  />
+                </label>
+              </checkbox-group>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+      <view>
+        <text style="font-weight:bold;font-size:17px; margin-left: 10px;">联系方式</text>
+        <input
+          type="text"
+          style="padding: 20rpx; border: 2rpx solid #eee; border-radius: 12rpx; width: 90%; height: 80rpx; font-size: 28rpx;  margin-left: auto;margin-right: auto;margin-top: 10px;"
+          placeholder="请留下联系方式便于后期对接"
+          bindinput="onContactInput"
+        />
+      </view>
+
+      <view class="modal-footer" style="display: flex; justify-content: space-between; height: 30px; margin-top: 10px;margin-bottom: 10px;">
+        <button
+          class="cancel-btn"
+          style="width: 50%; height: 30px; line-height: 30px; min-height: 30px;"
+          bindtap="hideDonateModal"
+        >取消
+        </button>
+        <button
+          class="confirm-btn"
+          style="width: 50%; height: 30px; line-height: 30px; min-height: 30px;"
+          bindtap="submitDonate"
+        >确定
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="footer-item">
+    <text>{{postDetail.likeCount}}</text>
+  </view> -->
+

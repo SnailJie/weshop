@@ -92,14 +92,15 @@ Component({
       });
     },
     selectSchool(e) {
-      const school = e.currentTarget.dataset.school;
-      const schoolId = e.currentTarget.dataset.id;
-      
+      const index = e.detail.value;
+      console.log("---index",index)
+      const school = this.data.filteredSchools[index];
+      console.log("--school",this.data.filteredSchools[index])
       this.setData({
         selectedSchool: school,
-        searchQuery: school,
+        searchQuery: school.groupName,
         showDropdown: false,
-        selectedSchoolId: schoolId
+        selectedSchoolId: school.id
       });
     },
     onFocus() {
@@ -132,7 +133,7 @@ Component({
 
       // Prepare data to send
       const submitData = {
-        groupName: this.data.selectedSchool,
+        groupName: this.data.selectedSchool.groupName,
         content: this.data.content,
         groupId: this.data.selectedSchoolId,
         secondName: this.data.secondName

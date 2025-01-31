@@ -1,91 +1,87 @@
 <import src="/waterfall/waterfall.wxml" />
 
 <!-- 导航栏 -->
-<scroll-view
-  scroll-x
-  class="bg-white nav"
-  scroll-with-animation
-  scroll-left="{{scrollLeft}}"
->
-  <view
-    class="cu-item {{index == TabCur ? 'text-white text-bold' : ''}}"
-    wx:for="{{groupList}}"
-    wx:key="index"
-    bindtap="tabSelect"
-    data-id="{{index}}"
-    data-group="{{item.id}}"
-    style="color:{{index==TabCur?'black':'gray'}};border-left:{{index==TabCur?'3px solid red':'none'}};border-right:{{index==TabCur?'3px solid red':'none'}};border-top:{{index==TabCur?'3px solid red':'none'}};border-bottom:{{index==TabCur?'4px solid white':'none'}};border-radius:10px 10px 0px 0px;height:30px;line-height:30px;font-size:{{index==TabCur?'20px':'15px'}};"
-  >
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index == TabCur ? 'text-white text-bold' : ''}}" wx:for="{{groupList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}" data-group="{{item.id}}" style="color:{{index==TabCur?'black':'gray'}};border-left:{{index==TabCur?'3px solid red':'none'}};border-right:{{index==TabCur?'3px solid red':'none'}};border-top:{{index==TabCur?'3px solid red':'none'}};border-bottom:{{index==TabCur?'4px solid white':'none'}};border-radius:10px 10px 0px 0px;height:30px;line-height:30px;font-size:{{index==TabCur?'20px':'15px'}};">
     {{item}}
   </view>
   <view style="height: 3px; background-color: red;  margin-bottom: 10px; margin-top:-9px"></view>
 </scroll-view>
 
 <view class="container">
-  <scroll-view
-    scroll-y="true"
-    bindscrolltolower="loadMore"
-    style="height: 100%;"
-  >
-    <view class="post-list">
-      <block wx:if="{{postsList.length > 0}}">
-        <block
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height: 100%;">
+    <view class="post-list" style="margin-top: 20px;">
+      <!-- <block
           wx:for="{{postsList}}"
           wx:key="id"
           wx:for-item="item"
-        >
-          <view
-            class="fall-item"
-            bindtap="navigateToDetailPage"
-            data-item="{{item}}"
-            style="background-color: #f5f5f5 !important; border-radius: 12px; margin-bottom: 2px; width: 90%; margin-left: auto; margin-right: auto;  "
-          >
-            <view class="fall-li" style="margin-top: 0;">
-              <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
-                <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
-                  <image
-                    class="fall-toux"
-                    style="width: 40px; height: 40px;"
-                    src="../../image/logo.png"
-                  ></image>
-                  <view style="display: flex; flex-direction: column;">
-                    <text class="fall-name" style="font-size:15px;font-weight: bold;">{{item.creator.nickName}}</text>
-                    <text class="fall-name" style="font-size:10px">{{item.createTime}}</text>
-                  </view>
-                </view>
-                <view style="margin-bottom: 8px; align-self: flex-start;">
-                  <navigator
-                    url="url"
-                    class="fall-title"
-                    style="font-weight: normal;"
-                  >{{item.content}}
-                  </navigator>
-                </view>
-
-                <view class="fall-love-num" style="align-self: flex-start;">
-                  <text class="cuIcon-comment lg text-gray"></text>
-                  <text class="fall-num">{{item.commentNum}}</text>
-                  <text style="margin-left: 20px;" class="cuIcon-like lg text-gray"></text>
-                  <text class="fall-num">{{item.likeNum}}</text>
-                </view>
+        > -->
+      <view class="fall-item" bindtap="navigateToDetailPage" data-item="{{item}}" style="background-color: #f5f5f5 !important; margin-bottom: 2px; width: 93%; margin-left: auto; margin-right: auto; margin-top: 10px; ">
+        <view class="fall-li" style="margin-top:0;background-color: floralwhite;">
+          <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
+          <image style="right: 0;position: absolute;height: 160rpx;width: 160rpx;" src="../../static/images/zhenshi.png"></image>
+            <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
+              <image class="fall-toux" style="width: 40px; height: 40px;" src="../../image/logo.png"></image>
+              <view style="display: flex; flex-direction: column;">
+                <text class="fall-name" style="font-size:15px;font-weight: bold;">凉山和平小学</text>
+                <text class="fall-name" style="font-size:10px">2025-04-12</text>
               </view>
             </view>
+            <view style="margin-bottom: 8px; align-self: flex-start;">
+              <navigator url="url" class="fall-title" style="font-weight: normal;">我们需要很多的物资，请大家帮忙捐赠
+              </navigator>
+            </view>
+            <view style="margin-top:5rpx">
+              <text style="font-size: 12px;font-weight: 900;">有效期： 2025-01-12 ~ 2025-06-12</text>
+            </view>
+            <view style="margin-top:5rpx">
+              <text style="background-color: #FF5722; padding: 3px;font-size: 25rpx; border-radius: 10px; border-color: brown; font-weight:bolder;color: white; margin-right: 10rpx;">衣物</text>
+              <text style="background-color: #FF5722; padding: 3px;font-size: 25rpx; border-radius: 10px; border-color: brown; font-weight:bolder;color: white;margin-right: 10rpx">书籍</text>
+              <text style="background-color: #FF5722; padding: 3px;font-size: 25rpx; border-radius: 10px; border-color: brown; font-weight:bolder;color: white;margin-right: 10rpx">运动器材</text>
+            </view>
+            <view class="fall-love-num" style="align-self:flex-start;/*right:199px*//*top:133px*/margin-left: 200px;">
+              <text style="margin-left: 20px;" class="cuIcon-like lg text-gray">收到爱心</text>
+              <text  style="font-size: 40rpx;" class="fall-num lg text-gray">12</text>
+            </view>
+            <view>
+            </view>
           </view>
-        </block>
-      </block>
-      <view wx:else style="text-align: center; color: #999; margin-top: 20px;">
-        <view style="display: flex; flex-direction: column; align-items: center; color: #999; margin-top: 20px;">
-          <text class="cuIcon-notice text-gray" style="font-size: 24px;"></text>
-          <text style="margin-top: 10px; color: #999;">该校目前还没有发表内容，</text>
-          <text style="color: #999;">恭喜你抢到沙发，发出第一条吧</text>
         </view>
       </view>
+      <view class="fall-item" bindtap="navigateToDetailPage" data-item="{{item}}" style="background-color: #f5f5f5 !important; margin-bottom: 2px; width: 93%; margin-left: auto; margin-right: auto;margin-top: 10px; ">
+        <view class="fall-li" style="margin-top:0;background-color: floralwhite;">
+          <view class="fall-bottom" style="display: flex; flex-direction: column; align-items: flex-start;">
+            <view class="fall-toux-name" style="margin-bottom: 8px; align-self: flex-start;">
+              <image class="fall-toux" style="width: 40px; height: 40px;" src="../../image/logo.png"></image>
+              <view style="display: flex; flex-direction: column;">
+                <text class="fall-name" style="font-size:15px;font-weight: bold;">平武红旗中小学</text>
+                <text class="fall-name" style="font-size:10px">2025-04-12</text>
+              </view>
+            </view>
+            <view style="margin-bottom: 8px; align-self: flex-start;">
+              <navigator url="url" class="fall-title" style="font-weight: normal;">希望大家能给我们捐赠一些书籍
+              </navigator>
+            </view>
+            <view style="margin-top:5rpx">
+              <text style="font-size: 12px;font-weight: 900;">有效期： 2025-01-12 ~ 2025-06-12</text>
+            </view>
+            <view style="margin-top:5rpx">
+              <text style="background-color: #FF5722; padding: 3px;font-size: 25rpx; border-radius: 10px; border-color: brown; font-weight:bolder;color: white;margin-right: 10rpx">书籍</text>
+            </view>
+            <view class="fall-love-num" style="align-self:flex-start;/*right:199px*//*top:133px*/margin-left: 200px;">
+              <text style="margin-left: 20px;" class="cuIcon-like lg text-gray">收到爱心</text>
+              <text  style="font-size: 40rpx;" class="fall-num lg text-gray">5</text>
+            </view>
+            <view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- </block> -->
+
+
     </view>
-    <view
-      wx:if="{{!groupList || groupList.length === 0}}"
-      class="empty-tip"
-      style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px;"
-    >
+    <view wx:if="{{!groupList || groupList.length === 0}}" class="empty-tip" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px;">
       <text class="cuIcon-group lg text-gray" style="font-size: 48px;"></text>
       <text style="color: #999; margin-top: 20px;">还没有加入学校，请先加入</text>
     </view>
@@ -94,7 +90,5 @@
 
 <!-- 悬浮按钮组 -->
 <view style="position: fixed; bottom: 40px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 20px;">
-  <add-group bind:click="navigateToPostPage" style="margin-bottom: 20px;"></add-group>
   <new-group-post wx:if="{{groupList && groupList.length > 0}}" bind:click="navigateToPostPage"></new-group-post>
 </view>
-

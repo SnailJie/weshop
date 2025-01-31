@@ -34,31 +34,19 @@
 
         <!-- 学校选择区域 -->
         <view class="search-container">
-          <input
-            type="text"
-            placeholder="选择学校小组"
-            bindinput="onSearchInput"
-            bindfocus="onFocus"
-            bindblur="onBlur"
-            value="{{searchQuery}}"
-            style="border: none; border-bottom: 1px solid #000;  padding: 8px; height: 40px;border-radius: 0px;"
-          />
-          <view class="dropdown-list" wx:if="{{showDropdown && filteredSchools.length > 0}}">
-            <view
-              class="dropdown-item"
-              wx:for="{{filteredSchools}}"
-              wx:key="index"
-              data-school="{{item.groupName}}"
-              data-id="{{item.id}}"
-              bindtap="selectSchool"
-            >
-              {{item.groupName}}
+          <picker
+            bindchange="selectSchool"
+            range="{{filteredSchools}}"
+            range-key="groupName"
+            value="{{selectedSchoolIndex}}"
+          >
+            <view class="picker-content" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              {{searchQuery|| '请选择学校'}}
             </view>
-          </view>
+          </picker>
         </view>
 
-        <view >
-
+        <view style="margin-top: 10px;border: 1px solid #ddd; border-radius: 4px;">
           <textarea
             class="weui-input"
             style=" padding: 8px; box-sizing: border-box; width: 100%; height:200px;margin-top: 10px;color:rgb(12, 12, 12)"

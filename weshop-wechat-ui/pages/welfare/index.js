@@ -7,12 +7,9 @@ const app = getApp()
 Page({
     data: {
         PageCur: 'basics',
-        TabCur: 0,
-        scrollLeft: 0,
-        navlist: ["天府七中", "加入小组"],
-        groupList: ["I Need!", "I Have!"],
+        TabCur: 0, 
+        groupList: ["爱心汇聚", "我有爱心"],
         postsList: [],
-        searchText: '',
         hasLocation: false,
         longitude: '',
         latitude: '',
@@ -104,9 +101,10 @@ Page({
         const item = e.currentTarget;
         console.log("item")
         console.log(item)
-        const postCode = item.dataset.item.code
+        // const postCode = item.dataset.item.code
+        const postCode = '1'
         wx.navigateTo({
-            url: '/pages/groupPostDetail/groupPostDetail?item=' + postCode
+            url: '/pages/welfareDetail/welfareDetail?item=' + postCode
         });
     },
     getPostsList() {
