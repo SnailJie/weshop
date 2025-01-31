@@ -11,7 +11,13 @@
 </scroll-view>
 
 <view class="container">
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height: 100%;">
+  <scroll-view 
+    scroll-y="true" 
+    bindscrolltolower="loadMore" 
+    style="height: calc(100vh - 63rpx);"
+    enhanced="true"
+    bounces="true"
+  >
     <view class="post-list">
       <block wx:if="{{postsList.length > 0}}">
         <block wx:for="{{postsList}}" wx:key="id" wx:for-item="item">

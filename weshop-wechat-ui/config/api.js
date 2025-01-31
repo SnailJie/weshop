@@ -89,4 +89,5 @@ module.exports = {
   GroupPostsDetail: BaseUrl + 'group/detail',  //帖子详情
   GroupInfoQuery: BaseUrl + 'group/queryInfo',  //查询小组信息
   SystemConfGet: BaseUrl + 'conf/get',  //获取系统配置
+  WelfareAddNeed: BaseUrl + 'welfare/addNeed'
 };

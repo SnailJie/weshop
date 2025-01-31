@@ -1,0 +1,213 @@
+<!-- 标题栏 -->
+<!-- <cu-custom bgColor="bg-white">
+  <view slot="content">放学去哪儿</view>
+</cu-custom> -->
+<view>
+  <form
+    bindsubmit="formSubmit"
+    bindreset="formReset"
+    class="post-form"
+  >
+    <!-- 图片选择 -->
+    <view class="image-section" style="border: 1px dashed #cecbcb">
+      <block wx:if="{{images.length > 0 && images.length < 6}}">
+        <block wx:for="{{images}}" wx:key="index">
+          <view
+            class="image-container"
+            style="position: relative;"
+            style="display: inline-block;"
+          >
+            <image
+              class="image-item"
+              src="{{item}}"
+              mode="aspectFill"
+              data-index="{{index}}"
+              bindtap="previewImage"
+            ></image>
+            <button
+              class="delete-btn"
+              bindtap="deleteImage"
+              data-index="{{index}}"
+            >X
+            </button>
+          </view>
+        </block>
+        <button
+          class="add-image-btn"
+          bindtap="chooseImage"
+          style="width: 100px; height: 100px; font-size: xx-large; margin-top: 2px;margin-left: 10px;background-color: rgb(223, 223, 226);  "
+        >+
+        </button>
+      </block>
+      <block wx:if="{{images.length == 6}}">
+        <block wx:for="{{images}}" wx:key="index">
+          <image
+            class="image-item"
+            src="{{item}}"
+            mode="aspectFill"
+            data-index="{{index}}"
+            bindtap="previewImage"
+          ></image>
+          <button
+            class="delete-btn"
+            bindtap="deleteImage"
+            data-index="{{index}}"
+            backgrou
+          >X
+          </button>
+        </block>
+      </block>
+      <button
+        class="add-image-btn"
+        wx:if="{{images.length === 0}}"
+        bindtap="chooseImage"
+        style="width: 100px; height: 100px; font-size: xx-large;background-color: rgb(223, 223, 226); margin-left: 10px; margin-bottom: 8px;"
+      >+
+      </button>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title" style="background-color: #FAFAFA; width: 95%; margin-left: auto;margin-right: auto;border-radius: 10px;">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd" style="display: flex;  justify-content: center;align-items: center; flex-direction: column;">
+          <input
+            class="weui-input"
+            name="title"
+            style="width: 90%;"
+            placeholder="输入标题"
+          />
+          <textarea
+            type="text"
+            style=" border-top: 2px solid rgb(146, 145, 145); padding: 8px;  box-sizing: border-box;width: 90%; height:100px"
+            class="weui-input"
+            name="content"
+            placeholder="请简单描述一下您的需求"
+          />
+          </view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title" style="background-color: #FAFAFA; width: 95%; margin-left: auto; margin-right: auto; border-radius: 10px; margin-top: 10px;">
+      <view style="padding: 10px;">
+        <text style="font-size: 15px; font-weight: bold;">需求有效期</text>
+        <view style="display: flex; align-items: center; margin-top: 10px;">
+          <picker mode="date" value="{{startDate}}" start="2025-01-01" end="2030-12-31" bindchange="bindStartDateChange" style="flex: 1;">
+            <view style="background-color: white; padding: 2px; border-radius: 5px; text-align: center;">
+              {{startDate || '开始日期'}}
+            </view>
+          </picker>
+
+          <text style="margin: 0 10px;">至</text>
+
+          <picker mode="date" value="{{endDate}}" start="2025-01-01" end="2030-12-31" bindchange="bindEndDateChange" style="flex: 1;">
+            <view style="background-color: white; padding: 2px; border-radius: 5px; text-align: center;">
+              {{endDate || '结束日期'}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view> 
+    <view class="weui-cells weui-cells_after-title" style="background-color: #FAFAFA; width: 95%; margin-left: auto; margin-right: auto; border-radius: 10px; margin-top: 10px; margin-bottom: 10px; padding: 10px;">
+      <text style="font-size: 15px; font-weight: bold; ">受捐方名称</text>
+      <input
+        type="text"
+        style="padding: 10px; border-radius: 5px; width: 100%; height: 35px; font-size: 14px; background: #fff;"
+        placeholder="受捐的学校/机构/个人等，如XX小学"
+        bindinput="onReceiverNameInput"
+      />
+    </view>
+    <!-- 联系方式 -->
+    <view class="weui-cells weui-cells_after-title" style="background-color: #FAFAFA; width: 95%; margin-left: auto; margin-right: auto; border-radius: 10px; margin-top: 10px; margin-bottom: 10px; padding: 10px;">
+      <text style="font-size: 15px; font-weight: bold;">对接人联系方式</text>
+      <input
+        type="text"
+        style="padding: 10px; border-radius: 5px; width: 100%; height: 35px; font-size: 14px; background: #fff;"
+        placeholder="微信或电话,用于平台审核与后续联系"
+        bindinput="onContactInput"
+      />
+    </view>
+
+  <!-- 物品送达方式 -->
+    <!-- 物品送达方式 -->
+    <view class="weui-cells weui-cells_after-title" style="background-color: #FAFAFA; width: 95%; margin-left: auto; margin-right: auto; border-radius: 10px; margin-top: 10px;">
+      <text style="font-size: 15px; font-weight: bold;margin-left: 10px;">捐赠方式</text>
+      <view class="items-list">
+        <block wx:for="{{getMethods}}" wx:key="index">
+          <view class="item-row" style="display: flex; flex-direction: column; margin: 10px;">
+            <view style="display: flex; align-items: center;">
+              <picker bindchange="bindGetMethodPickerChange" data-index="{{index}}" value="{{item.categoryIndex}}" range="{{getCategories}}" style="flex: 1;">
+                <view class="picker" style="padding: 5px 10px; background-color: #fff; border-radius: 5px; font-size: 13px;">
+                  {{item.categoryIndex === -1 ? '收取方式' : getCategories[item.categoryIndex]}}
+                </view>
+              </picker>
+              <button 
+                class="delete-item" 
+                style="padding: 0 10px; margin-left: 10px; height: 25px; font-size: 10px;" 
+                data-index="{{index}}" 
+                bindtap="deleteGetMethod"
+              >X</button>
+            </view>
+           <textarea 
+              class="item-detail" 
+              style="margin-top: 10px; padding: 5px 10px; background-color: #fff; border-radius: 5px; min-height: 50px; width: 100%;" 
+              placeholder="详细地址信息/联系方式等说明" 
+              value="{{item.detail}}" 
+              data-index="{{index}}" 
+              bindinput="onGetMethodDetailInput" 
+            />
+          </view>
+        </block>
+      </view>
+      <button 
+        class="add-item" 
+        bindtap="addGetMethod" 
+        style="margin: 10px; height: 28px; font-size: 13px; background-color: #9E9E9E; color: white;"
+      >添加捐赠方式</button>
+    </view>
+
+    <!-- 所需物品 -->
+    <view class="weui-cells weui-cells_after-title" style="background-color: #FAFAFA; width: 95%; margin-left: auto; margin-right: auto; border-radius: 10px; margin-top: 10px;">
+      <text style="font-size: 15px; font-weight: bold;margin-left: 10px;">所需物资</text>
+      <view class="items-list">
+        <block wx:for="{{items}}" wx:key="index">
+         <view class="item-row" style="display: flex; flex-direction: column; margin: 10px;">
+            <view style="display: flex; align-items: center;">
+            <picker bindchange="bindPickerChange" data-index="{{index}}" value="{{item.categoryIndex}}" range="{{categories}}" style="flex: 1;">
+              <view class="picker" style="padding: 5px 10px; background-color: #fff; border-radius: 5px; font-size: 13px;">
+                {{item.categoryIndex === -1 ? '物品类型' : categories[item.categoryIndex]}}
+              </view>
+            </picker>
+           
+            <button 
+              class="delete-item" 
+              style="padding: 0 10px; margin-left: 10px; height: 25px; font-size: 10px;" 
+              data-index="{{index}}" 
+              bindtap="deleteItem"
+            >X</button>
+          </view>
+        
+           <textarea 
+              class="item-detail" 
+              style="margin-top: 10px; padding: 5px 10px; background-color: #fff; border-radius: 5px; min-height: 50px; width: 100%;" 
+              placeholder="详细说明（如数量、要求等）" 
+              value="{{item.detail}}" 
+              data-index="{{index}}" 
+              bindinput="onItemDetailInput"
+              auto-height
+            />
+              </view>
+          
+        </block>
+      </view>
+      <button 
+        class="add-item" 
+        bindtap="addItem" 
+        style="margin: 10px; height: 28px; font-size: 13px; background-color: #9E9E9E; color: white;"
+      >添加所需的物品</button>
+    </view>
+
+    
+ 
+    <button formType="submit" class="send-post" style=" border-radius: 40px; margin-top: 30px;">发布</button>
+  </form>
+
+</view>
+

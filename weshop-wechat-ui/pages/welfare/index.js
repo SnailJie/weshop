@@ -19,7 +19,8 @@ Page({
         hasMore: true, // 是否还有更多数据
         scrollTop: 0, // 当前滚动位置
         cities: ['成都', '北京', '上海', '广州', '深圳', '杭州'], // 城市列表
-        currentCity: '成都' // 当前选中的城市
+        currentCity: '成都', // 当前选中的城市
+        showPostNeedModal: false,
     },
     tabSelect(e) {
         let categoryId = e.currentTarget.dataset.id;
@@ -92,9 +93,15 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
-    navigateToPostPage() {
-        wx.navigateTo({
-            url: '/pages/newPost/newPost'
+    showPostNeedModal() {
+        console.log("showPostNeedModal")
+        this.setData({
+            showPostNeedModal: true
+        });
+    },
+    hidePostNeedModal() {
+        this.setData({
+            showPostNeedModal: false
         });
     },
     navigateToDetailPage: function (e) {
@@ -107,6 +114,11 @@ Page({
             url: '/pages/welfareDetail/welfareDetail?item=' + postCode
         });
     },
+    navigateToPostPage() {
+      wx.navigateTo({
+          url: '/pages/welfareNeedPost/welfareNeedPost'
+      });
+  },
     getPostsList() {
         let that = this;
         let tempPostsList = [];

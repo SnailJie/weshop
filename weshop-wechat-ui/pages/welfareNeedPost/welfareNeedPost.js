@@ -7,7 +7,13 @@ Page({
         images: [],
         fileIDs: [],
         userInfo: {},
-        showLoginDialog: false
+        showLoginDialog: false,
+        categories: ['文具', '运动器材', '衣物', '药品', '物资', '书籍', '其他'],
+        items: [],
+        getCategories: ['邮寄（包邮）', '邮寄(量大包邮)','邮寄(不包邮)', '线下收取点','其他'],
+        getMethods: [],
+        onReceiverName: '',
+        contact: ''
     },
     onShow: function () {
         // 页面显示
@@ -23,6 +29,16 @@ Page({
     onTitleInput(e) {
         this.setData({
             title: e.detail.value
+        });
+    },
+    onReceiverNameInput(e) {
+        this.setData({
+            onReceiverName: e.detail.value
+        });
+    },
+    onContactInput(e) {
+        this.setData({
+            contact: e.detail.value
         });
     },
     onWechatLogin(e) {
@@ -98,10 +114,96 @@ Page({
             images: images
         });
     },
+    
+    addItem() {
+        const items = this.data.items;
+        items.push({
+            categoryIndex: -1,
+            detail: ''
+        });
+        this.setData({
+            items: items
+        });
+    },
+
+    deleteItem(e) {
+        const index = e.currentTarget.dataset.index;
+        const items = this.data.items;
+        items.splice(index, 1);
+        this.setData({
+            items: items
+        });
+    },
+
+    bindPickerChange(e) {
+        const index = e.currentTarget.dataset.index;
+        const items = this.data.items;
+        items[index].categoryIndex = parseInt(e.detail.value);
+        this.setData({
+            items: items
+        });
+    },
+
+    onItemDetailInput(e) {
+        const index = e.currentTarget.dataset.index;
+        const items = this.data.items;
+        items[index].detail = e.detail.value;
+        this.setData({
+            items: items
+        });
+    },
+    bindStartDateChange(e) {
+        this.setData({
+            startDate: e.detail.value
+        });
+    },
+    bindEndDateChange(e) {
+        this.setData({
+            endDate: e.detail.value
+        });
+    },
+
+    addGetMethod() {
+        const getMethods = this.data.getMethods;
+        getMethods.push({
+            categoryIndex: -1,
+            detail: ''
+        });
+        this.setData({
+            getMethods: getMethods
+        });
+    },
+
+    deleteGetMethod(e) {
+        const index = e.currentTarget.dataset.index;
+        const getMethods = this.data.getMethods;
+        getMethods.splice(index, 1);
+        this.setData({
+            getMethods: getMethods
+        });
+    },
+
+    bindGetMethodPickerChange(e) {
+        const index = e.currentTarget.dataset.index;
+        const getMethods = this.data.getMethods;
+        getMethods[index].categoryIndex = parseInt(e.detail.value);
+        this.setData({
+            getMethods: getMethods
+        });
+    },
+
+    onGetMethodDetailInput(e) {
+        const index = e.currentTarget.dataset.index;
+        const getMethods = this.data.getMethods;
+        getMethods[index].detail = e.detail.value;
+        this.setData({
+            getMethods: getMethods
+        });
+    },
 
     formSubmit(e) {
-        console.log(e)
         let submitData = e.detail.value;
+        
         if (!submitData.title) {
             wx.showToast({
                 title: '请输入标题哦',
@@ -116,6 +218,7 @@ Page({
             });
             return;
         }
+        submitData.memo = submitData.content;
 
         if (this.data.images.length === 0) {
             wx.showToast({
@@ -124,6 +227,54 @@ Page({
             });
             return;
         }
+        
+        submitData.startTime = this.data.startDate
+        submitData.endTime = this.data.endDate
+        submitData.contact = this.data.contact
+        submitData.receiverName = this.data.onReceiverName
+        submitData.needType = "NEED"
+        if (this.data.items.length === 0) {
+            wx.showToast({
+                title: '请添加需要的物品',
+                icon: 'none'
+            });
+            return;
+        }
+        for (let item of this.data.items) {
+            if (item.categoryIndex === -1 || !item.detail) {
+                wx.showToast({
+                    title: '请完整填写物品信息',
+                    icon: 'none'
+                });
+                return;
+            }
+        }
+        submitData.needDetailConf = JSON.stringify(this.data.items.map(item => ({
+            category: this.data.categories[item.categoryIndex],
+            detail: item.detail
+        })));
+
+        if (this.data.getMethods.length === 0) {
+            wx.showToast({
+                title: '请添加获取方式',
+                icon: 'none'
+            });
+            return;
+        }
+
+        for (let method of this.data.getMethods) {
+            if (method.categoryIndex === -1 || !method.detail) {
+                wx.showToast({
+                    title: '请完整填写获取方式信息',
+                    icon: 'none'
+                });
+                return;
+            }
+        }
+        submitData.revConf = JSON.stringify(this.data.getMethods.map(method => ({
+            category: this.data.getCategories[method.categoryIndex],
+            detail: method.detail
+        })));
         // 显示加载提示
         wx.showLoading({
             title: '发布中...',
@@ -135,9 +286,9 @@ Page({
         Promise.all(uploadPromises)
             .then(results => {
                 console.log('所有文件上传成功:', results);
-                submitData.picList = results
+                submitData.picConf = JSON.stringify(results)
+                console.log("准备上传的数据:",submitData)
                 // submitData.userInfo = app.globalData.userInfo,
-                
                 this.sendToServer(submitData)
             })
             .catch(error => {
@@ -153,7 +304,7 @@ Page({
     sendToServer(submitData) {
         // 发送请求
         const that = this;
-        util.post(api.PostsNew, submitData).then(function (res) {
+        util.post(api.WelfareAddNeed, submitData).then(function (res) {
             wx.hideLoading();
             console.log("xxx")
             console.log(res)
@@ -186,13 +337,9 @@ Page({
         const that = this;
         const uploadPromises = filePaths.map(filePath => {
             let uniqueRandom = this.generateUniqueRandom();
-            console.log("uniqueRandom")
-            console.log(uniqueRandom)
             let fileName_split = filePath.split('/');
             let fileName = fileName_split[fileName_split.length - 1]
-            let cloudPath = 'postPic' + '/' + uniqueRandom + '/' + fileName
-            console.log("cloudPath")
-            console.log(cloudPath)
+            let cloudPath = 'welfarePic' + '/' + uniqueRandom + '/' + fileName
             return new Promise((resolve, reject) => {
                 wx.cloud.uploadFile({
                     cloudPath: cloudPath, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
@@ -219,21 +366,5 @@ Page({
             url: '/pages/index/index',
         })
     },
-    modifyPoint() {
-      // 发送请求
-      const points = {
-          actionType: "ADD",
-          targetPoints: 10
-      }
-      util.post(api.ModifyPoints, points).then(function (res) {
-          wx.hideLoading();
-          if (res.data) {
-              wx.showToast({
-                  title: '恭喜获得10积分！',
-                  icon: 'success',
-                  duration: 1500
-              });
-          }  
-      });
-  },
+     
 });

@@ -4,6 +4,7 @@
     "pages/group/index",
     "pages/welfare/index",
     "pages/welfareDetail/welfareDetail",
+    "pages/welfareNeedPost/welfareNeedPost",
     "pages/groupPostDetail/groupPostDetail",
     "pages/ucenter/address/address",
     "pages/ucenter/addressAdd/addressAdd",
@@ -31,7 +32,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "放学去哪儿",
+    "navigationBarTitleText": "放学去哪呀",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },

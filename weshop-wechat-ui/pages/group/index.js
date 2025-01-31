@@ -220,8 +220,8 @@ Page({
     },
     onShareAppMessage: function () {
         return {
-            title: '放学去哪儿',
-            desc: '同学们,放学去哪儿',
+            title: '放学去哪呀',
+            desc: '同学们,放学去哪呀',
             path: '/pages/index/index'
         }
     },
@@ -366,12 +366,20 @@ Page({
     },
     onPullDownRefresh: function () {
         // 重置页面数据
-        this.initData();
-
+        this.setData({
+            page: 1,
+            pageSize: 10,
+            postsList: [],
+            isLoading: false,
+            hasMore: true
+        });
+        
         // 重新获取群组列表和帖子数据
         this.getJoinGroupList();
-
-        // 完成刷新
-        wx.stopPullDownRefresh();
+        
+        // 延迟停止下拉刷新动画，给用户更好的视觉反馈
+        setTimeout(() => {
+            wx.stopPullDownRefresh();
+        }, 1000);
     }
 })

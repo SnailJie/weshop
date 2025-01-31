@@ -33,8 +33,8 @@ Page({
     },
     onShareAppMessage: function () {
         return {
-            title: '放学去哪儿',
-            desc: '同学们,放学去哪儿',
+            title: '放学去哪呀',
+            desc: '同学们,放学去哪呀',
             path: '/pages/index/index'
         }
     },
